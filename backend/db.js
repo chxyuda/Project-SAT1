@@ -5,7 +5,7 @@ require("dotenv").config(); // โหลดตัวแปรแวดล้อ�
 const db = mysql.createConnection({
     host: process.env.DB_HOST || "localhost",
     user: process.env.DB_USER || "root",
-    password: process.env.DB_PASSWORD || "12345678",
+    password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME || "inventory_management",
 });
 
