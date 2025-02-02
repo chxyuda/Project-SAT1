@@ -1,0 +1,147 @@
+/* styles.css */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+/* วิดีโอพื้นหลัง */
+.background-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+/* Header */
+.header {
+    background-color: rgba(45, 120, 191, 0.9);
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 1;
+}
+
+.header .title {
+    font-size: 18px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+
+.header .title img {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.header .title .sub-title {
+    font-size: 12px;
+    font-weight: normal;
+}
+
+.header .datetime {
+    text-align: right;
+}
+
+.header .datetime .date {
+    font-size: 14px;
+}
+
+.header .datetime .time {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* Navigation */
+.nav {
+    background-color: rgba(255, 255, 255, 0.9);
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 1;
+}
+
+.nav a {
+    text-decoration: none;
+    color: #333333;
+    font-size: 14px;
+    padding: 5px 10px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.nav a.logout {
+    color: #e74c3c;
+    font-weight: bold;
+}
+
+.nav a.logout:hover {
+    color: #c0392b;
+}
+
+.nav a:hover {
+    background-color: #f0f4f7;
+    color: #007acc;
+    border-radius: 4px;
+}
+
+/* เนื้อหา */
+.content {
+    text-align: center;
+    padding: 50px 20px;
+    position: relative;
+    z-index: 1;
+}
+
+/* กรอบสี่เหลี่ยม */
+.box-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    height: 250px;
+    border: 2px solid rgb(16, 12, 255);
+    border-radius: 10px;
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(255, 255, 0, 0.5);
+    margin: 0 auto;
+}
+
+.box-container .icon {
+    width: 120px;
+    height: 120px;
+    background: linear-gradient(135deg, #8e44ad, #3498db);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 36px;
+    font-weight: bold;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.box-container .icon:hover {
+    transform: scale(1.1);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+}
+
+.box-container .text {
+    margin-top: 20px;
+    font-size: 18px;
+    color: black;
+    text-align: center;
+}

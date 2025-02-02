@@ -15,6 +15,19 @@ import BorrowReturn from "./Pages/BorrowReturn";
 import Request from "./Pages/Request";
 import Dashboard from "./Pages/Dashboard";
 import StaffProfile from "./Pages/StaffProfile";
+import UserDashboard from "./Pages/User/Dashboard";
+import EditProfile from "./Pages/User/edit_profile";
+import ChangePassword from "./Pages/User/change_password";
+import Borrow from "./Pages/User/borrow";
+import PasswordReset from "./Pages/User/password_reset";
+import PasswordSuccessful from "./Pages/User/password_successful";
+import RequestForm from "./Pages/User/RequestForm";
+import Track from "./Pages/User/track";
+import RequestHistory from "./Pages/User/Request_History";
+import WithdrawalHistory from "./Pages/User/withdrawalHistory";
+import ReturningHistory from "./Pages/User/returningHistory";
+import RequestStatus from "./Pages/User/requeststatus";
+import BorrowStatus from "./Pages/User/borrow-status";
 
 function App() {
   const [currentTime, setCurrentTime] = useState("");
@@ -83,6 +96,19 @@ function App() {
           <Route path="/request" element={<Request />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/staff-profile" element={<StaffProfile />} />
+          <Route path="/user-dashboard" element={<UserDashboard/>} />
+          <Route path="/edit-profile" element={<EditProfile/>} />
+          <Route path="/change-password" element={<ChangePassword/>} />
+          <Route path="/borrow" element={<Borrow/>} />
+          <Route path="/password-reset" element={<PasswordReset/>} />
+          <Route path="/password-successful" element={<PasswordSuccessful/>} />
+          <Route path="/requestform" element={<RequestForm/>} />
+          <Route path="/track" element={<Track/>} />
+          <Route path="/request-History" element={<RequestHistory/>} />
+          <Route path="/withdrawalHistory" element={<WithdrawalHistory/>} />
+          <Route path="/returningHistory" element={<ReturningHistory/>} />
+          <Route path="/request-status" element={<RequestStatus/>} />
+          <Route path="/borrow-status" element={<BorrowStatus/>} />
         </Routes>
       </div>
     </Router>
