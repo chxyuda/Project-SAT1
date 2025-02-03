@@ -1,3 +1,5 @@
+const config = require('./config/config')
+
 const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
@@ -6,14 +8,18 @@ const nodemailer = require("nodemailer");
 const db = require("./db"); // ✅ ใช้ `db.js` ที่เราแยกไว้
 require("dotenv").config();
 
+const userRouter = require('./routes/user')
+
+
 const app = express();
-const PORT = process.env.PORT || 5001;
+const PORT = config.port;
 const router = express.Router();
 
 app.use(cors());
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }));
 app.use("/api", router);
+app.use("/api/user", userRouter)
 
 // ✅ Nodemailer Transporter (ส่งอีเมล)
 const transporter = nodemailer.createTransport({
@@ -108,13 +114,21 @@ router.post("/login", async (req, res) => {
           return res.status(403).json({ success: false, message: "บัญชีของคุณยังไม่ได้รับการอนุมัติจาก IT" });
       }
 
+      const userResponse = {
+        id: user.id,
+        username: user.username,
+        role: user.role,
+    };
+
+      // สร้าง Token
+    const token = generateToken(userResponse);
+
       res.status(200).json({
           success: true,
           message: "เข้าสู่ระบบสำเร็จ",
-          user: {
-              id: user.id,
-              username: user.username,
-              role: user.role,
+          user: userResponse,
+          data: {
+            token
           }
       });
   });
@@ -656,6 +670,7 @@ app.put('/api/brands/:id', (req, res) => {
 
 // ดึงข้อมูลบุคลากรทั้งหมด
 const crypto = require("crypto");
+const { generateToken } = require('./utils/jwt');
 // ✅ ทดสอบถอดรหัส
 const encryptedHex = "796F75727275706C6F6164"; // 🔥 ใส่ค่าจริงจากฐานข้อมูล
 console.log("🔓 Decrypted Password:", decryptPassword(encryptedHex));
