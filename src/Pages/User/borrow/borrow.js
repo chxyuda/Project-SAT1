@@ -1,27 +1,8 @@
-import React, { useEffect, useState } from "react";
+import react from "react";
+import navbar from "../../../components/common/navbar";
 import "./borrow.css";
 
-const BorrowEquipment = () => {
-    const [date, setDate] = useState("");
-    const [time, setTime] = useState("");
-    const [borrowDate, setBorrowDate] = useState("");
 
-    useEffect(() => {
-        const updateTime = () => {
-            const now = new Date();
-            const options = { weekday: "long", year: "numeric", month: "long", day: "numeric" };
-            setDate(now.toLocaleDateString("th-TH", options));
-            setTime(now.toLocaleTimeString("th-TH", { hour: "2-digit", minute: "2-digit", second: "2-digit" }));
-        };
-
-        updateTime();
-        const intervalId = setInterval(updateTime, 1000);
-
-        const today = new Date().toISOString().split("T")[0];
-        setBorrowDate(today);
-
-        return () => clearInterval(intervalId); // Cleanup interval
-    }, []);
 
     return (
         <div>
@@ -30,32 +11,7 @@ const BorrowEquipment = () => {
                 Your browser does not support the video tag.
             </video>
 
-            {/* Header */}
-            <header className="header">
-                <div className="title">
-                    <img src="logo.png" alt="Logo" />
-                    <div>
-                        SPORTS AUTHORITY OF THAILAND
-                        <div className="sub-title">Computer Equipment Management System</div>
-                    </div>
-                </div>
-                <div className="datetime">
-                    <div className="date">{date}</div>
-                    <div className="time">{time}</div>
-                </div>
-            </header>
-
-            {/* Navigation */}
-            <nav className="nav">
-                <a href="#">ยืมวัสดุ</a>
-                <a href="#">เบิกวัสดุ</a>
-                <a href="#">ติดตามสถานะคำขอ</a>
-                <a href="#">ประวัติการเบิก-การยืม-คืน</a>
-                <a href="#">แก้ไขรหัสผ่าน</a>
-                <a href="#">แก้ไขโปรไฟล์</a>
-                <a href="#" className="logout">&#10140; Log out</a>
-                <a href="#">ฝ่ายสำนัก</a>
-            </nav>
+           < nav></nav>
 
             {/* Content */}
             <main className="content">
@@ -128,6 +84,5 @@ const BorrowEquipment = () => {
             </main>
         </div>
     );
-};
 
 export default BorrowEquipment;

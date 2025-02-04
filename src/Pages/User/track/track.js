@@ -2,21 +2,6 @@ import React, { useEffect, useState } from "react";
 import "./track.css"; // แยก CSS ออกไปเป็นไฟล์เฉพาะ
 import navbar from "../../../components/common/navbar";
 
-const Track = () => {
-    const [date, setDate] = useState("");
-    const [time, setTime] = useState("");
-
-    useEffect(() => {
-        const updateTime = () => {
-            const now = new Date();
-            const options = { weekday: "long", year: "numeric", month: "long", day: "numeric" };
-            setDate(now.toLocaleDateString("th-TH", options));
-            setTime(now.toLocaleTimeString("th-TH", { hour: "2-digit", minute: "2-digit", second: "2-digit" }));
-        };
-        updateTime();
-        const interval = setInterval(updateTime, 1000);
-        return () => clearInterval(interval);
-    }, []);
 
     return (
         <div>
@@ -42,13 +27,12 @@ const Track = () => {
                 <div className="box-container">
                     <h2>ติดตามสถานะคำขอ</h2>
                     <div className="card-container">
-                        <a href="สถานะคำขอเบิก.html" className="card card-issue">สถานะการขอเบิก</a>
-                        <a href="สถานะคำขอยืมคืน.html" className="card card-borrow">สถานะการยืม-คืน</a>
+                        <a href="/BorrowStatus" className="card card-issue">สถานะการขอเบิก</a>
+                        <a href="/RequestStatus" className="card card-borrow">สถานะการยืม-คืน</a>
                     </div>
                 </div>
             </div>
         </div>
     );
-};
 
 export default Track;

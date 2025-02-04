@@ -2,24 +2,6 @@ import React, { useEffect, useState } from "react";
 import navbar from "../../../components/common/navbar";
 import "./Request History.css";
 
-
-const RequestHistory = () => {
-    const [date, setDate] = useState("");
-    const [time, setTime] = useState("");
-
-    useEffect(() => {
-        const updateTime = () => {
-            const now = new Date();
-            const options = { weekday: "long", year: "numeric", month: "long", day: "numeric" };
-            setDate(now.toLocaleDateString("th-TH", options));
-            setTime(now.toLocaleTimeString("th-TH", { hour: "2-digit", minute: "2-digit", second: "2-digit" }));
-        };
-
-        updateTime();
-        const interval = setInterval(updateTime, 1000);
-        return () => clearInterval(interval);
-    }, []);
-
     return (
         <div>
             <header className="bg-blue-600 text-white p-4 flex justify-between items-center shadow-md">
@@ -76,11 +58,10 @@ const RequestHistory = () => {
                     </div>
                 </div>
                 <div className="text-center mt-6">
-                    <a href="ประวัติการเบิกยืม.html" className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700">ย้อนกลับ</a>
+                    <a href="/WithdrawalHistory" className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700">ย้อนกลับ</a>
                 </div>
             </main>
         </div>
     );
-};
 
 export default RequestHistory;

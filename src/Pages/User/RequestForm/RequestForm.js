@@ -2,40 +2,6 @@ import React, { useEffect, useState } from 'react';
 import navbar from '../../../components/common/navbar';
 import './RequestForm.css';
 
-const ReturnEquipment = () => {
-    const [date, setDate] = useState('');
-    const [time, setTime] = useState('');
-    const [formData, setFormData] = useState({
-        borrower: '',
-        department: '',
-        phone: '',
-        email: '',
-        type: '',
-        equipment: '',
-        brand: '',
-        remaining: 0,
-        quantity: '',
-        note: '',
-        startDate: ''
-    });
-
-    useEffect(() => {
-        const updateTime = () => {
-            const now = new Date();
-            setDate(now.toLocaleDateString('th-TH', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }));
-            setTime(now.toLocaleTimeString('th-TH', { hour: '2-digit', minute: '2-digit', second: '2-digit' }));
-        };
-        updateTime();
-        const interval = setInterval(updateTime, 1000);
-        return () => clearInterval(interval);
-    }, []);
-
-    useEffect(() => {
-        const today = new Date();
-        const formattedDate = today.toISOString().split('T')[0];
-        setFormData(prevState => ({ ...prevState, startDate: formattedDate }));
-    }, []);
-
     const handleChange = (e) => {
         const { id, value } = e.target;
         setFormData(prevState => ({ ...prevState, [id]: value }));
@@ -136,6 +102,4 @@ const ReturnEquipment = () => {
             </div>
         </div>
     );
-};
-
 export default ReturnEquipment;
