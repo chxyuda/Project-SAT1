@@ -62,7 +62,7 @@ const ChangePassword = () => {
                             <input type="password" id="confirm-password" placeholder="ยืนยันรหัสผ่านใหม่" required />
                         </div>
                         <div className="buttons">
-                            <a href="dashboard.html">ย้อนกลับ</a>
+                            <a href="/dashboard">ย้อนกลับ</a>
                             <button type="submit">บันทึก</button>
                         </div>
                     </form>

@@ -1,6 +1,7 @@
 // Dashboard.js
 import React, { useEffect, useState } from "react";
-import "./styles.css";
+import Navbar from "../../../components/common/navbar";
+import "./dashboard.css";
 
 const Dashboard = () => {
     const [date, setDate] = useState("");
@@ -43,16 +44,7 @@ const Dashboard = () => {
                 </div>
             </div>
 
-            {/* Navigation */}
-            <div className="nav">
-                <a href="borrow.html">ยืมวัสดุ</a>
-                <a href="returnเบิก.html">เบิกวัสดุ</a>
-                <a href="track.html">ติดตามสถานะคำขอ</a>
-                <a href="ประวัติการเบิกยืม.html">ประวัติการเบิกคืน</a>
-                <a href="change_password.html">แก้ไขรหัสผ่าน</a>
-                <a href="edit_profile.html">แก้ไขโปรไฟล์</a>
-                <a href="LoginPage.html" className="logout">➡ Log out</a>
-            </div>
+            < Navbar></Navbar>
 
             {/* Content */}
             <div className="content">

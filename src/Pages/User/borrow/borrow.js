@@ -15,10 +15,12 @@ const BorrowEquipment = () => {
         };
 
         updateTime();
-        setInterval(updateTime, 1000);
+        const intervalId = setInterval(updateTime, 1000);
 
         const today = new Date().toISOString().split("T")[0];
         setBorrowDate(today);
+
+        return () => clearInterval(intervalId); // Cleanup interval
     }, []);
 
     return (
@@ -28,7 +30,8 @@ const BorrowEquipment = () => {
                 Your browser does not support the video tag.
             </video>
 
-            <div className="header">
+            {/* Header */}
+            <header className="header">
                 <div className="title">
                     <img src="logo.png" alt="Logo" />
                     <div>
@@ -40,9 +43,10 @@ const BorrowEquipment = () => {
                     <div className="date">{date}</div>
                     <div className="time">{time}</div>
                 </div>
-            </div>
+            </header>
 
-            <div className="nav">
+            {/* Navigation */}
+            <nav className="nav">
                 <a href="#">ยืมวัสดุ</a>
                 <a href="#">เบิกวัสดุ</a>
                 <a href="#">ติดตามสถานะคำขอ</a>
@@ -51,26 +55,27 @@ const BorrowEquipment = () => {
                 <a href="#">แก้ไขโปรไฟล์</a>
                 <a href="#" className="logout">&#10140; Log out</a>
                 <a href="#">ฝ่ายสำนัก</a>
-            </div>
+            </nav>
 
-            <div className="content">
+            {/* Content */}
+            <main className="content">
                 <div className="form-container">
                     <h2>รายละเอียดการยืม-คืน วัสดุ</h2>
                     <div className="form-group">
                         <label>ชื่อผู้ยืม:</label>
-                        <input type="text" placeholder="" />
+                        <input type="text" placeholder="กรอกชื่อผู้ยืม" />
                     </div>
                     <div className="form-group">
                         <label>ฝ่ายสำนัก:</label>
-                        <input type="text" placeholder="" />
+                        <input type="text" placeholder="กรอกฝ่ายสำนัก" />
                     </div>
                     <div className="form-group">
                         <label>เบอร์โทรภายใน:</label>
-                        <input type="text" placeholder="" />
+                        <input type="text" placeholder="กรอกเบอร์โทรภายใน" />
                     </div>
                     <div className="form-group">
                         <label>E-mail:</label>
-                        <input type="email" placeholder="" />
+                        <input type="email" placeholder="กรอกอีเมล" />
                     </div>
                     <div className="form-group">
                         <label>ประเภท:</label>
@@ -106,7 +111,7 @@ const BorrowEquipment = () => {
                     </div>
                     <div className="form-group">
                         <label>หมายเหตุ:</label>
-                        <input type="text" placeholder="หมายเหตุการยืม-คืน" />
+                        <input type="text" placeholder="ระบุหมายเหตุ" />
                     </div>
                     <div className="form-group">
                         <label>วันที่ยืม:</label>
@@ -120,7 +125,7 @@ const BorrowEquipment = () => {
                         <button type="submit">ยืนยันการยืม</button>
                     </div>
                 </div>
-            </div>
+            </main>
         </div>
     );
 };

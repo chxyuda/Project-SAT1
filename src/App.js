@@ -16,18 +16,18 @@ import Request from "./Pages/Request";
 import Dashboard from "./Pages/Dashboard";
 import StaffProfile from "./Pages/StaffProfile";
 import UserDashboard from "./Pages/User/Dashboard";
-import EditProfile from "./Pages/User/edit_profile";
-import ChangePassword from "./Pages/User/change_password";
-import Borrow from "./Pages/User/borrow";
-import PasswordReset from "./Pages/User/password_reset";
-import PasswordSuccessful from "./Pages/User/password_successful";
-import RequestForm from "./Pages/User/RequestForm";
-import Track from "./Pages/User/track";
-import RequestHistory from "./Pages/User/Request_History";
-import WithdrawalHistory from "./Pages/User/withdrawalHistory";
-import ReturningHistory from "./Pages/User/returningHistory";
-import RequestStatus from "./Pages/User/requeststatus";
-import BorrowStatus from "./Pages/User/borrow-status";
+import EditProfile from "./Pages/User/edit_profile/edit_profile";
+import ChangePassword from "./Pages/User/change_password/change_password";
+import Borrow from "./Pages/User/borrow/borrow";
+import PasswordReset from "./Pages/User/password_reset/password_reset";
+import PasswordSuccessful from "./Pages/User/password_successful/password_successful";
+import RequestForm from "./Pages/User/RequestForm/RequestForm";
+import Track from "./Pages/User/track/track";
+import RequestHistory from "./Pages/User/Request_History/Request History"; //อย่าใช้ ชืือไฟล์แบบมีช่องว่างน
+import WithdrawalHistory from "./Pages/User/withdrawalHistory/withdrawalHistory";
+import ReturningHistory from "./Pages/User/returningHistory/returningHistory";
+import RequestStatus from "./Pages/User/request status/request status";
+import BorrowStatus from "./Pages/User/borrow-status/borrow-status";
 
 function App() {
   const [currentTime, setCurrentTime] = useState("");
@@ -106,7 +106,7 @@ function App() {
           <Route path="/track" element={<Track/>} />
           <Route path="/request-History" element={<RequestHistory/>} />
           <Route path="/withdrawalHistory" element={<WithdrawalHistory/>} />
-          <Route path="/returningHistory" element={<ReturningHistory/>} />
+          <Route path="/returningHistory" element={<ReturningHistory/>} /> ถ้าจะให้กดไปหน้าไหน ให้แก้ จาก .html 
           <Route path="/request-status" element={<RequestStatus/>} />
           <Route path="/borrow-status" element={<BorrowStatus/>} />
         </Routes>

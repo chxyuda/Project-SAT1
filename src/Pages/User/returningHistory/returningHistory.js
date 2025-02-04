@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
-import "./returningHistoryStyles.css";
+import React, { useEffect, useState } from "react";
+import "./returningHistory.css";
+import Navbar from "../../../components/common/navbar";
 
-const returningHistory = () => {
+const ReturningHistory = () => {
     const [date, setDate] = useState("");
     const [time, setTime] = useState("");
 
@@ -33,15 +34,7 @@ const returningHistory = () => {
                     <div className="time">{time}</div>
                 </div>
             </div>
-            <nav className="nav">
-                <a href="borrow.html">ยืมวัสดุ</a>
-                <a href="returnเบิก.html">เบิกวัสดุ</a>
-                <a href="track.html">ติดตามสถานะการเบิก</a>
-                <a href="ประวัติการเบิกยืม.html">ประวัติการเบิก-การยืม-คืน</a>
-                <a href="change_password.html">แก้ไขรหัสผ่าน</a>
-                <a href="edit_profile.html">แก้ไขโปรไฟล์</a>
-                <a href="LoginPage.html" className="logout">&#10140; Log out</a>
-            </nav>
+            <Navbar />
             <div className="content">
                 <h2>ประวัติการยืม - คืน</h2>
                 <div className="table-container">
@@ -83,4 +76,4 @@ const returningHistory = () => {
     );
 };
 
-export default returningHistory;
+export default ReturningHistory;

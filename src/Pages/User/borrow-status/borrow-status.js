@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './borrow-status.css';
 
+
 const BorrowStatus = () => {
     const [date, setDate] = useState('');
     const [time, setTime] = useState('');
@@ -33,15 +34,7 @@ const BorrowStatus = () => {
                     <div className="time">{time}</div>
                 </div>
             </header>
-            <nav className="nav">
-                <a href="borrow.html">ยืมวัสดุ</a>
-                <a href="returnเบิก.html">เบิกวัสดุ</a>
-                <a href="track.html">ติดตามสถานะการเบิก</a>
-                <a href="ประวัติการเบิกยืม.html">ประวัติการเบิก-การยืม-คืน</a>
-                <a href="change_password.html">แก้ไขรหัสผ่าน</a>
-                <a href="edit_profile.html">แก้ไขโปรไฟล์</a>
-                <a href="LoginPage.html" className="logout">&#10140; Log out</a>
-            </nav>
+            < nav></nav>
             <main className="content">
                 <h2>สถานะการยืม - คืน</h2>
                 <div className="table-container">
@@ -76,7 +69,7 @@ const BorrowStatus = () => {
                     </div>
                 </div>
                 <div className="back-button">
-                    <a href="track.html">ย้อนกลับ</a>
+                    <a href="/track">ย้อนกลับ</a>
                 </div>
             </main>
         </div>

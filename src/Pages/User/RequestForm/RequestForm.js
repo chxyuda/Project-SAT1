@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import navbar from '../../../components/common/navbar';
 import './RequestForm.css';
 
 const ReturnEquipment = () => {
@@ -65,16 +66,7 @@ const ReturnEquipment = () => {
                 </div>
             </header>
 
-            <nav className="nav">
-                <a href="/borrow">ยืมวัสดุ</a>
-                <a href="/return">เบิกวัสดุ</a>
-                <a href="/track">ติดตามสถานะคำขอ</a>
-                <a href="/history">ประวัติการเบิก-การยืม-คืน</a>
-                <a href="/change-password">แก้ไขรหัสผ่าน</a>
-                <a href="/edit-profile">แก้ไขโปรไฟล์</a>
-                <a href="/login" className="logout">&#10140; Log out</a>
-                <a href="/dashboard">ฝ่ายสำนัก</a>
-            </nav>
+            < nav></nav>
 
             <div className="content">
                 <div className="form-container">

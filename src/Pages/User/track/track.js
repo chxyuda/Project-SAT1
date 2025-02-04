@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./track.css"; // แยก CSS ออกไปเป็นไฟล์เฉพาะ
+import navbar from "../../../components/common/navbar";
 
 const Track = () => {
     const [date, setDate] = useState("");
@@ -36,16 +37,7 @@ const Track = () => {
                     <div className="time">{time}</div>
                 </div>
             </div>
-            <div className="nav">
-                <a href="borrow.html">ยืมวัสดุ</a>
-                <a href="returnเบิก.html">เบิกวัสดุ</a>
-                <a href="track.html">ติดตามสถานะคำขอ</a>
-                <a href="ประวัติการเบิกยืม.html">ประวัติการเบิก-การยืม-คืน</a>
-                <a href="change_password.html">แก้ไขรหัสผ่าน</a>
-                <a href="edit_profile.html">แก้ไขโปรไฟล์</a>
-                <a href="LoginPage.html" className="logout">&#10140; Log out</a>
-                <a href="dashboard.html">ฝ่ายสำนัก</a>
-            </div>
+            < nav></nav>
             <div className="content">
                 <div className="box-container">
                     <h2>ติดตามสถานะคำขอ</h2>

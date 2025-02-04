@@ -85,7 +85,7 @@ const EditProfile = () => {
                             <input type="email" id="email" placeholder="xxxxx@sat.th" />
                         </div>
                         <div className="buttons">
-                            <a href="dashboard.html">ย้อนกลับ</a>
+                            <a href="/dashboard">ย้อนกลับ</a>
                             <button type="submit">ตกลง</button>
                         </div>
                     </form>

@@ -1,3 +1,4 @@
+/* General Styles */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
@@ -16,6 +17,7 @@ body {
     z-index: -1;
 }
 
+/* Header Styles */
 .header {
     background-color: #2d78bf;
     color: white;
@@ -24,8 +26,9 @@ body {
     justify-content: space-between;
     align-items: center;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    position: relative;
-    z-index: 1;
+    position: sticky;
+    top: 0;
+    z-index: 10;
 }
 
 .header .title {
@@ -59,15 +62,11 @@ body {
     font-weight: bold;
 }
 
+/* Navigation Styles */
 .nav {
-    background-color: #ffffff;
-    display: flex;
-    justify-content: space-around;
-    padding: 10px 0;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    position: relative;
-    z-index: 1;
+    background-color: transparent; /* แก้สีเป็นโปร่งใส */
 }
+
 
 .nav a {
     text-decoration: none;
@@ -92,14 +91,16 @@ body {
     border-radius: 4px;
 }
 
+/* Content Styles */
 .content {
     padding: 20px;
     position: relative;
     z-index: 1;
     overflow-y: auto;
-    height: calc(100vh - 140px);
+    height: calc(100vh - 140px); /* เผื่อพื้นที่สำหรับ header และ nav */
 }
 
+/* Form Styles */
 .form-container {
     background-color: #ffffff;
     padding: 20px;

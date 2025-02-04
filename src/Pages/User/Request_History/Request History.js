@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+import navbar from "../../../components/common/navbar";
 import "./Request History.css";
 
 
@@ -35,16 +36,7 @@ const RequestHistory = () => {
                 </div>
             </header>
 
-            <nav className="bg-white flex justify-around p-2 shadow-md">
-                <a href="borrow.html" className="hover:text-blue-600">ยืมวัสดุ</a>
-                <a href="returnเบิก.html" className="hover:text-blue-600">เบิกวัสดุ</a>
-                <a href="track.html" className="hover:text-blue-600">ติดตามสถานะการเบิก</a>
-                <a href="ประวัติการเบิกยืม.html" className="hover:text-blue-600">ประวัติการเบิก-การยืม-คืน</a>
-                <a href="change_password.html" className="hover:text-blue-600">แก้ไขรหัสผ่าน</a>
-                <a href="edit_profile.html" className="hover:text-blue-600">แก้ไขโปรไฟล์</a>
-                <a href="LoginPage.html" className="text-red-500 font-bold hover:text-red-700">&#10140; Log out</a>
-            </nav>
-
+        < nav></nav>
             <main className="p-6">
                 <h2 className="text-center text-2xl font-bold mb-6">ประวัติการเบิก</h2>
                 <div className="max-w-4xl mx-auto bg-white p-6 rounded-lg shadow-md">
