@@ -1,38 +1,86 @@
-import React, { useEffect, useState } from "react";
-import "./track.css"; // แยก CSS ออกไปเป็นไฟล์เฉพาะ
-import navbar from "../../../components/common/navbar";
+import React, { useState, useEffect } from 'react';
+import { Clock, FileText, ClipboardList } from 'lucide-react';
+import Navbar from "../../../components/common/navbar/navbar";
+import './track.css';
 
+const Track = () => {
+    const [date, setDate] = useState("");
+    const [time, setTime] = useState("");
+
+    useEffect(() => {
+        const updateDateTime = () => {
+            const now = new Date();
+
+            const formattedDate = now.toLocaleDateString('th-TH', {
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric'
+            });
+
+            const formattedTime = now.toLocaleTimeString('th-TH', {
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: false
+            });
+
+            setDate(formattedDate);
+            setTime(formattedTime);
+        };
+
+        updateDateTime();
+        const timer = setInterval(updateDateTime, 1000);
+
+        return () => clearInterval(timer);
+    }, []);
 
     return (
-        <div>
-            <video autoPlay loop muted playsInline id="background-video">
+        <div className="track-container">
+            <video className="background-video" autoPlay muted loop playsInline>
                 <source src="พื้นหลัง2.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
             </video>
-            <div className="header">
+
+            <header className="header">
                 <div className="title">
-                    <img src="logo.png" alt="Logo" />
-                    <div>
-                        SPORTS AUTHORITY OF THAILAND
+                    <img src="/logo.png" alt="SAT Logo" className="logo" />
+                    <div className="title-text">
+                        <h1>SPORTS AUTHORITY OF THAILAND</h1>
                         <div className="sub-title">Computer Equipment Management System</div>
                     </div>
                 </div>
                 <div className="datetime">
                     <div className="date">{date}</div>
-                    <div className="time">{time}</div>
-                </div>
-            </div>
-            < nav></nav>
-            <div className="content">
-                <div className="box-container">
-                    <h2>ติดตามสถานะคำขอ</h2>
-                    <div className="card-container">
-                        <a href="/BorrowStatus" className="card card-issue">สถานะการขอเบิก</a>
-                        <a href="/RequestStatus" className="card card-borrow">สถานะการยืม-คืน</a>
+                    <div className="time">
+                        <Clock className="clock-icon" size={18} />
+                        {time}
                     </div>
                 </div>
-            </div>
+            </header>
+
+            <Navbar />
+
+            <main className="content">
+                <div className="menu-container">
+                    <h2>ติดตามสถานะคำขอ</h2>
+                    <div className="menu-grid">
+                        <a href="/RequestStatus" className="menu-item">
+                            <div className="menu-icon request-icon">
+                                <FileText size={40} />
+                            </div>
+                            <span className="menu-text">สถานะการขอเบิก</span>
+                        </a>
+                        <a href="/BorrowStatus" className="menu-item">
+                            <div className="menu-icon borrow-icon">
+                                <ClipboardList size={40} />
+                            </div>
+                            <span className="menu-text">สถานะการยืม-คืน</span>
+                        </a>
+                    </div>
+                </div>
+            </main>
         </div>
     );
+};
 
 export default Track;

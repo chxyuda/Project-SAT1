@@ -1,67 +1,186 @@
-import React, { useEffect, useState } from "react";
-import navbar from "../../../components/common/navbar";
-import "./Request History.css";
+import React, { useState, useEffect } from 'react';
+import { Clock } from 'lucide-react';
+import Navbar from "../../../components/common/navbar/navbar";
+import './RequestHistory.css';
+
+const RequestHistory = () => {
+    const [date, setDate] = useState("");
+    const [time, setTime] = useState("");
+    const [currentPage, setCurrentPage] = useState(1);
+    const [requests, setRequests] = useState([]);
+    const [totalPages, setTotalPages] = useState(1);
+    const itemsPerPage = 5;
+
+    useEffect(() => {
+        const updateDateTime = () => {
+            const now = new Date();
+            
+            const formattedDate = now.toLocaleDateString('th-TH', {
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric'
+            });
+            
+            const formattedTime = now.toLocaleTimeString('th-TH', {
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: false
+            });
+
+            setDate(formattedDate);
+            setTime(formattedTime);
+        };
+
+        updateDateTime();
+        const timer = setInterval(updateDateTime, 1000);
+
+        return () => clearInterval(timer);
+    }, []);
+
+    useEffect(() => {
+        const fetchRequests = async () => {
+            try {
+                const response = await fetch('http://localhost:3000/api/borrowings');
+                const data = await response.json();
+                
+                // Calculate total pages
+                setTotalPages(Math.ceil(data.length / itemsPerPage));
+                
+                // Get current page items
+                const startIndex = (currentPage - 1) * itemsPerPage;
+                const endIndex = startIndex + itemsPerPage;
+                setRequests(data.slice(startIndex, endIndex));
+            } catch (error) {
+                console.error('Error fetching requests:', error);
+            }
+        };
+
+        fetchRequests();
+    }, [currentPage]);
+
+    const getStatusBadgeClass = (status) => {
+        switch (status) {
+            case 'pending':
+                return 'status-badge status-pending';
+            case 'approved':
+                return 'status-badge status-approved';
+            case 'returned':
+                return 'status-badge status-returned';
+            default:
+                return 'status-badge';
+        }
+    };
+
+    const getStatusText = (status) => {
+        switch (status) {
+            case 'pending':
+                return 'รอดำเนินการ';
+            case 'approved':
+                return 'อนุมัติแล้ว';
+            case 'returned':
+                return 'คืนแล้ว';
+            default:
+                return status;
+        }
+    };
+
+    const formatDate = (dateString) => {
+        return new Date(dateString).toLocaleDateString('th-TH', {
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit'
+        });
+    };
 
     return (
-        <div>
-            <header className="bg-blue-600 text-white p-4 flex justify-between items-center shadow-md">
-                <div className="flex items-center">
-                    <img src="logo.png" alt="Logo" className="w-10 h-10 mr-2" />
-                    <div>
-                        <div className="font-bold">SPORTS AUTHORITY OF THAILAND</div>
-                        <div className="text-sm">Computer Equipment Management System</div>
+        <div className="request-history-container">
+            <video className="background-video" autoPlay muted loop playsInline>
+                <source src="พื้นหลัง2.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+            </video>
+
+            <header className="header">
+                <div className="title">
+                    <img src="/logo.png" alt="SAT Logo" className="logo" />
+                    <div className="title-text">
+                        <h1>SPORTS AUTHORITY OF THAILAND</h1>
+                        <div className="sub-title">Computer Equipment Management System</div>
                     </div>
                 </div>
-                <div className="text-right">
-                    <div className="text-sm">{date}</div>
-                    <div className="text-lg font-bold">{time}</div>
+                <div className="datetime">
+                    <div className="date">{date}</div>
+                    <div className="time">
+                        <Clock className="clock-icon" size={18} />
+                        {time}
+                    </div>
                 </div>
             </header>
 
-        < nav></nav>
-            <main className="p-6">
-                <h2 className="text-center text-2xl font-bold mb-6">ประวัติการเบิก</h2>
-                <div className="max-w-4xl mx-auto bg-white p-6 rounded-lg shadow-md">
-                    <table className="w-full border-collapse border border-gray-300">
+            <Navbar />
+
+            <main className="content">
+                <div className="table-container">
+                    <h2>ประวัติการเบิก</h2>
+
+                    <table>
                         <thead>
-                            <tr className="bg-gray-100">
-                                <th className="border border-gray-300 p-2">ลำดับ</th>
-                                <th className="border border-gray-300 p-2">ชื่อผู้เบิก</th>
-                                <th className="border border-gray-300 p-2">ชื่อฝ่ายสำนัก</th>
-                                <th className="border border-gray-300 p-2">อุปกรณ์</th>
-                                <th className="border border-gray-300 p-2">วันที่ขอเบิก</th>
-                                <th className="border border-gray-300 p-2">สถานะ</th>
+                            <tr>
+                                <th>ลำดับ</th>
+                                <th>ชื่อผู้เบิก</th>
+                                <th>ชื่อฝ่ายสำนัก</th>
+                                <th>อุปกรณ์</th>
+                                <th>วันที่ขอเบิก</th>
+                                <th>สถานะ</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {[...Array(5)].map((_, index) => (
-                                <tr key={index}>
-                                    <td className="border border-gray-300 p-2 text-center">{index + 1}</td>
-                                    <td className="border border-gray-300 p-2"></td>
-                                    <td className="border border-gray-300 p-2"></td>
-                                    <td className="border border-gray-300 p-2"></td>
-                                    <td className="border border-gray-300 p-2"></td>
-                                    <td className="border border-gray-300 p-2"></td>
+                            {requests.length > 0 ? (
+                                requests.map((request, index) => (
+                                    <tr key={request.id}>
+                                        <td>{(currentPage - 1) * itemsPerPage + index + 1}</td>
+                                        <td>{request.borrower_name}</td>
+                                        <td>{request.department}</td>
+                                        <td>{request.equipment?.name}</td>
+                                        <td>{formatDate(request.borrow_date)}</td>
+                                        <td>
+                                            <span className={getStatusBadgeClass(request.status)}>
+                                                {getStatusText(request.status)}
+                                            </span>
+                                        </td>
+                                    </tr>
+                                ))
+                            ) : (
+                                <tr>
+                                    <td colSpan="6" className="no-data">ไม่พบข้อมูลการเบิก</td>
                                 </tr>
-                            ))}
+                            )}
                         </tbody>
                     </table>
-                    <div className="text-center mt-4">
-                        {[...Array(10)].map((_, index) => (
-                            <button
-                                key={index}
-                                className="border border-gray-300 p-2 mx-1 rounded hover:bg-blue-600 hover:text-white"
-                            >
-                                {index + 1}
-                            </button>
-                        ))}
+
+                    {totalPages > 1 && (
+                        <div className="pagination">
+                            {[...Array(totalPages)].map((_, index) => (
+                                <button
+                                    key={index}
+                                    className={currentPage === index + 1 ? 'active' : ''}
+                                    onClick={() => setCurrentPage(index + 1)}
+                                >
+                                    {index + 1}
+                                </button>
+                            ))}
+                        </div>
+                    )}
+
+                    <div className="back-button">
+                        <a href="/dashboard" className="back-link">
+                            ย้อนกลับ
+                        </a>
                     </div>
-                </div>
-                <div className="text-center mt-6">
-                    <a href="/WithdrawalHistory" className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700">ย้อนกลับ</a>
                 </div>
             </main>
         </div>
     );
+};
 
 export default RequestHistory;

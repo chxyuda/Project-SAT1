@@ -1,88 +1,235 @@
-import react from "react";
-import navbar from "../../../components/common/navbar";
+import React, { useState } from 'react';
+import Navbar from "../../../components/common/navbar/navbar";
+import { Calendar } from 'lucide-react';
 import "./borrow.css";
 
+const BorrowEquipment = () => {
+    const [formData, setFormData] = useState({
+        borrowerName: '',
+        department: '',
+        phoneExt: '',
+        email: '',
+        typeId: '',
+        equipmentId: '',
+        quantity: '1',
+        note: '',
+        borrowDate: new Date().toISOString().split('T')[0],
+        returnDate: ''
+    });
 
+    const [selectedEquipment, setSelectedEquipment] = useState({
+        brand: '',
+        availableQuantity: 0
+    });
+
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setFormData(prev => ({
+            ...prev,
+            [name]: value
+        }));
+
+        // Simulate equipment selection (replace with actual data later)
+        if (name === 'equipmentId' && value) {
+            setSelectedEquipment({
+                brand: 'Sample Brand',
+                availableQuantity: 10
+            });
+        }
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        // Form submission logic will be added later
+        console.log('Form submitted:', formData);
+    };
 
     return (
-        <div>
+        <div className="borrow-container">
             <video className="background-video" autoPlay muted loop>
                 <source src="พื้นหลัง2.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
             </video>
 
-           < nav></nav>
+            <Navbar />
 
-            {/* Content */}
             <main className="content">
-                <div className="form-container">
+                <form className="form-container" onSubmit={handleSubmit}>
                     <h2>รายละเอียดการยืม-คืน วัสดุ</h2>
+
                     <div className="form-group">
-                        <label>ชื่อผู้ยืม:</label>
-                        <input type="text" placeholder="กรอกชื่อผู้ยืม" />
+                        <label htmlFor="borrowerName">ชื่อผู้ยืม:</label>
+                        <input
+                            type="text"
+                            id="borrowerName"
+                            name="borrowerName"
+                            value={formData.borrowerName}
+                            onChange={handleInputChange}
+                            placeholder="กรอกชื่อผู้ยืม"
+                            required
+                        />
                     </div>
+
                     <div className="form-group">
-                        <label>ฝ่ายสำนัก:</label>
-                        <input type="text" placeholder="กรอกฝ่ายสำนัก" />
+                        <label htmlFor="department">ฝ่ายสำนัก:</label>
+                        <input
+                            type="text"
+                            id="department"
+                            name="department"
+                            value={formData.department}
+                            onChange={handleInputChange}
+                            placeholder="กรอกฝ่ายสำนัก"
+                            required
+                        />
                     </div>
+
                     <div className="form-group">
-                        <label>เบอร์โทรภายใน:</label>
-                        <input type="text" placeholder="กรอกเบอร์โทรภายใน" />
+                        <label htmlFor="phoneExt">เบอร์โทรภายใน:</label>
+                        <input
+                            type="tel"
+                            id="phoneExt"
+                            name="phoneExt"
+                            value={formData.phoneExt}
+                            onChange={handleInputChange}
+                            placeholder="กรอกเบอร์โทรภายใน"
+                            required
+                        />
                     </div>
+
                     <div className="form-group">
-                        <label>E-mail:</label>
-                        <input type="email" placeholder="กรอกอีเมล" />
+                        <label htmlFor="email">E-mail:</label>
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            value={formData.email}
+                            onChange={handleInputChange}
+                            placeholder="กรอกอีเมล"
+                            required
+                        />
                     </div>
+
                     <div className="form-group">
-                        <label>ประเภท:</label>
-                        <select>
+                        <label htmlFor="typeId">ประเภท:</label>
+                        <select
+                            id="typeId"
+                            name="typeId"
+                            value={formData.typeId}
+                            onChange={handleInputChange}
+                            required
+                        >
                             <option value="">เลือกประเภท</option>
-                            <option value="type1">Type 1</option>
-                            <option value="type2">Type 2</option>
+                            <option value="1">ประเภท 1</option>
+                            <option value="2">ประเภท 2</option>
                         </select>
                     </div>
+
                     <div className="form-group">
-                        <label>อุปกรณ์:</label>
-                        <select>
+                        <label htmlFor="equipmentId">อุปกรณ์:</label>
+                        <select
+                            id="equipmentId"
+                            name="equipmentId"
+                            value={formData.equipmentId}
+                            onChange={handleInputChange}
+                            required
+                            disabled={!formData.typeId}
+                        >
                             <option value="">เลือกอุปกรณ์</option>
-                            <option value="equipment1">Equipment 1</option>
-                            <option value="equipment2">Equipment 2</option>
+                            <option value="1">อุปกรณ์ 1</option>
+                            <option value="2">อุปกรณ์ 2</option>
                         </select>
                     </div>
+
                     <div className="form-group">
-                        <label>ยี่ห้อ:</label>
-                        <select>
-                            <option value="">เลือกยี่ห้อ</option>
-                            <option value="brand1">Brand 1</option>
-                            <option value="brand2">Brand 2</option>
-                        </select>
+                        <label htmlFor="brand">ยี่ห้อ:</label>
+                        <input
+                            type="text"
+                            id="brand"
+                            value={selectedEquipment.brand}
+                            className="readonly-input"
+                            readOnly
+                        />
                     </div>
+
                     <div className="form-group">
-                        <label>จำนวนคงเหลือ:</label>
-                        <input type="number" placeholder="ระบุจำนวนคงเหลือ" readOnly value="0" />
+                        <label htmlFor="availableQuantity">จำนวนคงเหลือ:</label>
+                        <input
+                            type="number"
+                            id="availableQuantity"
+                            value={selectedEquipment.availableQuantity}
+                            className="readonly-input"
+                            readOnly
+                        />
                     </div>
+
                     <div className="form-group">
-                        <label>จำนวน:</label>
-                        <input type="number" placeholder="ระบุจำนวนที่ต้องการยืม" />
+                        <label htmlFor="quantity">จำนวน:</label>
+                        <input
+                            type="number"
+                            id="quantity"
+                            name="quantity"
+                            value={formData.quantity}
+                            onChange={handleInputChange}
+                            placeholder="ระบุจำนวนที่ต้องการยืม"
+                            min="1"
+                            max={selectedEquipment.availableQuantity}
+                            required
+                        />
                     </div>
+
                     <div className="form-group">
-                        <label>หมายเหตุ:</label>
-                        <input type="text" placeholder="ระบุหมายเหตุ" />
+                        <label htmlFor="note">หมายเหตุ:</label>
+                        <input
+                            type="text"
+                            id="note"
+                            name="note"
+                            value={formData.note}
+                            onChange={handleInputChange}
+                            placeholder="ระบุหมายเหตุ"
+                        />
                     </div>
+
                     <div className="form-group">
-                        <label>วันที่ยืม:</label>
-                        <input type="date" value={borrowDate} />
+                        <label htmlFor="borrowDate">วันที่ยืม:</label>
+                        <div className="date-input-container">
+                            <Calendar className="date-icon" size={20} />
+                            <input
+                                type="date"
+                                id="borrowDate"
+                                name="borrowDate"
+                                value={formData.borrowDate}
+                                onChange={handleInputChange}
+                                min={new Date().toISOString().split('T')[0]}
+                                required
+                            />
+                        </div>
                     </div>
+
                     <div className="form-group">
-                        <label>วันที่คืน:</label>
-                        <input type="date" />
+                        <label htmlFor="returnDate">วันที่คืน:</label>
+                        <div className="date-input-container">
+                            <Calendar className="date-icon" size={20} />
+                            <input
+                                type="date"
+                                id="returnDate"
+                                name="returnDate"
+                                value={formData.returnDate}
+                                onChange={handleInputChange}
+                                min={formData.borrowDate}
+                                required
+                            />
+                        </div>
                     </div>
+
                     <div className="buttons">
-                        <button type="submit">ยืนยันการยืม</button>
+                        <button type="submit" className="submit-button">
+                            ยืนยันการยืม
+                        </button>
                     </div>
-                </div>
+                </form>
             </main>
         </div>
     );
+};
 
 export default BorrowEquipment;

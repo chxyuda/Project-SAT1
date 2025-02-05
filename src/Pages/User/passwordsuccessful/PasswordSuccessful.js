@@ -1,27 +1,54 @@
-import React from "react";
-import "./password_successful.css"; // นำเข้าไฟล์ CSS เพื่อแยกสไตล์ออกจากโค้ดหลัก
+import React, { useState } from 'react';
+import { ArrowLeft, CheckCircle } from 'lucide-react';
+import "./password_successful.css";
 
 const PasswordSuccessful = () => {
+    const [isRedirecting, setIsRedirecting] = useState(false);
+
+    const handleContinue = () => {
+        setIsRedirecting(true);
+        setTimeout(() => {
+            window.location.href = '/login';
+        }, 500);
+    };
+
     return (
-        <div className="password-success-container">
-            {/* วิดีโอพื้นหลัง */}
-            <video className="background-video" autoPlay muted loop>
-                <source src="background2.mp4" type="video/mp4" />
+        <div className="password-successful-container">
+            {/* Background Video */}
+            <video className="background-video" autoPlay muted loop playsInline>
+                <source src="พื้นหลัง2.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
             </video>
 
-            {/* ไอคอนย้อนกลับ */}
-            <a href="#" className="back-icon">
-                &#8592;
+            {/* Back Button */}
+            <a href="/login" className="back-button">
+                <ArrowLeft size={24} />
+                <span>ย้อนกลับ</span>
             </a>
 
-            {/* คอนเทนเนอร์ข้อความ */}
-            <div className="container">
-                <div className="icon">&#10003;</div>
-                <h1>Successful</h1>
-                <p>Congratulations! Your password has been changed. Click continue to login.</p>
-                <button className="button">Continue</button>
-            </div>
+            {/* Main Content */}
+            <main className="content">
+                <div className="success-card">
+                    <div className="icon-container">
+                        <CheckCircle size={40} />
+                    </div>
+
+                    <h1>เปลี่ยนรหัสผ่านสำเร็จ</h1>
+                    
+                    <p className="description">
+                        ยินดีด้วย! คุณได้เปลี่ยนรหัสผ่านเรียบร้อยแล้ว
+                        คลิกที่ปุ่มด้านล่างเพื่อเข้าสู่ระบบด้วยรหัสผ่านใหม่
+                    </p>
+
+                    <button 
+                        className={`continue-button ${isRedirecting ? 'redirecting' : ''}`}
+                        onClick={handleContinue}
+                        disabled={isRedirecting}
+                    >
+                        {isRedirecting ? 'กำลังนำคุณไปยังหน้าเข้าสู่ระบบ...' : 'เข้าสู่ระบบ'}
+                    </button>
+                </div>
+            </main>
         </div>
     );
 };

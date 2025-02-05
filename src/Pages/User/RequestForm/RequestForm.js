@@ -1,105 +1,379 @@
-import React, { useEffect, useState } from 'react';
-import navbar from '../../../components/common/navbar';
-import './RequestForm.css';
+import React, { useState, useEffect } from 'react';
+import { Clock, Calendar } from 'lucide-react';
+import Navbar from "../../../components/common/navbar/navbar";
+import './request-form.css';
 
-    const handleChange = (e) => {
+const RequestForm = () => {
+    const [date, setDate] = useState("");
+    const [time, setTime] = useState("");
+    const [formData, setFormData] = useState({
+        borrowerName: '',
+        department: '',
+        phoneExt: '',
+        email: '',
+        typeId: '',
+        equipmentId: '',
+        quantity: '1',
+        note: '',
+        requestDate: new Date().toISOString().split('T')[0]
+    });
+    const [equipmentTypes, setEquipmentTypes] = useState([]);
+    const [equipment, setEquipment] = useState([]);
+    const [selectedEquipment, setSelectedEquipment] = useState(null);
+    const [message, setMessage] = useState({ type: '', text: '' });
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
+    useEffect(() => {
+        const updateDateTime = () => {
+            const now = new Date();
+            
+            const formattedDate = now.toLocaleDateString('th-TH', {
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric'
+            });
+            
+            const formattedTime = now.toLocaleTimeString('th-TH', {
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: false
+            });
+
+            setDate(formattedDate);
+            setTime(formattedTime);
+        };
+
+        updateDateTime();
+        const timer = setInterval(updateDateTime, 1000);
+
+        return () => clearInterval(timer);
+    }, []);
+
+    useEffect(() => {
+        const fetchEquipmentTypes = async () => {
+            try {
+                const response = await fetch('http://localhost:3000/api/equipment-types');
+                const data = await response.json();
+                setEquipmentTypes(data);
+            } catch (error) {
+                console.error('Error fetching equipment types:', error);
+                setMessage({
+                    type: 'error',
+                    text: 'ไม่สามารถโหลดข้อมูลประเภทอุปกรณ์ได้'
+                });
+            }
+        };
+
+        fetchEquipmentTypes();
+    }, []);
+
+    useEffect(() => {
+        const fetchEquipment = async () => {
+            if (!formData.typeId) {
+                setEquipment([]);
+                return;
+            }
+
+            try {
+                const response = await fetch('http://localhost:3000/api/equipment');
+                const data = await response.json();
+                const filteredEquipment = data.filter(item => item.type_id === formData.typeId);
+                setEquipment(filteredEquipment);
+            } catch (error) {
+                console.error('Error fetching equipment:', error);
+                setMessage({
+                    type: 'error',
+                    text: 'ไม่สามารถโหลดข้อมูลอุปกรณ์ได้'
+                });
+            }
+        };
+
+        fetchEquipment();
+    }, [formData.typeId]);
+
+    const handleInputChange = (e) => {
         const { id, value } = e.target;
-        setFormData(prevState => ({ ...prevState, [id]: value }));
+        setFormData(prev => ({
+            ...prev,
+            [id]: value
+        }));
+
+        if (id === 'equipmentId') {
+            const selected = equipment.find(item => item.id === value);
+            setSelectedEquipment(selected);
+        }
+
+        setMessage({ type: '', text: '' });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log('Form Submitted:', formData);
+        setIsSubmitting(true);
+        setMessage({ type: '', text: '' });
+
+        try {
+            const response = await fetch('http://localhost:3000/api/borrowings', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    borrowerName: formData.borrowerName,
+                    department: formData.department,
+                    phoneExt: formData.phoneExt,
+                    email: formData.email,
+                    equipmentId: formData.equipmentId,
+                    quantity: parseInt(formData.quantity),
+                    note: formData.note,
+                    borrowDate: formData.requestDate,
+                    returnDate: formData.requestDate // For materials, borrow and return date are the same
+                }),
+            });
+
+            if (!response.ok) {
+                throw new Error('การเบิกวัสดุไม่สำเร็จ');
+            }
+
+            setMessage({
+                type: 'success',
+                text: 'เบิกวัสดุสำเร็จ'
+            });
+
+            // Reset form
+            setFormData({
+                borrowerName: '',
+                department: '',
+                phoneExt: '',
+                email: '',
+                typeId: '',
+                equipmentId: '',
+                quantity: '1',
+                note: '',
+                requestDate: new Date().toISOString().split('T')[0]
+            });
+            setSelectedEquipment(null);
+
+            // Redirect after success
+            setTimeout(() => {
+                window.location.href = '/dashboard';
+            }, 2000);
+        } catch (error) {
+            setMessage({
+                type: 'error',
+                text: error.message || 'เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง'
+            });
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     return (
-        <div className="return-equipment">
-            <video className="background-video" autoPlay muted loop>
+        <div className="request-form-container">
+            <video className="background-video" autoPlay muted loop playsInline>
                 <source src="พื้นหลัง2.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
             </video>
 
             <header className="header">
                 <div className="title">
-                    <img src="logo.png" alt="Logo" />
-                    <div>
-                        SPORTS AUTHORITY OF THAILAND
+                    <img src="/logo.png" alt="SAT Logo" className="logo" />
+                    <div className="title-text">
+                        <h1>SPORTS AUTHORITY OF THAILAND</h1>
                         <div className="sub-title">Computer Equipment Management System</div>
                     </div>
                 </div>
                 <div className="datetime">
                     <div className="date">{date}</div>
-                    <div className="time">{time}</div>
+                    <div className="time">
+                        <Clock className="clock-icon" size={18} />
+                        {time}
+                    </div>
                 </div>
             </header>
 
-            < nav></nav>
+            <Navbar />
 
-            <div className="content">
+            <main className="content">
                 <div className="form-container">
                     <h2>รายละเอียดการเบิกวัสดุ</h2>
+
+                    {message.text && (
+                        <div className={`message ${message.type}`}>
+                            {message.text}
+                        </div>
+                    )}
+
                     <form onSubmit={handleSubmit}>
                         <div className="form-group">
-                            <label htmlFor="borrower">ชื่อผู้เบิก:</label>
-                            <input type="text" id="borrower" value={formData.borrower} onChange={handleChange} />
+                            <label htmlFor="borrowerName">ชื่อผู้เบิก:</label>
+                            <input
+                                type="text"
+                                id="borrowerName"
+                                value={formData.borrowerName}
+                                onChange={handleInputChange}
+                                placeholder="กรุณากรอกชื่อผู้เบิก"
+                                required
+                            />
                         </div>
+
                         <div className="form-group">
                             <label htmlFor="department">ฝ่ายสำนัก:</label>
-                            <input type="text" id="department" value={formData.department} onChange={handleChange} />
+                            <input
+                                type="text"
+                                id="department"
+                                value={formData.department}
+                                onChange={handleInputChange}
+                                placeholder="กรุณากรอกฝ่ายสำนัก"
+                                required
+                            />
                         </div>
+
                         <div className="form-group">
-                            <label htmlFor="phone">เบอร์โทรภายใน:</label>
-                            <input type="text" id="phone" value={formData.phone} onChange={handleChange} />
+                            <label htmlFor="phoneExt">เบอร์โทรภายใน:</label>
+                            <input
+                                type="tel"
+                                id="phoneExt"
+                                value={formData.phoneExt}
+                                onChange={handleInputChange}
+                                placeholder="กรุณากรอกเบอร์โทรภายใน"
+                                pattern="[0-9]{4}"
+                                title="กรุณากรอกเบอร์โทร 4 หลัก"
+                                required
+                            />
                         </div>
+
                         <div className="form-group">
                             <label htmlFor="email">E-mail:</label>
-                            <input type="email" id="email" value={formData.email} onChange={handleChange} />
+                            <input
+                                type="email"
+                                id="email"
+                                value={formData.email}
+                                onChange={handleInputChange}
+                                placeholder="example@sat.or.th"
+                                pattern=".+@sat\.or\.th"
+                                title="กรุณากรอกอีเมล @sat.or.th เท่านั้น"
+                                required
+                            />
                         </div>
+
                         <div className="form-group">
-                            <label htmlFor="type">ประเภท:</label>
-                            <select id="type" value={formData.type} onChange={handleChange}>
+                            <label htmlFor="typeId">ประเภท:</label>
+                            <select
+                                id="typeId"
+                                value={formData.typeId}
+                                onChange={handleInputChange}
+                                required
+                            >
                                 <option value="">เลือกประเภท</option>
-                                <option value="type1">Type 1</option>
-                                <option value="type2">Type 2</option>
+                                {equipmentTypes.map(type => (
+                                    <option key={type.id} value={type.id}>
+                                        {type.name}
+                                    </option>
+                                ))}
                             </select>
                         </div>
+
                         <div className="form-group">
-                            <label htmlFor="equipment">อุปกรณ์:</label>
-                            <select id="equipment" value={formData.equipment} onChange={handleChange}>
+                            <label htmlFor="equipmentId">อุปกรณ์:</label>
+                            <select
+                                id="equipmentId"
+                                value={formData.equipmentId}
+                                onChange={handleInputChange}
+                                required
+                                disabled={!formData.typeId}
+                            >
                                 <option value="">เลือกอุปกรณ์</option>
-                                <option value="equipment1">Equipment 1</option>
-                                <option value="equipment2">Equipment 2</option>
+                                {equipment.map(item => (
+                                    <option key={item.id} value={item.id}>
+                                        {item.name}
+                                    </option>
+                                ))}
                             </select>
                         </div>
-                        <div className="form-group">
-                            <label htmlFor="brand">ยี่ห้อ:</label>
-                            <select id="brand" value={formData.brand} onChange={handleChange}>
-                                <option value="">เลือกยี่ห้อ</option>
-                                <option value="brand1">Brand 1</option>
-                                <option value="brand2">Brand 2</option>
-                            </select>
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="remaining">จำนวนคงเหลือ:</label>
-                            <input type="number" id="remaining" value={formData.remaining} readOnly />
-                        </div>
+
+                        {selectedEquipment && (
+                            <>
+                                <div className="form-group">
+                                    <label htmlFor="brand">ยี่ห้อ:</label>
+                                    <input
+                                        type="text"
+                                        id="brand"
+                                        value={selectedEquipment.brand}
+                                        className="readonly-input"
+                                        readOnly
+                                    />
+                                </div>
+
+                                <div className="form-group">
+                                    <label htmlFor="availableQuantity">จำนวนคงเหลือ:</label>
+                                    <input
+                                        type="number"
+                                        id="availableQuantity"
+                                        value={selectedEquipment.available_quantity}
+                                        className="readonly-input"
+                                        readOnly
+                                    />
+                                </div>
+                            </>
+                        )}
+
                         <div className="form-group">
                             <label htmlFor="quantity">จำนวน:</label>
-                            <input type="number" id="quantity" value={formData.quantity} onChange={handleChange} />
+                            <input
+                                type="number"
+                                id="quantity"
+                                value={formData.quantity}
+                                onChange={handleInputChange}
+                                min="1"
+                                max={selectedEquipment?.available_quantity || 1}
+                                required
+                            />
                         </div>
+
                         <div className="form-group">
                             <label htmlFor="note">หมายเหตุ:</label>
-                            <input type="text" id="note" value={formData.note} onChange={handleChange} />
+                            <input
+                                type="text"
+                                id="note"
+                                value={formData.note}
+                                onChange={handleInputChange}
+                                placeholder="ระบุหมายเหตุ (ถ้ามี)"
+                            />
                         </div>
+
                         <div className="form-group">
-                            <label htmlFor="startDate">วันที่เบิกวัสดุ:</label>
-                            <input type="date" id="startDate" value={formData.startDate} onChange={handleChange} />
+                            <label htmlFor="requestDate">วันที่เบิกวัสดุ:</label>
+                            <div className="date-input-container">
+                                <Calendar className="date-icon" size={20} />
+                                <input
+                                    type="date"
+                                    id="requestDate"
+                                    value={formData.requestDate}
+                                    onChange={handleInputChange}
+                                    min={new Date().toISOString().split('T')[0]}
+                                    required
+                                />
+                            </div>
                         </div>
+
                         <div className="buttons">
-                            <button type="submit">เบิกวัสดุ</button>
+                            <a href="/dashboard" className="back-button">
+                                ย้อนกลับ
+                            </a>
+                            <button
+                                type="submit"
+                                className="submit-button"
+                                disabled={isSubmitting}
+                            >
+                                {isSubmitting ? 'กำลังดำเนินการ...' : 'เบิกวัสดุ'}
+                            </button>
                         </div>
                     </form>
                 </div>
-            </div>
+            </main>
         </div>
     );
-export default ReturnEquipment;
+};
+
+export default RequestForm;

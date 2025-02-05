@@ -1,28 +1,81 @@
-import React from "react";
-import "./password_reset.css"; // ลิงก์ไฟล์ CSS
+import React, { useState } from 'react';
+import { ArrowLeft, Lock } from 'lucide-react';
+import "./password_reset.css";
+
 const PasswordReset = () => {
+    const [isLoading, setIsLoading] = useState(false);
+    const [message, setMessage] = useState({ type: '', text: '' });
+
+    const handleConfirm = async () => {
+        setIsLoading(true);
+        setMessage({ type: '', text: '' });
+
+        try {
+            // Simulate API call
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            
+            setMessage({
+                type: 'success',
+                text: 'รีเซ็ตรหัสผ่านสำเร็จ กำลังนำคุณไปยังหน้าเปลี่ยนรหัสผ่าน'
+            });
+
+            // Redirect after success
+            setTimeout(() => {
+                window.location.href = '/change-password';
+            }, 2000);
+        } catch (error) {
+            setMessage({
+                type: 'error',
+                text: 'เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง'
+            });
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
     return (
-        <div className="flex justify-center items-center h-screen overflow-hidden relative">
-            {/* วิดีโอพื้นหลัง */}
-            <video className="absolute top-0 left-0 w-full h-full object-cover -z-10" autoPlay muted loop>
+        <div className="password-reset-container">
+            {/* Background Video */}
+            <video className="background-video" autoPlay muted loop playsInline>
                 <source src="พื้นหลัง2.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
             </video>
 
-            {/* ไอคอนย้อนกลับ */}
-            <a href="#" className="absolute top-5 left-5 text-2xl text-blue-500 cursor-pointer hover:text-blue-700">
-                &#8592;
+            {/* Back Button */}
+            <a href="/login" className="back-button">
+                <ArrowLeft size={24} />
+                <span>ย้อนกลับ</span>
             </a>
 
-            {/* คอนเทนเนอร์ */}
-            <div className="text-center bg-white p-10 rounded-lg shadow-lg w-96 z-10 animate-fadeIn">
-                <div className="text-6xl text-blue-500 mb-5">&#128100;</div>
-                <h1 className="text-2xl text-gray-800 font-semibold mb-3">Password Reset</h1>
-                <p className="text-sm text-gray-600 mb-6">Your password has been successfully reset. Click confirm to set a new password.</p>
-                <button className="w-full py-3 text-white bg-blue-500 rounded-md font-semibold shadow-md transition duration-300 hover:bg-blue-700 active:scale-95">
-                    Confirm
-                </button>
-            </div>
+            {/* Main Content */}
+            <main className="content">
+                <div className="reset-card">
+                    <div className="icon-container">
+                        <Lock size={40} />
+                    </div>
+
+                    <h1>รีเซ็ตรหัสผ่าน</h1>
+                    
+                    <p className="description">
+                        ระบบได้ส่งลิงก์สำหรับรีเซ็ตรหัสผ่านไปยังอีเมลของคุณแล้ว
+                        กรุณาคลิกยืนยันเพื่อตั้งรหัสผ่านใหม่
+                    </p>
+
+                    {message.text && (
+                        <div className={`message ${message.type}`}>
+                            {message.text}
+                        </div>
+                    )}
+
+                    <button 
+                        className={`confirm-button ${isLoading ? 'loading' : ''}`}
+                        onClick={handleConfirm}
+                        disabled={isLoading}
+                    >
+                        {isLoading ? 'กำลังดำเนินการ...' : 'ยืนยัน'}
+                    </button>
+                </div>
+            </main>
         </div>
     );
 };
