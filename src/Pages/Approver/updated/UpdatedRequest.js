@@ -1,0 +1,136 @@
+import React, { useState, useEffect } from 'react';
+import { Clock } from 'lucide-react';
+import NavbarApprover from './common/navbar/navbarapprover';
+import './UpdatedRequest.css';
+
+const UpdatedRequest = () => {
+    const [date, setDate] = useState('');
+    const [time, setTime] = useState('');
+    const [currentPage, setCurrentPage] = useState(1);
+
+    // Sample data
+    const data = [
+        [
+            { id: 1, department: "ฝ่ายไอที", recipient: "สมชาย", requestDate: "01/01/2025", note: "ด่วน", details: "รายละเอียดเบิก.html" }
+        ],
+        [], // Page 2 empty
+        []  // Page 3 empty
+    ];
+
+    useEffect(() => {
+        const updateDateTime = () => {
+            const now = new Date();
+            const thaiYear = now.getFullYear() + 543;
+            const thaiMonths = [
+                "มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน",
+                "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"
+            ];
+
+            const day = now.getDate();
+            const month = thaiMonths[now.getMonth()];
+            const weekday = now.toLocaleDateString('th-TH', { weekday: 'long' });
+
+            const formattedDate = `${weekday}ที่ ${day} ${month} พ.ศ. ${thaiYear}`;
+            const formattedTime = now.toLocaleTimeString('th-TH');
+
+            setDate(formattedDate);
+            setTime(formattedTime);
+        };
+
+        updateDateTime();
+        const timer = setInterval(updateDateTime, 1000);
+        return () => clearInterval(timer);
+    }, []);
+
+    const goToPage = (page) => {
+        setCurrentPage(page);
+    };
+
+    const renderTableData = () => {
+        const pageData = data[currentPage - 1];
+
+        if (!pageData || pageData.length === 0) {
+            return (
+                <tr>
+                    <td colSpan="6" style={{ textAlign: 'center' }}>ไม่มีข้อมูล</td>
+                </tr>
+            );
+        }
+
+        return pageData.map((row) => (
+            <tr key={row.id}>
+                <td>{row.id}</td>
+                <td>{row.department}</td>
+                <td>{row.recipient}</td>
+                <td>{row.requestDate}</td>
+                <td>{row.note}</td>
+                <td>
+                    <button className="btn-detail" onClick={() => window.location.href = row.details}>
+                        รายละเอียด
+                    </button>
+                </td>
+            </tr>
+        ));
+    };
+
+    return (
+        <div className="dashboard">
+            <div className="header">
+                <div className="title">
+                    <Clock className="logo" size={40} />
+                    <div>
+                        SPORTS AUTHORITY OF THAILAND
+                        <div className="sub-title">Computer Equipment Management System</div>
+                    </div>
+                </div>
+                <div className="datetime">
+                    <span className="date">{date}</span>
+                    <span className="time">{time}</span>
+                </div>
+            </div>
+
+            <NavbarApprover />
+
+            <div className="content">
+                <div className="section-title">สถานะการขอเบิก</div>
+
+                <table className="table">
+                    <thead>
+                        <tr>
+                            <th>ลำดับ</th>
+                            <th>ชื่อฝ่ายสำนัก</th>
+                            <th>ชื่อผู้รับ</th>
+                            <th>วันทีขอเบิก</th>
+                            <th>หมายเหตุการขอเบิก</th>
+                            <th>รายละเอียด</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {renderTableData()}
+                    </tbody>
+                </table>
+
+                <div className="pagination">
+                    {[1, 2, 3].map((page) => (
+                        <button
+                            key={page}
+                            onClick={() => goToPage(page)}
+                            className={currentPage === page ? 'active' : ''}
+                        >
+                            {page}
+                        </button>
+                    ))}
+                </div>
+
+                <button
+                    className="back-button"
+                    onClick={() => window.location.href = '#approver'}
+                >
+                    ย้อนกลับ
+                </button>
+            </div>
+        </div>
+    );
+};
+
+export default UpdatedRequest;
