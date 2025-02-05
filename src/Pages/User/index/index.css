@@ -1,191 +1,65 @@
-.index-container {
-    min-height: 100vh;
-    position: relative;
-    background: rgba(0, 0, 0, 0.6);
-}
-
-.background-video {
-    position: fixed;
-    right: 0;
-    bottom: 0;
-    min-width: 100%;
-    min-height: 100%;
-    width: auto;
-    height: auto;
-    z-index: -1;
-    object-fit: cover;
-}
-
-.header {
-    background-color: #fff;
-    padding: 1rem 2rem;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.title {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-}
-
-.logo {
-    height: 50px;
-    width: auto;
-}
-
-.title-text {
-    display: flex;
-    flex-direction: column;
-}
-
-.title-text h1 {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: #2c3e50;
-    margin: 0;
-}
-
-.sub-title {
-    font-size: 1rem;
-    color: #7f8c8d;
-}
-
-.datetime {
-    text-align: right;
-    color: #2c3e50;
-}
-
-.date {
-    font-size: 1.1rem;
-    font-weight: 500;
-    margin-bottom: 0.25rem;
-}
-
-.time {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 1.1rem;
-    font-weight: 500;
-}
-
-.clock-icon {
-    color: #3498db;
-}
-
-.dashboard-content {
-    padding: 2rem;
-    min-height: calc(100vh - 80px);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.menu-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
-    max-width: 800px;
-    width: 100%;
-    padding: 1rem;
-}
-
-.menu-item {
-    background: rgba(255, 255, 255, 0.95);
-    border-radius: 1rem;
-    padding: 2rem;
+.content-idx {
     text-align: center;
-    text-decoration: none;
-    transition: all 0.3s ease;
+    padding: 50px 20px;
+    position: relative;
+    z-index: 1;
+    /* ให้อยู่เหนือวิดีโอ */
+}
+
+/* กรอบสี่เหลี่ยมสำหรับฝ่ายสำนัก */
+.box-container-idx {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1rem;
-    cursor: pointer;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    justify-content: center;
+    width: 200px;
+    height: 250px;
+    border: 2px solid rgb(16, 12, 255);
+    /* กรอบสีเหลือง */
+    border-radius: 10px;
+    background-color: white;
+    /* พื้นหลังสีขาว */
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(255, 255, 0, 0.5);
+    /* เงาสีเหลือง */
+    margin: 0 auto;
+    /* จัดให้อยู่ตรงกลาง */
 }
 
-.menu-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
-    background: rgba(255, 255, 255, 0.98);
-}
-
-.menu-icon {
-    background: rgba(255, 255, 255, 0.9);
-    width: 80px;
-    height: 80px;
+.box-container-idx .icon-idx {
+    width: 120px;
+    /* เพิ่มขนาดไอคอน */
+    height: 120px;
+    /* เพิ่มขนาดไอคอน */
+    background: linear-gradient(135deg, #8e44ad, #3498db);
+    /* สีไล่ระดับ */
     border-radius: 50%;
+    /* ทำให้เป็นวงกลม */
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 1rem;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    color: white;
+    /* สีตัวหนังสือในไอคอน */
+    font-size: 36px;
+    /* ขนาดตัวอักษรใหญ่ขึ้น */
+    font-weight: bold;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    /* เพิ่มเงา */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    /* ทำให้มีเอฟเฟกต์เคลื่อนไหว */
 }
 
-.menu-item:hover .menu-icon {
+.box-container-idx .icon-idx:hover {
     transform: scale(1.1);
-    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+    /* ขยายไอคอนเล็กน้อยเมื่อชี้เมาส์ */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    /* เพิ่มเงาเมื่อชี้เมาส์ */
 }
 
-.menu-text {
-    color: #2c3e50;
-    font-size: 1.2rem;
-    font-weight: 500;
-    transition: color 0.3s ease;
-}
-
-.menu-item:hover .menu-text {
-    color: var(--hover-color);
-}
-
-@media (max-width: 768px) {
-    .header {
-        flex-direction: column;
-        text-align: center;
-        gap: 1rem;
-        padding: 1rem;
-    }
-
-    .title {
-        flex-direction: column;
-    }
-
-    .datetime {
-        text-align: center;
-    }
-
-    .menu-grid {
-        grid-template-columns: 1fr;
-        padding: 1rem;
-        gap: 1rem;
-    }
-
-    .menu-item {
-        padding: 1.5rem;
-    }
-
-    .menu-icon {
-        width: 60px;
-        height: 60px;
-    }
-
-    .menu-text {
-        font-size: 1rem;
-    }
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.box-container-idx .text-idx {
+    margin-top: 20px;
+    font-size: 18px;
+    color: black;
+    /* เปลี่ยนเป็นสีดำ */
+    text-align: center;
 }

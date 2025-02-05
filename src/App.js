@@ -2,38 +2,38 @@ import React, { Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 // Lazy load components
-const Login = React.lazy(() => import('./pages/login/Login'));
-const SignUp = React.lazy(() => import('./pages/signup/SignUp'));
+const Login = React.lazy(() => import('./login'));
+const SignUp = React.lazy(() => import('./SignUp'));
 const Header = React.lazy(() => import('./components/Header'));
 const SuccessModal = React.lazy(() => import('./components/SuccessModal'));
-const ForgotPassword = React.lazy(() => import('./pages/forgotpassword/ForgotPassword'));
-const VerifyCode = React.lazy(() => import('./pages/verifycode/VerifyCode'));
-const SetNewPassword = React.lazy(() => import('./pages/setnewpassword/SetNewPassword'));
+const ForgotPassword = React.lazy(() => import('./Pages/ForgotPassword'));
+const VerifyCode = React.lazy(() => import('./Pages/VerifyCode'));
+const SetNewPassword = React.lazy(() => import('./Pages/SetNewPassword'));
 
 // Admin pages
-const ITDashboard = React.lazy(() => import('./pages/admin/ITDashboard'));
-const Inventory = React.lazy(() => import('./pages/admin/Inventory'));
-const Settings = React.lazy(() => import('./pages/admin/Settings'));
-const Personnel = React.lazy(() => import('./pages/admin/Personnel'));
-const BorrowReturn = React.lazy(() => import('./pages/admin/BorrowReturn'));
-const Request = React.lazy(() => import('./pages/admin/Request'));
-const Dashboard = React.lazy(() => import('./pages/admin/Dashboard'));
-const StaffProfile = React.lazy(() => import('./pages/admin/StaffProfile'));
+const ITDashboard = React.lazy(() => import('./Pages/ITDashboard'));
+const Inventory = React.lazy(() => import('./Pages/Inventory'));
+const Settings = React.lazy(() => import('./Pages/Settings'));
+const Personnel = React.lazy(() => import('./Pages/Personnel'));
+const BorrowReturn = React.lazy(() => import('./Pages/BorrowReturn'));
+const Request = React.lazy(() => import('./Pages/Request'));
+const Dashboard = React.lazy(() => import('./Pages/Dashboard'));
+const StaffProfile = React.lazy(() => import('./Pages/StaffProfile'));
 
 // User pages
-const Borrow = React.lazy(() => import('./pages/borrow/Borrow'));
-const BorrowStatus = React.lazy(() => import('./pages/borrow/BorrowStatus'));
-const ChangePassword = React.lazy(() => import('./pages/changepassword/ChangePassword'));
-const EditProfile = React.lazy(() => import('./pages/editprofile/EditProfile'));
-const UserDashboard = React.lazy(() => import('./pages/index/index'));
-const PasswordReset = React.lazy(() => import('./pages/passwordreset/PasswordReset'));
-const PasswordSuccessful = React.lazy(() => import('./pages/passwordsuccessful/PasswordSuccessful'));
-const RequestForm = React.lazy(() => import('./pages/request/RequestForm'));
-const RequestHistory = React.lazy(() => import('./pages/request/RequestHistory'));
-const RequestStatus = React.lazy(() => import('./pages/request/RequestStatus'));
-const ReturningHistory = React.lazy(() => import('./pages/returninghistory/ReturningHistory'));
-const Track = React.lazy(() => import('./pages/track/Track'));
-const WithdrawalHistory = React.lazy(() => import('./pages/withdrawalhistory/WithdrawalHistory'));
+const Borrow = React.lazy(() => import('./Pages/User/borrow/borrow'));
+const BorrowStatus = React.lazy(() => import('./Pages/User/borrowstatus/BorrowStatus.js'));
+const ChangePassword = React.lazy(() => import('./Pages/User/changepassword/ChangePassword.js'));
+const EditProfile = React.lazy(() => import('./Pages/User/editprofile/EditProfile'));
+const UserDashboard = React.lazy(() => import('./Pages/User/index/index'));
+const PasswordReset = React.lazy(() => import('./Pages/User/passwordreset/PasswordReset'));
+const PasswordSuccessful = React.lazy(() => import('./Pages/User/passwordsuccessful/PasswordSuccessful'));
+const RequestForm = React.lazy(() => import('./Pages/User/RequestForm/RequestForm'));
+const RequestHistory = React.lazy(() => import('./Pages/User/RequestHistory/RequestHistory'));
+const RequestStatus = React.lazy(() => import('./Pages/User/requeststatus/RequestStatus'));
+const ReturningHistory = React.lazy(() => import('./Pages/User/returningHistory/returningHistory.js'));
+const Track = React.lazy(() => import('./Pages/User/track/track'));
+const WithdrawalHistory = React.lazy(() => import('./Pages/User/withdrawalHistory/withdrawalHistory.js'));
 
 // Loading component
 const Loading = () => (
@@ -54,7 +54,7 @@ function App() {
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/verify-code" element={<VerifyCode />} />
           <Route path="/set-new-password" element={<SetNewPassword />} />
-          
+
           {/* เจ้าหน้าที่IT routes */}
           <Route path="/it-dashboard" element={<ITDashboard />} />
           <Route path="/inventory" element={<Inventory />} />
@@ -64,7 +64,7 @@ function App() {
           <Route path="/request" element={<Request />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/staff-profile" element={<StaffProfile />} />
-          
+
           {/* User routes */}
           <Route path="/user-dashboard" element={<UserDashboard />} />
           <Route path="/edit-profile" element={<EditProfile />} />

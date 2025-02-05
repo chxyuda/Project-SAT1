@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Header from "../Header";
+import HeaderAdmin from "../components/HeaderAdmin";
 import "./ITDashboard.css";
 import userIcon from "../assets/icon1.png";
 import { useNavigate } from "react-router-dom";
@@ -41,11 +41,11 @@ const ITDashboard = () => {
   useEffect(() => {
     console.log("✅ IT Dashboard Loaded");
   }, []);
-  
+
   // ฟังก์ชันเปิด/ปิด Modal และดึงข้อมูลบุคลากร
   const toggleProfileModal = () => {
     setShowProfileModal(!showProfileModal);
-  
+
     if (!showProfileModal) {
       setIsLoading(true);
       axios
@@ -72,7 +72,7 @@ const ITDashboard = () => {
           setIsLoading(false);
         });
     }
-  };  
+  };
 
   // ฟังก์ชันแก้ไขข้อมูล
   const handleEdit = () => {
@@ -95,7 +95,7 @@ const ITDashboard = () => {
         setIsLoading(false);
       });
   };
-  
+
   const handleCancel = () => {
     setIsEditable(false);
   };
@@ -164,7 +164,7 @@ const ITDashboard = () => {
   console.log("✅ IT Dashboard Rendered");
   return (
     <div className="it-dashboard">
-      <Header currentTime={currentTime} currentDate={currentDate} />
+      <HeaderAdmin currentTime={currentTime} currentDate={currentDate} />
       <div className="navbar-itinfo">
         <div className="navbar">
           <span onClick={() => handleNavigation("/inventory")}>
@@ -188,12 +188,12 @@ const ITDashboard = () => {
           <span onClick={() => handleLogout("/logout")} className="logout">
             <FontAwesomeIcon icon={faSignOutAlt} /> ออกจากระบบ
           </span>
-        <div className="it-info" onClick={toggleProfileModal}>
-          <img src={profileImage} alt="IT Staff Icon" className="user-icon" />
-          <span>เจ้าหน้าที่ฝ่าย IT</span>
+          <div className="it-info" onClick={toggleProfileModal}>
+            <img src={profileImage} alt="IT Staff Icon" className="user-icon" />
+            <span>เจ้าหน้าที่ฝ่าย IT</span>
+          </div>
         </div>
       </div>
-    </div>
       {showProfileModal && (
         <div className="modal-overlay">
           <div className="modal-content">

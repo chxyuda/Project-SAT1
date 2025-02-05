@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profile</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        #background-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+        .header {
+            background-color: rgba(45, 120, 191, 0.9);
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .header .title {
+            font-size: 18px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+        .header .title img {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
+        .header .title div {
+            line-height: 1.2;
+        }
+        .header .title div .sub-title {
+            font-size: 12px;
+            font-weight: normal;
+        }
+        .header .datetime {
+            text-align: right;
+        }
+        .header .datetime div {
+            margin: 0;
+        }
+        .header .datetime .date {
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .header .datetime .time {
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .content {
+            padding: 20px;
+        }
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+        .form-container h2 {
+            text-align: center;
+            color: #2d78bf;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+        .form-group label {
+            width: 30%;
+            text-align: right;
+            font-size: 14px;
+            margin-right: 10px;
+        }
+        .form-group input, .form-group select {
+            width: 65%;
+            padding: 10px;
+            font-size: 14px;
+            border: 1px solid #cccccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .form-group input:focus, .form-group select:focus {
+            border-color: #4a90e2;
+            box-shadow: 0 0 5px rgba(74, 144, 226, 0.5);
+        }
+        .image-upload {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        .image-upload label {
+            display: inline-block;
+            width: 150px;
+            height: 150px;
+            background-color: #f0f0f0;
+            border: 2px dashed #cccccc;
+            text-align: center;
+            line-height: 150px;
+            font-size: 24px;
+            color: #333333;
+            cursor: pointer;
+        }
+        .image-upload label:hover {
+            background-color: #e0e0e0;
+        }
+        .image-upload input[type="file"] {
+            display: none;
+        }
+        .buttons {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .buttons a,
+        .buttons button {
+            padding: 10px 20px;
+            font-size: 14px;
+            color: white;
+            background-color: #4a90e2;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-block;
+            margin: 0 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        .buttons a:hover,
+        .buttons button:hover {
+            background-color: #357abd;
+        }
+        .buttons a:active,
+        .buttons button:active {
+            transform: scale(0.98);
+        }
+    </style>
+    <script>
+        function updateTime() {
+            const now = new Date();
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const date = now.toLocaleDateString('th-TH', options);
+            const time = now.toLocaleTimeString('th-TH', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+            document.getElementById('date').textContent = date;
+            document.getElementById('time').textContent = time;
+        }
+        setInterval(updateTime, 1000);
+    </script>
+</head>
+<body onload="updateTime()">
+    <video autoplay loop muted playsinline id="background-video">
+        <source src="พื้นหลัง2.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="header">
+        <div class="title">
+            <img src="logo.png" alt="Logo">
+            <div>
+                SPORTS AUTHORITY OF THAILAND
+                <div class="sub-title">Computer Equipment Management System</div>
+            </div>
+        </div>
+        <div class="datetime">
+            <div id="date" class="date"></div>
+            <div id="time" class="time"></div>
+        </div>
+    </div>
+    <div class="content">
+        <div class="form-container">
+            <h2>แก้ไขโปรไฟล์</h2>
+            <div class="image-upload">
+                <label for="profile-pic">&#128247;</label>
+                <input type="file" id="profile-pic">
+            </div>
+            <form>
+                <div class="form-group">
+                    <label for="name">ชื่อ - นามสกุล:</label>
+                    <input type="text" id="name" placeholder="">
+                </div>
+                <div class="form-group">
+                    <label for="division">ฝ่าย/สำนัก:</label>
+                    <select id="division">
+                        <option value="">เลือกฝ่าย/สำนัก</option>
+                        <option value="center1"></option>
+                        <option value="center2"></option>
+                        <option value="center3"></option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="department">กอง:</label>
+                    <select id="department">
+                        <option value="">เลือกกอง</option>
+                        <option value="department1"></option>
+                        <option value="department2"></option>
+                        <option value="department3"></option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="job">งาน:</label>
+                    <select id="job">
+                        <option value="">เลือกงาน</option>
+                        <option value="job1"></option>
+                        <option value="job2"></option>
+                        <option value="job3"></option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="phone">เบอร์โทรภายใน:</label>
+                    <input type="text" id="phone" placeholder="xxxx">
+                </div>
+                <div class="form-group">
+                    <label for="email">E-mail:</label>
+                    <input type="email" id="email" placeholder="xxxxx@sat.th">
+                </div>
+                <div class="buttons">
+                    <a href="dashboard.html">ย้อนกลับ</a>
+                    <button type="submit">ตกลง</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

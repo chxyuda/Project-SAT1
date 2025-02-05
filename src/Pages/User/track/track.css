@@ -1,200 +1,139 @@
-.track-container {
-    min-height: 100vh;
-    position: relative;
-    background: rgba(0, 0, 0, 0.6);
-}
+ body {
+     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+     margin: 0;
+     padding: 0;
+ }
 
-.background-video {
-    position: fixed;
-    right: 0;
-    bottom: 0;
-    min-width: 100%;
-    min-height: 100%;
-    width: auto;
-    height: auto;
-    z-index: -1;
-    object-fit: cover;
-}
+ #background-video {
+     position: fixed;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     object-fit: cover;
+     z-index: -1;
+     /* ทำให้วิดีโออยู่เบื้องหลัง */
+ }
 
-.header {
-    background-color: #fff;
-    padding: 1rem 2rem;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
+ .header {
+     background-color: #2d78bf;
+     color: white;
+     padding: 10px 20px;
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+ }
 
-.title {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-}
+ .header .title {
+     font-size: 18px;
+     font-weight: bold;
+     display: flex;
+     align-items: center;
+ }
 
-.logo {
-    height: 50px;
-    width: auto;
-}
+ .header .title img {
+     width: 40px;
+     height: 40px;
+     margin-right: 10px;
+ }
 
-.title-text {
-    display: flex;
-    flex-direction: column;
-}
+ .header .title div {
+     line-height: 1.2;
+ }
 
-.title-text h1 {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: #2c3e50;
-    margin: 0;
-}
+ .header .title div .sub-title {
+     font-size: 12px;
+     font-weight: normal;
+ }
 
-.sub-title {
-    font-size: 1rem;
-    color: #7f8c8d;
-}
+ .header .datetime {
+     text-align: right;
+ }
 
-.datetime {
-    text-align: right;
-    color: #2c3e50;
-}
+ .header .datetime div {
+     margin: 0;
+ }
 
-.date {
-    font-size: 1.1rem;
-    font-weight: 500;
-    margin-bottom: 0.25rem;
-}
+ .header .datetime .date {
+     font-size: 14px;
+ }
 
-.time {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 1.1rem;
-    font-weight: 500;
-}
+ .header .datetime .time {
+     font-size: 16px;
+     font-weight: bold;
+ }
 
-.clock-icon {
-    color: #3498db;
-}
+ .content-track {
+     display: flex;
+     justify-content: center;
+     align-items: flex-start;
+     /* จัดให้อยู่ด้านบน */
+     height: calc(100vh - 60px);
+     /* พื้นที่หน้าจอลบความสูง header/nav */
+     padding: 40px 20px;
+     /* เพิ่ม padding ด้านบนให้เนื้อหาขยับขึ้น */
+ }
 
-.content {
-    padding: 2rem;
-    min-height: calc(100vh - 80px);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+ .box-container-track {
+     background-color: white;
+     /* กล่องสีขาว */
+     padding: 30px;
+     /* เพิ่มระยะห่างด้านใน */
+     border-radius: 15px;
+     /* ขอบโค้งมน */
+     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+     /* เพิ่มเงา */
+     text-align: center;
+     width: 80%;
+     max-width: 600px;
+     /* จำกัดความกว้าง */
+ }
 
-.menu-container {
-    background: rgba(255, 255, 255, 0.95);
-    border-radius: 1rem;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    padding: 2rem;
-    width: 100%;
-    max-width: 800px;
-    margin: 0 auto;
-}
+ .box-container-track h2 {
+     color: #2d78bf;
+     font-size: 28px;
+     font-weight: bold;
+     margin-bottom: 20px;
+ }
 
-.menu-container h2 {
-    color: #2c3e50;
-    font-size: 1.8rem;
-    font-weight: 600;
-    text-align: center;
-    margin-bottom: 2rem;
-}
+ .card-container-track {
+     display: flex;
+     justify-content: center;
+     gap: 20px;
+ }
 
-.menu-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
-    padding: 1rem;
-}
+ .card-track {
+     background-color: white;
+     /* เปลี่ยนพื้นหลังเป็นสีขาว */
+     border: 2px solid black;
+     /* เพิ่มเส้นขอบ */
+     border-radius: 10px;
+     padding: 20px;
+     width: 200px;
+     text-align: center;
+     font-size: 16px;
+     font-weight: bold;
+     cursor: pointer;
+     transition: transform 0.2s ease, box-shadow 0.2s ease;
+     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+     /* เพิ่มเงา */
+ }
 
-.menu-item {
-    background: white;
-    border-radius: 1rem;
-    padding: 2rem;
-    text-align: center;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
+ .card-track:hover {
+     transform: scale(1.05);
+     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+     /* เพิ่มเงาตอน hover */
+ }
 
-.menu-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
-}
+ .card-issue-track {
+     border-color: #e74c3c;
+     /* ขอบสีแดง */
+     color: #e74c3c;
+ }
 
-.menu-icon {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 1rem;
-    transition: all 0.3s ease;
-}
-
-.request-icon {
-    color: #e74c3c;
-    background: rgba(231, 76, 60, 0.1);
-}
-
-.borrow-icon {
-    color: #3498db;
-    background: rgba(52, 152, 219, 0.1);
-}
-
-.menu-item:hover .menu-icon {
-    transform: scale(1.1);
-}
-
-.menu-text {
-    color: #2c3e50;
-    font-size: 1.2rem;
-    font-weight: 500;
-}
-
-@media (max-width: 768px) {
-    .header {
-        flex-direction: column;
-        text-align: center;
-        gap: 1rem;
-        padding: 1rem;
-    }
-
-    .title {
-        flex-direction: column;
-    }
-
-    .datetime {
-        text-align: center;
-    }
-
-    .menu-container {
-        margin: 1rem;
-        padding: 1.5rem;
-    }
-
-    .menu-grid {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-    }
-
-    .menu-item {
-        padding: 1.5rem;
-    }
-
-    .menu-icon {
-        width: 60px;
-        height: 60px;
-    }
-
-    .menu-text {
-        font-size: 1rem;
-    }
-}
+ .card-borrow-track {
+     border-color: #27ae60;
+     /* ขอบสีเขียว */
+     color: #27ae60;
+ }

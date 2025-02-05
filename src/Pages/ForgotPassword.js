@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios"; // ใช้สำหรับเชื่อมต่อ API
 import "./ForgotPassword.css";
 import userIcon from "../assets/icon.png"; // Path ของไอคอน
+import BGclip from '../assets/background.mp4'
+
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState(""); // เก็บอีเมลที่ผู้ใช้กรอก
@@ -30,23 +32,33 @@ const ForgotPassword = () => {
   };
 
   return (
-    <div className="forgot-password-container">
-      <div className="forgot-password-box">
-        <img src={userIcon} alt="User Icon" className="forgot-password-icon" />
-        <h1>Forgot Password</h1>
-        <input
-          type="email"
-          placeholder="Enter your email"
-          className="forgot-password-input"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)} // อัปเดตค่า email
-        />
-        <button className="forgot-password-button" onClick={handleResetPassword}>
+    <>
+
+      <video id="background-video-fpass" autoplay muted loop>
+        <source src={BGclip} type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+
+      <a href="/" class="back-icon-fpass">&#8592;</a>
+      <div class="container-fpass">
+        <div class="icon-fpass">&#128100;</div>
+        <h1>Forgot Password?</h1>
+        <p>Please enter your email to reset password</p>
+        <div class="input-container-fpass">
+          <input
+            type="email"
+            placeholder="Enter your email"
+            className="forgot-password-input"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)} // อัปเดตค่า email
+          />
+        </div>
+        <button className="forgot-password-button-fpass" onClick={handleResetPassword}>
           Reset Password
         </button>
         {message && <p className="forgot-password-message">{message}</p>} {/* แสดงข้อความแจ้งเตือน */}
       </div>
-    </div>
+    </>
   );
 };
 

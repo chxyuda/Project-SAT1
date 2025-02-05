@@ -1,33 +1,51 @@
 body {
-  font-family: 'Mitr', sans-serif; /* ใช้ฟอนต์จาก Google Fonts */
+  font-family: 'Mitr', sans-serif;
+  /* ใช้ฟอนต์จาก Google Fonts */
 }
 
 .inventory-container {
-  margin: 15px auto; /* ระยะห่างจากด้านบน */
-  padding: 20px; /* เพิ่ม Padding ด้านใน */
-  background-color: #ffffff; /* สีพื้นหลัง */
-  border-radius: 10px; /* มุมโค้ง */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* เพิ่มเงา */
-  max-width: 1800px; /* ความกว้างสูงสุด */
-  width: 100%; /* ใช้ 100% ของหน้าจอ */
-  margin-top: 190px; /* ระยะห่างจากด้านบนของแถบตัวเลือก */
+  margin: 15px auto;
+  /* ระยะห่างจากด้านบน */
+  padding: 20px;
+  /* เพิ่ม Padding ด้านใน */
+  background-color: #ffffff;
+  /* สีพื้นหลัง */
+  border-radius: 10px;
+  /* มุมโค้ง */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  /* เพิ่มเงา */
+  max-width: 1800px;
+  /* ความกว้างสูงสุด */
+  width: 100%;
+  /* ใช้ 100% ของหน้าจอ */
+  margin-top: 190px;
+  /* ระยะห่างจากด้านบนของแถบตัวเลือก */
 }
 
 /* หัวข้อ */
 .inventory-title {
   display: flex;
-  align-items: center; /* จัดให้อยู่ตรงกลางในแนวตั้ง */
-  justify-content: left; /* จัดให้อยู่กลางหน้าจอ */
-  gap: 10px; /* เพิ่มระยะห่างระหว่างไอคอนและข้อความ */
-  font-size: 24px; /* ขนาดตัวอักษร */
-  font-weight: bold; /* ตัวหนา */
-  color: #333; /* สีของข้อความ */
-  margin-bottom: 20px; /* เพิ่มระยะห่างระหว่างหัวข้อและส่วนอื่น */
+  align-items: center;
+  /* จัดให้อยู่ตรงกลางในแนวตั้ง */
+  justify-content: left;
+  /* จัดให้อยู่กลางหน้าจอ */
+  gap: 10px;
+  /* เพิ่มระยะห่างระหว่างไอคอนและข้อความ */
+  font-size: 24px;
+  /* ขนาดตัวอักษร */
+  font-weight: bold;
+  /* ตัวหนา */
+  color: #333;
+  /* สีของข้อความ */
+  margin-bottom: 20px;
+  /* เพิ่มระยะห่างระหว่างหัวข้อและส่วนอื่น */
 }
 
 .inventory-icon {
-  font-size: 26px; /* ขนาดไอคอน */
-  color: #444242; /* สีของไอคอน */
+  font-size: 26px;
+  /* ขนาดไอคอน */
+  color: #444242;
+  /* สีของไอคอน */
 
 }
 
@@ -35,51 +53,75 @@ body {
 .filter-section {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between; /* กระจายเนื้อหา */
-  align-items: center; /* จัดกึ่งกลางแนวตั้ง */
-  gap: 10px; /* เพิ่มระยะห่างระหว่างองค์ประกอบ */
-  margin-bottom: 20px; /* เพิ่มระยะห่างด้านล่าง */
+  justify-content: space-between;
+  /* กระจายเนื้อหา */
+  align-items: center;
+  /* จัดกึ่งกลางแนวตั้ง */
+  gap: 10px;
+  /* เพิ่มระยะห่างระหว่างองค์ประกอบ */
+  margin-bottom: 20px;
+  /* เพิ่มระยะห่างด้านล่าง */
 }
 
 
 .filter-controls {
-  display: flex; /* ใช้ Flexbox */
-  flex-wrap: nowrap; /* ไม่ให้ลงบรรทัดใหม่ */
-  align-items: center; /* จัดให้อยู่กึ่งกลางในแนวตั้ง */
-  justify-content: space-between; /* กระจายช่องว่างเท่าๆ กัน */
-  gap: 20px; /* ระยะห่างระหว่างองค์ประกอบ */
-  margin-bottom: 20px; /* เพิ่มระยะห่างจากส่วนถัดไป */
+  display: flex;
+  /* ใช้ Flexbox */
+  flex-wrap: nowrap;
+  /* ไม่ให้ลงบรรทัดใหม่ */
+  align-items: center;
+  /* จัดให้อยู่กึ่งกลางในแนวตั้ง */
+  justify-content: space-between;
+  /* กระจายช่องว่างเท่าๆ กัน */
+  gap: 20px;
+  /* ระยะห่างระหว่างองค์ประกอบ */
+  margin-bottom: 20px;
+  /* เพิ่มระยะห่างจากส่วนถัดไป */
 }
 
 
 
 /* เมื่อวางเมาส์ */
 .filter-controls button:hover {
-  background-color: #005a9e; /* สีเมื่อ hover */
+  background-color: #005a9e;
+  /* สีเมื่อ hover */
 }
 
 .filter-controls select,
 .filter-controls button {
-  width: 190px; /* กำหนดความกว้างเท่ากัน */
-  padding: 10px; /* เพิ่ม Padding */
-  font-size: 16px; /* ขนาดฟอนต์ */
-  text-align: center; /* จัดข้อความกลาง */
-  border-radius: 5px; /* มุมโค้ง */
-  box-sizing: border-box; /* Padding ไม่กระทบขนาด */
+  width: 190px;
+  /* กำหนดความกว้างเท่ากัน */
+  padding: 10px;
+  /* เพิ่ม Padding */
+  font-size: 16px;
+  /* ขนาดฟอนต์ */
+  text-align: center;
+  /* จัดข้อความกลาง */
+  border-radius: 5px;
+  /* มุมโค้ง */
+  box-sizing: border-box;
+  /* Padding ไม่กระทบขนาด */
 }
 
 .filter-controls button {
-  background-color: #0078d7; /* สีปุ่ม */
-  color: white; /* สีตัวอักษร */
-  border: none; /* ไม่มีขอบ */
-  cursor: pointer; /* เปลี่ยนรูปเมาส์ */
-  transition: background-color 0.3s ease; /* เอฟเฟกต์เมื่อ hover */
+  background-color: #0078d7;
+  /* สีปุ่ม */
+  color: white;
+  /* สีตัวอักษร */
+  border: none;
+  /* ไม่มีขอบ */
+  cursor: pointer;
+  /* เปลี่ยนรูปเมาส์ */
+  transition: background-color 0.3s ease;
+  /* เอฟเฟกต์เมื่อ hover */
 }
 
 
 .filter-buttons {
-  display: flex; /* ใช้ Flexbox */
-  gap: 20px; /* ระยะห่างระหว่างปุ่ม */
+  display: flex;
+  /* ใช้ Flexbox */
+  gap: 20px;
+  /* ระยะห่างระหว่างปุ่ม */
 }
 
 /* ปรับปุ่มค้นหาและประวัติการค้นหา */
@@ -104,15 +146,19 @@ body {
   font-family: 'Sriracha', sans-serif;
   border-collapse: collapse;
   margin-top: 20px;
-  font-size: 18px; /* ลดขนาดฟอนต์เล็กน้อย */
-  text-align: left; /* จัดข้อความชิดซ้าย */
+  font-size: 18px;
+  /* ลดขนาดฟอนต์เล็กน้อย */
+  text-align: left;
+  /* จัดข้อความชิดซ้าย */
 }
 
 .inventory-table th,
 .inventory-table td {
   border: 1px solid #ddd;
-  padding: 12px; /* เพิ่ม Padding ในเซลล์เพื่อความชัดเจน */
-  text-align: center; /* จัดข้อความในตารางให้อยู่กลาง */
+  padding: 12px;
+  /* เพิ่ม Padding ในเซลล์เพื่อความชัดเจน */
+  text-align: center;
+  /* จัดข้อความในตารางให้อยู่กลาง */
 }
 
 .inventory-table th {
@@ -121,7 +167,8 @@ body {
   font-weight: bold;
   text-transform: uppercase;
   padding: 15px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* เพิ่มเงา */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  /* เพิ่มเงา */
 }
 
 .inventory-table tr:nth-child(even) {
@@ -129,8 +176,10 @@ body {
 }
 
 .inventory-table tr:hover {
-  background-color: #eaf6ff; /* สีพื้นหลังเมื่อชี้เมาส์ */
-  transform: scale(1.01); /* ขยายเล็กน้อยเมื่อชี้เมาส์ */
+  background-color: #eaf6ff;
+  /* สีพื้นหลังเมื่อชี้เมาส์ */
+  transform: scale(1.01);
+  /* ขยายเล็กน้อยเมื่อชี้เมาส์ */
   transition: all 0.2s ease;
 }
 
@@ -142,7 +191,8 @@ body {
   border-radius: 5px;
   padding: 8px 15px;
   cursor: pointer;
-  font-size: 14px; /* เพิ่มขนาดฟอนต์ปุ่ม */
+  font-size: 14px;
+  /* เพิ่มขนาดฟอนต์ปุ่ม */
 }
 
 .details-btn:hover {
@@ -153,9 +203,12 @@ body {
   display: flex;
   flex-wrap: wrap;
   gap: 15px;
-  margin: 15px 0; /* เพิ่มระยะห่างระหว่างบรรทัด */
-  line-height: 2.5; /* ปรับระยะห่างระหว่างบรรทัด */
-  font-size: 16px; /* ขนาดฟอนต์ */
+  margin: 15px 0;
+  /* เพิ่มระยะห่างระหว่างบรรทัด */
+  line-height: 2.5;
+  /* ปรับระยะห่างระหว่างบรรทัด */
+  font-size: 16px;
+  /* ขนาดฟอนต์ */
 }
 
 .details-section {
@@ -190,7 +243,8 @@ body {
   display: flex;
   justify-content: center;
   margin-top: 20px;
-  gap: 5px; /* เพิ่มช่องว่างระหว่างปุ่ม */
+  gap: 5px;
+  /* เพิ่มช่องว่างระหว่างปุ่ม */
 }
 
 .pagination button {
@@ -227,8 +281,10 @@ body {
 }
 
 .modal-content {
-  font-family: 'Mitr', sans-serif; /* ฟอนต์พาดหัว */
-  font-size: 16px; /* ขนาดตัวอักษรมาตรฐาน */
+  font-family: 'Mitr', sans-serif;
+  /* ฟอนต์พาดหัว */
+  font-size: 16px;
+  /* ขนาดตัวอักษรมาตรฐาน */
   background: #ffffff;
   padding: 20px 30px;
   border-radius: 10px;
@@ -264,7 +320,8 @@ body {
   font-size: 20px;
   font-weight: bold;
   color: #333;
-  font-family: 'Itim', sans-serif; /* ฟอนต์พาดหัว */
+  font-family: 'Itim', sans-serif;
+  /* ฟอนต์พาดหัว */
 }
 
 
@@ -283,21 +340,33 @@ body {
 }
 
 .close-btn {
-  position: absolute; /* ปุ่มจะลอยอยู่ในตำแหน่ง */
-  top: 10px; /* ระยะจากด้านบน */
-  right: -1px; /* ระยะจากด้านขวา */
-  background: none; /* ไม่มีพื้นหลัง */
-  border: none; /* ไม่มีเส้นขอบ */
-  font-size: 24px; /* ขนาดฟอนต์ */
-  font-weight: bold; /* ทำให้ตัวหนา */
-  color: #333; /* สีปุ่ม */
-  cursor: pointer; /* เปลี่ยนเคอร์เซอร์เป็นรูปมือ */
-  transition: transform 0.2s, color 0.2s; /* เพิ่มเอฟเฟกต์ */
+  position: absolute;
+  /* ปุ่มจะลอยอยู่ในตำแหน่ง */
+  top: 10px;
+  /* ระยะจากด้านบน */
+  right: -1px;
+  /* ระยะจากด้านขวา */
+  background: none;
+  /* ไม่มีพื้นหลัง */
+  border: none;
+  /* ไม่มีเส้นขอบ */
+  font-size: 24px;
+  /* ขนาดฟอนต์ */
+  font-weight: bold;
+  /* ทำให้ตัวหนา */
+  color: #333;
+  /* สีปุ่ม */
+  cursor: pointer;
+  /* เปลี่ยนเคอร์เซอร์เป็นรูปมือ */
+  transition: transform 0.2s, color 0.2s;
+  /* เพิ่มเอฟเฟกต์ */
 }
 
 .close-btn:hover {
-  color: #f44336; /* เปลี่ยนเป็นสีแดงเมื่อชี้เมาส์ */
-  transform: scale(1.2); /* ขยายเล็กน้อย */
+  color: #f44336;
+  /* เปลี่ยนเป็นสีแดงเมื่อชี้เมาส์ */
+  transform: scale(1.2);
+  /* ขยายเล็กน้อย */
 }
 
 
@@ -338,20 +407,25 @@ body {
     opacity: 0;
     transform: scale(0.9);
   }
+
   to {
     opacity: 1;
     transform: scale(1);
   }
 }
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .filter-section {
-    flex-direction: column; /* จัดให้อยู่แนวตั้ง */
-    align-items: stretch; /* ยืดเต็มความกว้าง */
+    flex-direction: column;
+    /* จัดให้อยู่แนวตั้ง */
+    align-items: stretch;
+    /* ยืดเต็มความกว้าง */
   }
 
   .filter-controls {
-    justify-content: center; /* จัดให้อยู่กลาง */
+    justify-content: center;
+    /* จัดให้อยู่กลาง */
     gap: 10px;
   }
 }
@@ -361,6 +435,7 @@ body {
     transform: translateY(-30px);
     opacity: 0;
   }
+
   to {
     transform: translateY(0);
     opacity: 1;

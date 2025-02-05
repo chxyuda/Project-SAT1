@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import Navbar from "../../../components/common/navbar/navbar";
 import { Calendar } from 'lucide-react';
 import "./borrow.css";
+import Header from '../../../components/Header';
+import Bgclip from '../../../assets/background.mp4'
 
 const BorrowEquipment = () => {
     const [formData, setFormData] = useState({
@@ -47,9 +49,10 @@ const BorrowEquipment = () => {
     return (
         <div className="borrow-container">
             <video className="background-video" autoPlay muted loop>
-                <source src="พื้นหลัง2.mp4" type="video/mp4" />
+                <source src={Bgclip} type="video/mp4" />
                 Your browser does not support the video tag.
             </video>
+            <Header />
 
             <Navbar />
 
@@ -189,36 +192,28 @@ const BorrowEquipment = () => {
                         />
                     </div>
 
-                    <div className="form-group">
-                        <label htmlFor="borrowDate">วันที่ยืม:</label>
-                        <div className="date-input-container">
-                            <Calendar className="date-icon" size={20} />
-                            <input
-                                type="date"
-                                id="borrowDate"
-                                name="borrowDate"
-                                value={formData.borrowDate}
-                                onChange={handleInputChange}
-                                min={new Date().toISOString().split('T')[0]}
-                                required
-                            />
-                        </div>
+                    <div class="form-group">
+                        <label for="start-date">วันที่ยืม:</label>
+                        <input type="date"
+                            id="borrowDate"
+                            name="borrowDate"
+                            value={formData.borrowDate}
+                            onChange={handleInputChange}
+                            min={new Date().toISOString().split('T')[0]}
+                            required
+                        />
                     </div>
-
-                    <div className="form-group">
-                        <label htmlFor="returnDate">วันที่คืน:</label>
-                        <div className="date-input-container">
-                            <Calendar className="date-icon" size={20} />
-                            <input
-                                type="date"
-                                id="returnDate"
-                                name="returnDate"
-                                value={formData.returnDate}
-                                onChange={handleInputChange}
-                                min={formData.borrowDate}
-                                required
-                            />
-                        </div>
+                    <div class="form-group">
+                        <label for="end-date">วันที่คืน:</label>
+                        <input
+                            type="date"
+                            id="returnDate"
+                            name="returnDate"
+                            value={formData.returnDate}
+                            onChange={handleInputChange}
+                            min={formData.borrowDate}
+                            required
+                        />
                     </div>
 
                     <div className="buttons">

@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Clock, FileText, ClipboardList } from 'lucide-react';
 import Navbar from "../../../components/common/navbar/navbar";
 import './track.css';
+import Bgclip from '../../../assets/background.mp4'
+import Header from "../../../components/Header";
 
 const Track = () => {
     const [date, setDate] = useState("");
@@ -35,51 +37,24 @@ const Track = () => {
     }, []);
 
     return (
-        <div className="track-container">
-            <video className="background-video" autoPlay muted loop playsInline>
-                <source src="พื้นหลัง2.mp4" type="video/mp4" />
+        <>
+            <video autoPlay muted loop id="background-video">
+                <source src={Bgclip} type="video/mp4" />
                 Your browser does not support the video tag.
             </video>
 
-            <header className="header">
-                <div className="title">
-                    <img src="/logo.png" alt="SAT Logo" className="logo" />
-                    <div className="title-text">
-                        <h1>SPORTS AUTHORITY OF THAILAND</h1>
-                        <div className="sub-title">Computer Equipment Management System</div>
-                    </div>
-                </div>
-                <div className="datetime">
-                    <div className="date">{date}</div>
-                    <div className="time">
-                        <Clock className="clock-icon" size={18} />
-                        {time}
-                    </div>
-                </div>
-            </header>
-
+            <Header />
             <Navbar />
-
-            <main className="content">
-                <div className="menu-container">
+            <div class="content-track">
+                <div class="box-container-track">
                     <h2>ติดตามสถานะคำขอ</h2>
-                    <div className="menu-grid">
-                        <a href="/RequestStatus" className="menu-item">
-                            <div className="menu-icon request-icon">
-                                <FileText size={40} />
-                            </div>
-                            <span className="menu-text">สถานะการขอเบิก</span>
-                        </a>
-                        <a href="/BorrowStatus" className="menu-item">
-                            <div className="menu-icon borrow-icon">
-                                <ClipboardList size={40} />
-                            </div>
-                            <span className="menu-text">สถานะการยืม-คืน</span>
-                        </a>
+                    <div class="card-container-track">
+                        <a href="/request-status" class="card-track card-issue-track">สถานะการขอเบิก</a>
+                        <a href="/borrow-status" class="card-track card-borrow-track">สถานะการยืม-คืน</a>
                     </div>
                 </div>
-            </main>
-        </div>
+            </div>
+        </>
     );
 };
 

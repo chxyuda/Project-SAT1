@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Clock, Users, Settings, FileText, LogOut } from 'lucide-react';
 import Navbar from '../../../components/common/navbar/navbar';
 import './index.css';
+import Bgclip from '../../../assets/background.mp4'
+import Header from "../../../components/Header";
 
 const Index = () => {
     const [date, setDate] = useState("");
@@ -10,14 +12,14 @@ const Index = () => {
     useEffect(() => {
         const updateDateTime = () => {
             const now = new Date();
-            
+
             // Format date: DD/MM/YYYY
             const formattedDate = now.toLocaleDateString('th-TH', {
                 day: '2-digit',
                 month: '2-digit',
                 year: 'numeric'
             });
-            
+
             // Format time: HH:MM:SS
             const formattedTime = now.toLocaleTimeString('th-TH', {
                 hour: '2-digit',
@@ -70,50 +72,27 @@ const Index = () => {
     };
 
     return (
-        <div className="dashboard-container">
+        <>
             <video className="background-video" autoPlay muted loop playsInline>
-                <source src="พื้นหลัง2.mp4" type="video/mp4" />
+                <source src={Bgclip} type="video/mp4" />
                 Your browser does not support the video tag.
             </video>
 
-            <header className="header">
-                <div className="title">
-                    <img src="/logo.png" alt="SAT Logo" className="logo" />
-                    <div className="title-text">
-                        <h1>SPORTS AUTHORITY OF THAILAND</h1>
-                        <div className="sub-title">Computer Equipment Management System</div>
-                    </div>
-                </div>
-                <div className="datetime">
-                    <div className="date">{date}</div>
-                    <div className="time">
-                        <Clock className="clock-icon" size={18} />
-                        {time}
-                    </div>
-                </div>
-            </header>
 
+            <Header />
             <Navbar />
 
-            <main className="dashboard-content">
-                <div className="menu-grid">
-                    {menuItems.map((item, index) => (
-                        <a
-                            key={index}
-                            href={item.link}
-                            className="menu-item"
-                            onClick={item.link === '/logout' ? handleLogout : undefined}
-                            style={{ '--hover-color': item.color }}
-                        >
-                            <div className="menu-icon" style={{ color: item.color }}>
-                                {item.icon}
-                            </div>
-                            <div className="menu-text">{item.text}</div>
-                        </a>
-                    ))}
+            <div class="content-idx">
+                <div class="box-container-idx">
+                    <div class="icon-idx">
+                        &#128100;
+                    </div>
+                    <div class="text-idx">
+                        ฝ่ายสำนัก
+                    </div>
                 </div>
-            </main>
-        </div>
+            </div>
+        </>
     );
 };
 

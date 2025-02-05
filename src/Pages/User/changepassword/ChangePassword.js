@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Clock } from 'lucide-react';
 import Navbar from "../../../components/common/navbar/navbar";
 import "./change_password.css";
+import Bgclip from '../../../assets/background.mp4'
+import Header from "../../../components/Header";
 
 const ChangePassword = () => {
     const [formData, setFormData] = useState({
@@ -116,41 +118,23 @@ const ChangePassword = () => {
     };
 
     return (
-        <div className="change-password-container">
-            <video autoPlay loop muted playsInline className="background-video">
-                <source src="พื้นหลัง2.mp4" type="video/mp4" />
+        <>
+            <video autoPlay muted loop id="background-video">
+                <source src={Bgclip} type="video/mp4" />
                 Your browser does not support the video tag.
             </video>
 
-            <header className="header">
-                <div className="title">
-                    <img src="/logo.png" alt="SAT Logo" className="logo" />
-                    <div className="title-text">
-                        <h1>SPORTS AUTHORITY OF THAILAND</h1>
-                        <div className="sub-title">Computer Equipment Management System</div>
-                    </div>
-                </div>
-                <div className="datetime">
-                    <div className="date">{date}</div>
-                    <div className="time">
-                        <Clock className="clock-icon" size={18} />
-                        {time}
-                    </div>
-                </div>
-            </header>
+            <Header />
 
-            <Navbar />
-
-            <main className="content">
-                <div className="form-container">
+            <div class="content-cp">
+                <div class="form-container-cp">
                     <h2>แก้ไขรหัสผ่าน</h2>
 
                     {error && <div className="error-message">{error}</div>}
                     {success && <div className="success-message">เปลี่ยนรหัสผ่านสำเร็จ!</div>}
-
-                    <form onSubmit={handleSubmit}>
-                        <div className="form-group">
-                            <label htmlFor="current-username">Username:</label>
+                    <form>
+                        <div class="form-group-cp">
+                            <label for="current-username">Username:</label>
                             <input
                                 type="text"
                                 id="current-username"
@@ -159,8 +143,8 @@ const ChangePassword = () => {
                                 readOnly
                             />
                         </div>
-                        <div className="form-group">
-                            <label htmlFor="new-password">รหัสผ่านใหม่:</label>
+                        <div class="form-group-cp">
+                            <label for="new-password">รหัสผ่านใหม่:</label>
                             <input
                                 type="password"
                                 id="new-password"
@@ -170,8 +154,8 @@ const ChangePassword = () => {
                                 required
                             />
                         </div>
-                        <div className="form-group">
-                            <label htmlFor="confirm-password">ยืนยันรหัสผ่านใหม่:</label>
+                        <div class="form-group-cp">
+                            <label for="confirm-password">ยืนยันรหัสผ่านใหม่:</label>
                             <input
                                 type="password"
                                 id="confirm-password"
@@ -181,24 +165,15 @@ const ChangePassword = () => {
                                 required
                             />
                         </div>
-                        <div className="password-requirements">
-                            <p>รหัสผ่านต้องประกอบด้วย:</p>
-                            <ul>
-                                <li>ความยาวอย่างน้อย 8 ตัวอักษร</li>
-                                <li>ตัวอักษรพิมพ์ใหญ่อย่างน้อย 1 ตัว</li>
-                                <li>ตัวอักษรพิมพ์เล็กอย่างน้อย 1 ตัว</li>
-                                <li>ตัวเลขอย่างน้อย 1 ตัว</li>
-                                <li>อักขระพิเศษอย่างน้อย 1 ตัว (!@#$%^&*)</li>
-                            </ul>
-                        </div>
-                        <div className="buttons">
-                            <a href="/dashboard" className="back-button">ย้อนกลับ</a>
-                            <button type="submit" className="submit-button">บันทึก</button>
+                        <div className="buttons-cp">
+                            <a href="/user-dashboard" className="back-button-cp">ย้อนกลับ</a>
+                            <button type="submit" className="submit-button-cp">บันทึก</button>
                         </div>
                     </form>
                 </div>
-            </main>
-        </div>
+            </div>
+
+        </>
     );
 };
 

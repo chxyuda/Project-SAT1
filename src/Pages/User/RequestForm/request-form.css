@@ -1,263 +1,87 @@
-.request-form-container {
-    min-height: 100vh;
-    position: relative;
-    background: rgba(0, 0, 0, 0.6);
-}
+  body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f7fa;
+      overflow: hidden;
+      /* ปิด scrollbars */
+  }
 
-.background-video {
-    position: fixed;
-    right: 0;
-    bottom: 0;
-    min-width: 100%;
-    min-height: 100%;
-    width: auto;
-    height: auto;
-    z-index: -1;
-    object-fit: cover;
-}
+  /* วิดีโอพื้นหลัง */
+  #background-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+  }
 
-.header {
-    background-color: #fff;
-    padding: 1rem 2rem;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
+  .content-rqf {
+      padding: 20px;
+      height: calc(100vh - 140px);
+      /* ลดขนาด content */
+      overflow-y: auto;
+      z-index: 1;
+      /* ให้เลื่อนดูได้ */
+  }
 
-.title {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-}
+  .form-container-rqf {
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      max-width: 700px;
+      margin: 0 auto;
+  }
 
-.logo {
-    height: 50px;
-    width: auto;
-}
+  .form-container-rqf h2 {
+      margin-top: 0;
+      font-size: 18px;
+      color: #2c3e50;
+      text-align: center;
+  }
 
-.title-text {
-    display: flex;
-    flex-direction: column;
-}
+  .form-container-rqf .form-group-rqf {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+  }
 
-.title-text h1 {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: #2c3e50;
-    margin: 0;
-}
+  .form-container-rqf .form-group-rqf label {
+      width: 30%;
+      font-size: 14px;
+      color: #555555;
+      text-align: right;
+      margin-right: 10px;
+  }
 
-.sub-title {
-    font-size: 1rem;
-    color: #7f8c8d;
-}
+  .form-container-rqf .form-group-rqf input,
+  .form-container-rqf .form-group-rqf select {
+      width: 65%;
+      padding: 8px;
+      font-size: 14px;
+      border: 1px solid #cccccc;
+      border-radius: 5px;
+      outline: none;
+  }
 
-.datetime {
-    text-align: right;
-    color: #2c3e50;
-}
+  .form-container-rqf .buttons-rqf {
+      text-align: center;
+      margin-top: 20px;
+  }
 
-.date {
-    font-size: 1.1rem;
-    font-weight: 500;
-    margin-bottom: 0.25rem;
-}
+  .form-container-rqf .buttons-rqf button {
+      padding: 10px 20px;
+      font-size: 14px;
+      color: white;
+      background-color: #4a90e2;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+  }
 
-.time {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 1.1rem;
-    font-weight: 500;
-}
-
-.clock-icon {
-    color: #3498db;
-}
-
-.content {
-    position: relative;
-    z-index: 1;
-    padding: 2rem;
-    min-height: calc(100vh - 80px);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.form-container {
-    background: rgba(255, 255, 255, 0.95);
-    padding: 2rem;
-    border-radius: 1rem;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 800px;
-    margin: 2rem auto;
-}
-
-.form-container h2 {
-    color: #2c3e50;
-    text-align: center;
-    margin-bottom: 2rem;
-    font-size: 1.8rem;
-    font-weight: 600;
-}
-
-.message {
-    padding: 1rem;
-    border-radius: 0.5rem;
-    margin-bottom: 1.5rem;
-    text-align: center;
-    font-weight: 500;
-    animation: fadeIn 0.3s ease-in;
-}
-
-.message.success {
-    background-color: #d4edda;
-    color: #155724;
-}
-
-.message.error {
-    background-color: #f8d7da;
-    color: #721c24;
-}
-
-.form-group {
-    margin-bottom: 1.5rem;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 0.5rem;
-    color: #2c3e50;
-    font-weight: 500;
-}
-
-.form-group input,
-.form-group select {
-    width: 100%;
-    padding: 0.75rem;
-    border: 1px solid #ddd;
-    border-radius: 0.5rem;
-    font-size: 1rem;
-    transition: border-color 0.3s, box-shadow 0.3s;
-}
-
-.form-group input:focus,
-.form-group select:focus {
-    outline: none;
-    border-color: #3498db;
-    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
-}
-
-.form-group input:disabled,
-.form-group select:disabled,
-.readonly-input {
-    background-color: #f5f6fa;
-    cursor: not-allowed;
-}
-
-.date-input-container {
-    position: relative;
-}
-
-.date-icon {
-    position: absolute;
-    left: 0.75rem;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #7f8c8d;
-    pointer-events: none;
-}
-
-.date-input-container input[type="date"] {
-    padding-left: 2.5rem;
-}
-
-.buttons {
-    display: flex;
-    justify-content: space-between;
-    gap: 1rem;
-    margin-top: 2rem;
-}
-
-.back-button,
-.submit-button {
-    padding: 0.75rem 2rem;
-    border-radius: 0.5rem;
-    font-size: 1rem;
-    font-weight: 600;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    flex: 1;
-    text-align: center;
-}
-
-.back-button {
-    background-color: #e9ecef;
-    color: #2c3e50;
-    border: none;
-}
-
-.back-button:hover {
-    background-color: #dee2e6;
-}
-
-.submit-button {
-    background-color: #3498db;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
-
-.submit-button:hover:not(:disabled) {
-    background-color: #2980b9;
-}
-
-.submit-button:disabled {
-    background-color: #bdc3c7;
-    cursor: not-allowed;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@media (max-width: 768px) {
-    .header {
-        flex-direction: column;
-        text-align: center;
-        gap: 1rem;
-        padding: 1rem;
-    }
-
-    .title {
-        flex-direction: column;
-    }
-
-    .datetime {
-        text-align: center;
-    }
-
-    .form-container {
-        margin: 1rem;
-        padding: 1.5rem;
-    }
-
-    .buttons {
-        flex-direction: column;
-    }
-
-    .back-button,
-    .submit-button {
-        width: 100%;
-    }
-}
+  .form-container-rqf .buttons-rqf button:hover {
+      background-color: #357abd;
+  }

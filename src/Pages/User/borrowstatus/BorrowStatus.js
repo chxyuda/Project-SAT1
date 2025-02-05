@@ -66,11 +66,11 @@ const BorrowStatus = () => {
     const getStatusBadgeClass = (status) => {
         switch (status) {
             case 'pending':
-                return 'status-pending';
+                return 'status-pending-brs';
             case 'approved':
-                return 'status-approved';
+                return 'status-approved-brs';
             case 'returned':
-                return 'status-returned';
+                return 'status-returned-brs';
             default:
                 return '';
         }
@@ -89,32 +89,13 @@ const BorrowStatus = () => {
     };
 
     return (
-        <div className="borrow-status-container">
-            <header className="header">
-                <div className="title">
-                    <img src="/logo.png" alt="SAT Logo" className="logo" />
-                    <div className="title-text">
-                        <h1>SPORTS AUTHORITY OF THAILAND</h1>
-                        <div className="sub-title">Computer Equipment Management System</div>
-                    </div>
-                </div>
-                <div className="datetime">
-                    <div className="date">{date}</div>
-                    <div className="time">
-                        <Clock className="clock-icon" size={18} />
-                        {time}
-                    </div>
-                </div>
-            </header>
+        <>
 
             <Navbar />
 
-            <main className="content">
-                <div className="content-header">
-                    <h2>สถานะการยืม - คืน</h2>
-                </div>
-
-                <div className="table-container">
+            <div class="content-brs">
+                <h2>สถานะการยืม - คืน</h2>
+                <div class="table-container-brs">
                     <table>
                         <thead>
                             <tr>
@@ -149,10 +130,49 @@ const BorrowStatus = () => {
                                 </tr>
                             )}
                         </tbody>
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
                     </table>
-
                     {totalPages > 1 && (
-                        <div className="pagination">
+                        <div className="pagination-brs">
                             {[...Array(totalPages)].map((_, index) => (
                                 <button
                                     key={index}
@@ -165,14 +185,11 @@ const BorrowStatus = () => {
                         </div>
                     )}
                 </div>
-
-                <div className="back-button">
-                    <a href="/track" className="back-link">
-                        ย้อนกลับ
-                    </a>
+                <div class="back-button-brs">
+                    <a href="/track">ย้อนกลับ</a>
                 </div>
-            </main>
-        </div>
+            </div>
+        </>
     );
 };
 

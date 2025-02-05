@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Clock } from 'lucide-react';
 import Navbar from "../../../components/common/navbar/navbar";
 import "./edit_profile.css";
+import Bgclip from '../../../assets/background.mp4'
+import Header from "../../../components/Header";
 
 const EditProfile = () => {
     const [date, setDate] = useState("");
@@ -113,71 +115,31 @@ const EditProfile = () => {
     };
 
     return (
-        <div className="edit-profile-container">
-            <video className="background-video" autoPlay loop muted playsInline>
-                <source src="พื้นหลัง2.mp4" type="video/mp4" />
+        <>
+            <video autoPlay muted loop id="background-video">
+                <source src={Bgclip} type="video/mp4" />
                 Your browser does not support the video tag.
             </video>
 
-            <header className="header">
-                <div className="title">
-                    <img src="/logo.png" alt="SAT Logo" className="logo" />
-                    <div className="title-text">
-                        <h1>SPORTS AUTHORITY OF THAILAND</h1>
-                        <div className="sub-title">Computer Equipment Management System</div>
-                    </div>
-                </div>
-                <div className="datetime">
-                    <div className="date">{date}</div>
-                    <div className="time">
-                        <Clock className="clock-icon" size={18} />
-                        {time}
-                    </div>
-                </div>
-            </header>
-
+            <Header />
             <Navbar />
 
-            <main className="content">
-                <div className="form-container">
+            <div class="content-ep">
+                <div class="form-container-ep">
                     <h2>แก้ไขโปรไฟล์</h2>
-
-                    {message.text && (
-                        <div className={`message ${message.type}`}>
-                            {message.text}
-                        </div>
-                    )}
-
-                    <div className="profile-image-container">
-                        <div className="profile-image">
-                            {previewUrl ? (
-                                <img src={previewUrl} alt="Profile Preview" />
-                            ) : (
-                                <div className="profile-placeholder">
-                                    <span>📷</span>
-                                </div>
-                            )}
-                        </div>
-                        <div className="image-upload">
-                            <label htmlFor="profile-pic" className="upload-button">
-                                เปลี่ยนรูปโปรไฟล์
-                            </label>
-                            <input
-                                type="file"
-                                id="profile-pic"
-                                accept="image/*"
-                                onChange={handleImageChange}
-                                className="hidden-input"
-                            />
-                        </div>
-                        <p className="image-requirements">
-                            ขนาดไฟล์สูงสุด: 5MB | รองรับ: JPG, PNG
-                        </p>
+                    <div class="image-upload-ep">
+                        <label for="profile-pic">&#128247;</label>
+                        <input
+                            type="file"
+                            id="profile-pic"
+                            accept="image/*"
+                            onChange={handleImageChange}
+                            className="hidden-input"
+                        />
                     </div>
-
                     <form onSubmit={handleSubmit}>
-                        <div className="form-group">
-                            <label htmlFor="name">ชื่อ - นามสกุล:</label>
+                        <div class="form-group-ep">
+                            <label for="name">ชื่อ - นามสกุล:</label>
                             <input
                                 type="text"
                                 id="name"
@@ -187,8 +149,7 @@ const EditProfile = () => {
                                 required
                             />
                         </div>
-
-                        <div className="form-group">
+                        <div className="form-group-ep">
                             <label htmlFor="division">ฝ่าย/สำนัก:</label>
                             <select
                                 id="division"
@@ -203,8 +164,7 @@ const EditProfile = () => {
                                 <option value="center4">ฝ่ายทรัพยากรบุคคล</option>
                             </select>
                         </div>
-
-                        <div className="form-group">
+                        <div className="form-group-ep">
                             <label htmlFor="department">กอง:</label>
                             <select
                                 id="department"
@@ -219,8 +179,7 @@ const EditProfile = () => {
                                 <option value="department4">กองบุคลากร</option>
                             </select>
                         </div>
-
-                        <div className="form-group">
+                        <div className="form-group-ep">
                             <label htmlFor="job">งาน:</label>
                             <select
                                 id="job"
@@ -235,9 +194,8 @@ const EditProfile = () => {
                                 <option value="job4">งานบริหารบุคคล</option>
                             </select>
                         </div>
-
-                        <div className="form-group">
-                            <label htmlFor="phone">เบอร์โทรภายใน:</label>
+                        <div class="form-group-ep">
+                            <label for="phone">เบอร์โทรภายใน:</label>
                             <input
                                 type="tel"
                                 id="phone"
@@ -249,9 +207,8 @@ const EditProfile = () => {
                                 required
                             />
                         </div>
-
-                        <div className="form-group">
-                            <label htmlFor="email">E-mail:</label>
+                        <div class="form-group-ep">
+                            <label for="email">E-mail:</label>
                             <input
                                 type="email"
                                 id="email"
@@ -264,14 +221,14 @@ const EditProfile = () => {
                             />
                         </div>
 
-                        <div className="buttons">
-                            <a href="/dashboard" className="back-button">ย้อนกลับ</a>
-                            <button type="submit" className="submit-button">บันทึก</button>
+                        <div className="buttons-ep">
+                            <a href="/user-dashboard" className="back-button-ep">ย้อนกลับ</a>
+                            <button type="submit" className="submit-button-ep">บันทึก</button>
                         </div>
                     </form>
                 </div>
-            </main>
-        </div>
+            </div>
+        </>
     );
 };
 

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Clock } from 'lucide-react';
 import Navbar from "../../../components/common/navbar/navbar";
 import './request-status.css';
+import Header from "../../../components/Header";
 
 const RequestStatus = () => {
     const [date, setDate] = useState("");
@@ -94,35 +95,13 @@ const RequestStatus = () => {
     };
 
     return (
-        <div className="request-status-container">
-            <video className="background-video" autoPlay muted loop playsInline>
-                <source src="พื้นหลัง2.mp4" type="video/mp4" />
-                Your browser does not support the video tag.
-            </video>
-
-            <header className="header">
-                <div className="title">
-                    <img src="/logo.png" alt="SAT Logo" className="logo" />
-                    <div className="title-text">
-                        <h1>SPORTS AUTHORITY OF THAILAND</h1>
-                        <div className="sub-title">Computer Equipment Management System</div>
-                    </div>
-                </div>
-                <div className="datetime">
-                    <div className="date">{date}</div>
-                    <div className="time">
-                        <Clock className="clock-icon" size={18} />
-                        {time}
-                    </div>
-                </div>
-            </header>
-
+        <>
+            <Header />
             <Navbar />
 
-            <main className="content">
-                <div className="table-container">
-                    <h2>สถานะคำขอเบิก</h2>
-
+            <div class="content-srq">
+                <h2>สถานะคำขอเบิก</h2>
+                <div class="table-container-srq">
                     <table>
                         <thead>
                             <tr>
@@ -156,10 +135,51 @@ const RequestStatus = () => {
                                 </tr>
                             )}
                         </tbody>
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
                     </table>
 
+
                     {totalPages > 1 && (
-                        <div className="pagination">
+                        <div className="pagination-srq">
                             {[...Array(totalPages)].map((_, index) => (
                                 <button
                                     key={index}
@@ -172,14 +192,12 @@ const RequestStatus = () => {
                         </div>
                     )}
 
-                    <div className="back-button">
-                        <a href="/track" className="back-link">
-                            ย้อนกลับ
-                        </a>
-                    </div>
                 </div>
-            </main>
-        </div>
+                <div class="back-button-srq">
+                    <a href="/track">ย้อนกลับ</a>
+                </div>
+            </div>
+        </>
     );
 };
 

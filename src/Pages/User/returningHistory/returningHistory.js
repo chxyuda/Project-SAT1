@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Clock } from 'lucide-react';
 import Navbar from "../../../components/common/navbar/navbar";
 import './request-history.css';
+import Header from "../../../components/Header";
 
 const RequestHistory = () => {
     const [date, setDate] = useState("");
@@ -94,92 +95,93 @@ const RequestHistory = () => {
     };
 
     return (
-        <div className="request-history-container">
-            <video className="background-video" autoPlay muted loop playsInline>
-                <source src="พื้นหลัง2.mp4" type="video/mp4" />
-                Your browser does not support the video tag.
-            </video>
+        <>
 
-            <header className="header">
-                <div className="title">
-                    <img src="/logo.png" alt="SAT Logo" className="logo" />
-                    <div className="title-text">
-                        <h1>SPORTS AUTHORITY OF THAILAND</h1>
-                        <div className="sub-title">Computer Equipment Management System</div>
-                    </div>
-                </div>
-                <div className="datetime">
-                    <div className="date">{date}</div>
-                    <div className="time">
-                        <Clock className="clock-icon" size={18} />
-                        {time}
-                    </div>
-                </div>
-            </header>
-
+            <Header />
             <Navbar />
-
-            <main className="content">
-                <div className="table-container">
-                    <h2>ประวัติการเบิก</h2>
-
+            <div class="content-breth">
+                <h2>ประวัติการยืม - คืน</h2>
+                <div class="table-container-breth">
                     <table>
                         <thead>
                             <tr>
                                 <th>ลำดับ</th>
-                                <th>ชื่อผู้เบิก</th>
+                                <th>ชื่อผู้ยืม</th>
                                 <th>ชื่อฝ่ายสำนัก</th>
                                 <th>อุปกรณ์</th>
-                                <th>วันที่ขอเบิก</th>
+                                <th>วันที่ยืม - วันที่คืน</th>
                                 <th>สถานะ</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {requests.length > 0 ? (
-                                requests.map((request, index) => (
-                                    <tr key={request.id}>
-                                        <td>{(currentPage - 1) * itemsPerPage + index + 1}</td>
-                                        <td>{request.borrower_name}</td>
-                                        <td>{request.department}</td>
-                                        <td>{request.equipment?.name}</td>
-                                        <td>{formatDate(request.borrow_date)}</td>
-                                        <td>
-                                            <span className={getStatusBadgeClass(request.status)}>
-                                                {getStatusText(request.status)}
-                                            </span>
-                                        </td>
-                                    </tr>
-                                ))
-                            ) : (
-                                <tr>
-                                    <td colSpan="6" className="no-data">ไม่พบข้อมูลการเบิก</td>
-                                </tr>
-                            )}
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
                         </tbody>
                     </table>
-
-                    {totalPages > 1 && (
-                        <div className="pagination">
-                            {[...Array(totalPages)].map((_, index) => (
-                                <button
-                                    key={index}
-                                    className={currentPage === index + 1 ? 'active' : ''}
-                                    onClick={() => setCurrentPage(index + 1)}
-                                >
-                                    {index + 1}
-                                </button>
-                            ))}
-                        </div>
-                    )}
-
-                    <div className="back-button">
-                        <a href="/dashboard" className="back-link">
-                            ย้อนกลับ
-                        </a>
+                    <div class="pagination-breth">
+                        <button>1</button>
+                        <button>2</button>
+                        <button>3</button>
+                        <button>4</button>
+                        <button>5</button>
+                        <button>6</button>
+                        <button>7</button>
+                        <button>8</button>
+                        <button>9</button>
+                        <button>10</button>
                     </div>
                 </div>
-            </main>
-        </div>
+                <div class="back-button-breth">
+                    <a href="/withdrawal-history">ย้อนกลับ</a>
+                </div>
+            </div>
+        </>
     );
 };
 

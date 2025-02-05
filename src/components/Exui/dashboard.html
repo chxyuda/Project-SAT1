@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow: hidden; /* ปิด scrollbars */
+        }
+
+        /* วิดีโอพื้นหลัง */
+        .background-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1; /* ทำให้วิดีโออยู่เบื้องหลัง */
+        }
+
+        .header {
+            background-color: rgba(45, 120, 191, 0.9); /* เพิ่มความโปร่งใส */
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 1; /* ให้อยู่เหนือวิดีโอ */
+        }
+
+        .header .title {
+            font-size: 18px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+
+        .header .title img {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .header .title div {
+            line-height: 1.2;
+        }
+
+        .header .title div .sub-title {
+            font-size: 12px;
+            font-weight: normal;
+        }
+
+        .header .datetime {
+            text-align: right;
+        }
+
+        .header .datetime div {
+            margin: 0;
+        }
+
+        .header .datetime .date {
+            font-size: 14px;
+        }
+
+        .header .datetime .time {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .nav {
+            background-color: rgba(255, 255, 255, 0.9); /* เพิ่มความโปร่งใส */
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 1; /* ให้อยู่เหนือวิดีโอ */
+        }
+
+        .nav a {
+            text-decoration: none;
+            color: #333333;
+            font-size: 14px;
+            padding: 5px 10px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .nav a.logout {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+
+        .nav a.logout:hover {
+            color: #c0392b;
+        }
+
+        .nav a:hover {
+            background-color: #f0f4f7;
+            color: #007acc;
+            border-radius: 4px;
+        }
+
+        .content {
+            text-align: center;
+            padding: 50px 20px;
+            position: relative;
+            z-index: 1; /* ให้อยู่เหนือวิดีโอ */
+        }
+
+        /* กรอบสี่เหลี่ยมสำหรับฝ่ายสำนัก */
+        .box-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 200px;
+            height: 250px;
+            border: 2px solid rgb(16, 12, 255); /* กรอบสีเหลือง */
+            border-radius: 10px;
+            background-color: white; /* พื้นหลังสีขาว */
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(255, 255, 0, 0.5); /* เงาสีเหลือง */
+            margin: 0 auto; /* จัดให้อยู่ตรงกลาง */
+        }
+
+        .box-container .icon {
+            width: 120px; /* เพิ่มขนาดไอคอน */
+            height: 120px; /* เพิ่มขนาดไอคอน */
+            background: linear-gradient(135deg, #8e44ad, #3498db); /* สีไล่ระดับ */
+            border-radius: 50%; /* ทำให้เป็นวงกลม */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white; /* สีตัวหนังสือในไอคอน */
+            font-size: 36px; /* ขนาดตัวอักษรใหญ่ขึ้น */
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* เพิ่มเงา */
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* ทำให้มีเอฟเฟกต์เคลื่อนไหว */
+        }
+
+        .box-container .icon:hover {
+            transform: scale(1.1); /* ขยายไอคอนเล็กน้อยเมื่อชี้เมาส์ */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5); /* เพิ่มเงาเมื่อชี้เมาส์ */
+        }
+
+        .box-container .text {
+            margin-top: 20px;
+            font-size: 18px;
+            color: black; /* เปลี่ยนเป็นสีดำ */
+            text-align: center;
+        }
+    </style>
+    <script>
+        function updateTime() {
+            const now = new Date();
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const date = now.toLocaleDateString('th-TH', options);
+            const time = now.toLocaleTimeString('th-TH', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+            document.getElementById('date').textContent = date;
+            document.getElementById('time').textContent = time;
+        }
+        setInterval(updateTime, 1000);
+    </script>
+</head>
+<body onload="updateTime()">
+    <!-- วิดีโอพื้นหลัง -->
+    <video class="background-video" autoplay muted loop>
+        <source src="พื้นหลัง2.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <div class="header">
+        <div class="title">
+            <img src="logo.png" alt="Logo">
+            <div>
+                SPORTS AUTHORITY OF THAILAND
+                <div class="sub-title">Computer Equipment Management System</div>
+            </div>
+        </div>
+        <div class="datetime">
+            <div id="date" class="date"></div>
+            <div id="time" class="time"></div>
+        </div>
+    </div>
+    <div class="nav">
+        <a href="borrow.html">ยืมวัสดุ</a>
+        <a href="returnเบิก.html">เบิกวัสดุ</a>
+        <a href="track.html">ติดตามสถานะคำขอ</a>
+        <a href="ประวัติการเบิกยืม.html" style="color: rgb(0, 0, 0);">ประวัติการเบิกคืน</a>
+        <a href="change_password.html">แก้ไขรหัสผ่าน</a>
+        <a href="edit_profile.html">แก้ไขโปรไฟล์</a>
+        <a href="LoginPage.html" class="logout">&#10140; Log out</a>
+    </div>
+    <div class="content">
+        <div class="box-container">
+            <div class="icon">
+                &#128100;
+            </div>
+            <div class="text">
+                ฝ่ายสำนัก
+            </div>
+        </div>
+    </div>
+</body>
+</html>

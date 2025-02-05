@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Clock, Calendar } from 'lucide-react';
 import Navbar from "../../../components/common/navbar/navbar";
 import './request-form.css';
+import Bgclip from '../../../assets/background.mp4'
+import Header from "../../../components/Header";
 
 const RequestForm = () => {
     const [date, setDate] = useState("");
@@ -26,13 +28,13 @@ const RequestForm = () => {
     useEffect(() => {
         const updateDateTime = () => {
             const now = new Date();
-            
+
             const formattedDate = now.toLocaleDateString('th-TH', {
                 day: '2-digit',
                 month: '2-digit',
                 year: 'numeric'
             });
-            
+
             const formattedTime = now.toLocaleTimeString('th-TH', {
                 hour: '2-digit',
                 minute: '2-digit',
@@ -169,35 +171,19 @@ const RequestForm = () => {
     };
 
     return (
-        <div className="request-form-container">
-            <video className="background-video" autoPlay muted loop playsInline>
-                <source src="พื้นหลัง2.mp4" type="video/mp4" />
+        <>
+            <video autoPlay muted loop id="background-video">
+                <source src={Bgclip} type="video/mp4" />
                 Your browser does not support the video tag.
             </video>
 
-            <header className="header">
-                <div className="title">
-                    <img src="/logo.png" alt="SAT Logo" className="logo" />
-                    <div className="title-text">
-                        <h1>SPORTS AUTHORITY OF THAILAND</h1>
-                        <div className="sub-title">Computer Equipment Management System</div>
-                    </div>
-                </div>
-                <div className="datetime">
-                    <div className="date">{date}</div>
-                    <div className="time">
-                        <Clock className="clock-icon" size={18} />
-                        {time}
-                    </div>
-                </div>
-            </header>
-
+            <Header />
             <Navbar />
 
-            <main className="content">
-                <div className="form-container">
-                    <h2>รายละเอียดการเบิกวัสดุ</h2>
 
+            <div class="content-rqf">
+                <div class="form-container-rqf">
+                    <h2>รายละเอียดการเบิกวัสดุ</h2>
                     {message.text && (
                         <div className={`message ${message.type}`}>
                             {message.text}
@@ -205,7 +191,7 @@ const RequestForm = () => {
                     )}
 
                     <form onSubmit={handleSubmit}>
-                        <div className="form-group">
+                        <div class="form-group-rqf">
                             <label htmlFor="borrowerName">ชื่อผู้เบิก:</label>
                             <input
                                 type="text"
@@ -216,8 +202,7 @@ const RequestForm = () => {
                                 required
                             />
                         </div>
-
-                        <div className="form-group">
+                        <div class="form-group-rqf">
                             <label htmlFor="department">ฝ่ายสำนัก:</label>
                             <input
                                 type="text"
@@ -228,8 +213,7 @@ const RequestForm = () => {
                                 required
                             />
                         </div>
-
-                        <div className="form-group">
+                        <div class="form-group-rqf">
                             <label htmlFor="phoneExt">เบอร์โทรภายใน:</label>
                             <input
                                 type="tel"
@@ -242,8 +226,7 @@ const RequestForm = () => {
                                 required
                             />
                         </div>
-
-                        <div className="form-group">
+                        <div class="form-group-rqf">
                             <label htmlFor="email">E-mail:</label>
                             <input
                                 type="email"
@@ -256,8 +239,7 @@ const RequestForm = () => {
                                 required
                             />
                         </div>
-
-                        <div className="form-group">
+                        <div class="form-group-rqf">
                             <label htmlFor="typeId">ประเภท:</label>
                             <select
                                 id="typeId"
@@ -273,8 +255,7 @@ const RequestForm = () => {
                                 ))}
                             </select>
                         </div>
-
-                        <div className="form-group">
+                        <div class="form-group-rqf">
                             <label htmlFor="equipmentId">อุปกรณ์:</label>
                             <select
                                 id="equipmentId"
@@ -291,10 +272,9 @@ const RequestForm = () => {
                                 ))}
                             </select>
                         </div>
-
                         {selectedEquipment && (
                             <>
-                                <div className="form-group">
+                                <div className="form-group-rqf">
                                     <label htmlFor="brand">ยี่ห้อ:</label>
                                     <input
                                         type="text"
@@ -305,7 +285,7 @@ const RequestForm = () => {
                                     />
                                 </div>
 
-                                <div className="form-group">
+                                <div className="form-group-rqf">
                                     <label htmlFor="availableQuantity">จำนวนคงเหลือ:</label>
                                     <input
                                         type="number"
@@ -318,7 +298,7 @@ const RequestForm = () => {
                             </>
                         )}
 
-                        <div className="form-group">
+                        <div class="form-group-rqf">
                             <label htmlFor="quantity">จำนวน:</label>
                             <input
                                 type="number"
@@ -330,8 +310,7 @@ const RequestForm = () => {
                                 required
                             />
                         </div>
-
-                        <div className="form-group">
+                        <div class="form-group-rqf">
                             <label htmlFor="note">หมายเหตุ:</label>
                             <input
                                 type="text"
@@ -341,38 +320,34 @@ const RequestForm = () => {
                                 placeholder="ระบุหมายเหตุ (ถ้ามี)"
                             />
                         </div>
-
-                        <div className="form-group">
-                            <label htmlFor="requestDate">วันที่เบิกวัสดุ:</label>
-                            <div className="date-input-container">
-                                <Calendar className="date-icon" size={20} />
-                                <input
-                                    type="date"
-                                    id="requestDate"
-                                    value={formData.requestDate}
-                                    onChange={handleInputChange}
-                                    min={new Date().toISOString().split('T')[0]}
-                                    required
-                                />
-                            </div>
+                        <div class="form-group-rqf">
+                            <label for="start-date">วันที่เบิกวัสดุ:</label>
+                            <input
+                                type="date"
+                                id="requestDate"
+                                value={formData.requestDate}
+                                onChange={handleInputChange}
+                                min={new Date().toISOString().split('T')[0]}
+                                required
+                            />
                         </div>
-
-                        <div className="buttons">
-                            <a href="/dashboard" className="back-button">
+                        <div className="buttons-rqf">
+                            <a href="/dashboard" className="back-button-rqf">
                                 ย้อนกลับ
                             </a>
                             <button
                                 type="submit"
-                                className="submit-button"
+                                className="submit-button-rqf"
                                 disabled={isSubmitting}
                             >
                                 {isSubmitting ? 'กำลังดำเนินการ...' : 'เบิกวัสดุ'}
                             </button>
                         </div>
                     </form>
+
                 </div>
-            </main>
-        </div>
+            </div>
+        </>
     );
 };
 

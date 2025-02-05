@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Clock } from 'lucide-react';
 import Navbar from "../../../components/common/navbar/navbar";
 import './RequestHistory.css';
+import Header from "../../../components/Header";
+
 
 const RequestHistory = () => {
     const [date, setDate] = useState("");
@@ -14,13 +16,13 @@ const RequestHistory = () => {
     useEffect(() => {
         const updateDateTime = () => {
             const now = new Date();
-            
+
             const formattedDate = now.toLocaleDateString('th-TH', {
                 day: '2-digit',
                 month: '2-digit',
                 year: 'numeric'
             });
-            
+
             const formattedTime = now.toLocaleTimeString('th-TH', {
                 hour: '2-digit',
                 minute: '2-digit',
@@ -43,10 +45,10 @@ const RequestHistory = () => {
             try {
                 const response = await fetch('http://localhost:3000/api/borrowings');
                 const data = await response.json();
-                
+
                 // Calculate total pages
                 setTotalPages(Math.ceil(data.length / itemsPerPage));
-                
+
                 // Get current page items
                 const startIndex = (currentPage - 1) * itemsPerPage;
                 const endIndex = startIndex + itemsPerPage;
@@ -94,35 +96,14 @@ const RequestHistory = () => {
     };
 
     return (
-        <div className="request-history-container">
-            <video className="background-video" autoPlay muted loop playsInline>
-                <source src="พื้นหลัง2.mp4" type="video/mp4" />
-                Your browser does not support the video tag.
-            </video>
+        <>
 
-            <header className="header">
-                <div className="title">
-                    <img src="/logo.png" alt="SAT Logo" className="logo" />
-                    <div className="title-text">
-                        <h1>SPORTS AUTHORITY OF THAILAND</h1>
-                        <div className="sub-title">Computer Equipment Management System</div>
-                    </div>
-                </div>
-                <div className="datetime">
-                    <div className="date">{date}</div>
-                    <div className="time">
-                        <Clock className="clock-icon" size={18} />
-                        {time}
-                    </div>
-                </div>
-            </header>
-
+            <Header />
             <Navbar />
 
-            <main className="content">
-                <div className="table-container">
-                    <h2>ประวัติการเบิก</h2>
-
+            <div class="content-hrq">
+                <h2>ประวัติการเบิก</h2>
+                <div class="table-container-hrq">
                     <table>
                         <thead>
                             <tr>
@@ -152,14 +133,54 @@ const RequestHistory = () => {
                                 ))
                             ) : (
                                 <tr>
-                                    <td colSpan="6" className="no-data">ไม่พบข้อมูลการเบิก</td>
+                                    <td colSpan="6" className="no-data-hrq">ไม่พบข้อมูลการเบิก</td>
                                 </tr>
                             )}
                         </tbody>
-                    </table>
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
 
+                    </table>
                     {totalPages > 1 && (
-                        <div className="pagination">
+                        <div className="pagination-hrq">
                             {[...Array(totalPages)].map((_, index) => (
                                 <button
                                     key={index}
@@ -171,15 +192,12 @@ const RequestHistory = () => {
                             ))}
                         </div>
                     )}
-
-                    <div className="back-button">
-                        <a href="/dashboard" className="back-link">
-                            ย้อนกลับ
-                        </a>
-                    </div>
                 </div>
-            </main>
-        </div>
+                <div class="back-button-hrq">
+                    <a href="/withdrawal-history">ย้อนกลับ</a>
+                </div>
+            </div>
+        </>
     );
 };
 

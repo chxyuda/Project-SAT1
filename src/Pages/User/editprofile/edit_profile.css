@@ -1,293 +1,171 @@
-.edit-profile-container {
-    min-height: 100vh;
-    position: relative;
-    background: rgba(0, 0, 0, 0.6);
-}
+ body {
+     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+     margin: 0;
+     padding: 0;
+ }
 
-.background-video {
-    position: fixed;
-    right: 0;
-    bottom: 0;
-    min-width: 100%;
-    min-height: 100%;
-    width: auto;
-    height: auto;
-    z-index: -1;
-    object-fit: cover;
-}
+ #background-video {
+     position: fixed;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     object-fit: cover;
+     z-index: -1;
+ }
 
-.header {
-    background-color: #fff;
-    padding: 1rem 2rem;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
+ .header {
+     background-color: rgba(45, 120, 191, 0.9);
+     color: white;
+     padding: 10px 20px;
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+ }
 
-.title {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-}
+ .header .title {
+     font-size: 18px;
+     font-weight: bold;
+     display: flex;
+     align-items: center;
+ }
 
-.logo {
-    height: 50px;
-    width: auto;
-}
+ .header .title img {
+     width: 40px;
+     height: 40px;
+     margin-right: 10px;
+ }
 
-.title-text {
-    display: flex;
-    flex-direction: column;
-}
+ .header .title div {
+     line-height: 1.2;
+ }
 
-.title-text h1 {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: #2c3e50;
-    margin: 0;
-}
+ .header .title div .sub-title {
+     font-size: 12px;
+     font-weight: normal;
+ }
 
-.sub-title {
-    font-size: 1rem;
-    color: #7f8c8d;
-}
+ .header .datetime {
+     text-align: right;
+ }
 
-.datetime {
-    text-align: right;
-    color: #2c3e50;
-}
+ .header .datetime div {
+     margin: 0;
+ }
 
-.date {
-    font-size: 1.1rem;
-    font-weight: 500;
-    margin-bottom: 0.25rem;
-}
+ .header .datetime .date {
+     font-size: 14px;
+     font-weight: bold;
+ }
 
-.time {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 1.1rem;
-    font-weight: 500;
-}
+ .header .datetime .time {
+     font-size: 16px;
+     font-weight: bold;
+ }
 
-.clock-icon {
-    color: #3498db;
-}
+ .content-ep {
+     padding: 20px;
+ }
 
-.content {
-    position: relative;
-    z-index: 1;
-    padding: 2rem;
-    min-height: calc(100vh - 80px);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+ .form-container-ep {
+     max-width: 600px;
+     margin: 0 auto;
+     background-color: #ffffff;
+     border-radius: 10px;
+     padding: 20px;
+     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+ }
 
-.form-container {
-    background: rgba(255, 255, 255, 0.95);
-    padding: 2rem;
-    border-radius: 1rem;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 600px;
-    margin: 2rem auto;
-}
+ .form-container-ep h2 {
+     text-align: center;
+     color: #2d78bf;
+     margin-bottom: 20px;
+ }
 
-.form-container h2 {
-    color: #2c3e50;
-    text-align: center;
-    margin-bottom: 2rem;
-    font-size: 1.8rem;
-    font-weight: 600;
-}
+ .form-group-ep {
+     margin-bottom: 15px;
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+     gap: 10px;
+ }
 
-.message {
-    padding: 1rem;
-    border-radius: 0.5rem;
-    margin-bottom: 1.5rem;
-    text-align: center;
-    font-weight: 500;
-    animation: fadeIn 0.3s ease-in;
-}
+ .form-group-ep label {
+     width: 30%;
+     text-align: right;
+     font-size: 14px;
+     margin-right: 10px;
+ }
 
-.message.success {
-    background-color: #d4edda;
-    color: #155724;
-}
+ .form-group-ep input,
+ .form-group-ep select {
+     width: 65%;
+     padding: 10px;
+     font-size: 14px;
+     border: 1px solid #cccccc;
+     border-radius: 5px;
+     box-sizing: border-box;
+ }
 
-.message.error {
-    background-color: #f8d7da;
-    color: #721c24;
-}
+ .form-group-ep input:focus,
+ .form-group-ep select:focus {
+     border-color: #4a90e2;
+     box-shadow: 0 0 5px rgba(74, 144, 226, 0.5);
+ }
 
-.profile-image-container {
-    text-align: center;
-    margin-bottom: 2rem;
-}
+ .image-upload-ep {
+     text-align: center;
+     margin-bottom: 15px;
+ }
 
-.profile-image {
-    width: 150px;
-    height: 150px;
-    margin: 0 auto 1rem;
-    border-radius: 50%;
-    overflow: hidden;
-    background-color: #f8f9fa;
-    border: 3px solid #3498db;
-}
+ .image-upload-ep label {
+     display: inline-block;
+     width: 150px;
+     height: 150px;
+     background-color: #f0f0f0;
+     border: 2px dashed #cccccc;
+     text-align: center;
+     line-height: 150px;
+     font-size: 24px;
+     color: #333333;
+     cursor: pointer;
+ }
 
-.profile-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
+ .image-upload-ep label:hover {
+     background-color: #e0e0e0;
+ }
 
-.profile-placeholder {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 3rem;
-    color: #95a5a6;
-}
+ .image-upload-ep input[type="file"] {
+     display: none;
+ }
 
-.image-upload {
-    margin: 1rem 0;
-}
+ .buttons-ep {
+     text-align: center;
+     margin-top: 20px;
+ }
 
-.upload-button {
-    display: inline-block;
-    padding: 0.5rem 1.5rem;
-    background-color: #3498db;
-    color: white;
-    border-radius: 0.5rem;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
+ .buttons-ep a,
+ .buttons-ep button {
+     padding: 10px 20px;
+     font-size: 14px;
+     color: white;
+     background-color: #4a90e2;
+     border: none;
+     border-radius: 5px;
+     text-decoration: none;
+     display: inline-block;
+     margin: 0 10px;
+     cursor: pointer;
+     transition: background-color 0.3s ease, transform 0.2s ease;
+ }
 
-.upload-button:hover {
-    background-color: #2980b9;
-}
+ .buttons-ep a:hover,
+ .buttons-ep button:hover {
+     background-color: #357abd;
+ }
 
-.hidden-input {
-    display: none;
-}
-
-.image-requirements {
-    font-size: 0.875rem;
-    color: #7f8c8d;
-    margin-top: 0.5rem;
-}
-
-.form-group {
-    margin-bottom: 1.5rem;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 0.5rem;
-    color: #2c3e50;
-    font-weight: 500;
-}
-
-.form-group input,
-.form-group select {
-    width: 100%;
-    padding: 0.75rem;
-    border: 1px solid #ddd;
-    border-radius: 0.5rem;
-    font-size: 1rem;
-    transition: border-color 0.3s, box-shadow 0.3s;
-}
-
-.form-group input:focus,
-.form-group select:focus {
-    outline: none;
-    border-color: #3498db;
-    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
-}
-
-.buttons {
-    display: flex;
-    justify-content: space-between;
-    gap: 1rem;
-    margin-top: 2rem;
-}
-
-.back-button,
-.submit-button {
-    padding: 0.75rem 2rem;
-    border-radius: 0.5rem;
-    font-size: 1rem;
-    font-weight: 600;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    flex: 1;
-    text-align: center;
-}
-
-.back-button {
-    background-color: #e9ecef;
-    color: #2c3e50;
-    border: none;
-}
-
-.back-button:hover {
-    background-color: #dee2e6;
-}
-
-.submit-button {
-    background-color: #3498db;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
-
-.submit-button:hover {
-    background-color: #2980b9;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@media (max-width: 768px) {
-    .header {
-        flex-direction: column;
-        text-align: center;
-        gap: 1rem;
-        padding: 1rem;
-    }
-
-    .title {
-        flex-direction: column;
-    }
-
-    .datetime {
-        text-align: center;
-    }
-
-    .form-container {
-        margin: 1rem;
-        padding: 1.5rem;
-    }
-
-    .buttons {
-        flex-direction: column;
-    }
-
-    .back-button,
-    .submit-button {
-        width: 100%;
-    }
-}
+ .buttons-ep a:active,
+ .buttons-ep button:active {
+     transform: scale(0.98);
+ }

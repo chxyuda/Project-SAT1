@@ -1,151 +1,125 @@
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f7fa;
-}
+ body {
+     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+     margin: 0;
+     padding: 0;
+     background-color: #f4f7fa;
+ }
 
-.header {
-    background-color: #2d78bf;
-    color: white;
-    padding: 10px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
 
-.header .title {
-    font-size: 18px;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-}
+ .nav {
+     background-color: #ffffff;
+     display: flex;
+     justify-content: space-around;
+     padding: 10px 0;
+     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+ }
 
-.header .title img {
-    width: 40px;
-    height: 40px;
-    margin-right: 10px;
-}
+ .nav a {
+     text-decoration: none;
+     color: #333333;
+     font-size: 14px;
+     padding: 5px 10px;
+     transition: background-color 0.3s ease, color 0.3s ease;
+ }
 
-.header .title div {
-    line-height: 1.2;
-}
+ .nav a.logout {
+     color: #e74c3c;
+     font-weight: bold;
+ }
 
-.header .title .sub-title {
-    font-size: 12px;
-    font-weight: normal;
-}
+ .nav a.logout:hover {
+     color: #c0392b;
+ }
 
-.nav {
-    background-color: #ffffff;
-    display: flex;
-    justify-content: space-around;
-    padding: 10px 0;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
+ .nav a:hover {
+     background-color: #f0f4f7;
+     color: #007acc;
+     border-radius: 4px;
+ }
 
-.nav a {
-    text-decoration: none;
-    color: #333333;
-    font-size: 14px;
-    padding: 5px 10px;
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
+ .content-srq {
+     padding: 20px;
+ }
 
-.nav a.logout {
-    color: #e74c3c;
-    font-weight: bold;
-}
+ h2 {
+     text-align: center;
+     /* จัดข้อความให้อยู่ตรงกลาง */
+     font-size: 24px;
+     /* ขนาดตัวอักษร */
+     font-weight: bold;
+     /* ความหนา */
+     margin-bottom: 20px;
+     /* ระยะห่างด้านล่าง */
+ }
 
-.nav a.logout:hover {
-    color: #c0392b;
-}
+ .table-container-srq {
+     max-width: 1000px;
+     margin: 0 auto;
+     background-color: #ffffff;
+     border-radius: 10px;
+     padding: 20px;
+     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+ }
 
-.nav a:hover {
-    background-color: #f0f4f7;
-    color: #007acc;
-    border-radius: 4px;
-}
+ table {
+     width: 100%;
+     border-collapse: collapse;
+     margin-bottom: 20px;
+     border: 1px solid #cccccc;
+ }
 
-.content {
-    padding: 20px;
-}
+ table th,
+ table td {
+     border: 1px solid #cccccc;
+     padding: 10px;
+     text-align: center;
+     font-size: 14px;
+ }
 
-h2 {
-    text-align: center;
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 20px;
-}
+ table th {
+     background-color: #f0f4f7;
+     font-weight: bold;
+ }
 
-.table-container {
-    max-width: 1000px;
-    margin: 0 auto;
-    background-color: #ffffff;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
+ .pagination-srq {
+     text-align: center;
+     margin-top: 10px;
+ }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
-    border: 1px solid #cccccc;
-}
+ .pagination-srq button {
+     padding: 5px 10px;
+     margin: 0 5px;
+     border: 1px solid #cccccc;
+     background-color: #ffffff;
+     cursor: pointer;
+     border-radius: 5px;
+     transition: background-color 0.3s ease, color 0.3s ease;
+ }
 
-table th, table td {
-    border: 1px solid #cccccc;
-    padding: 10px;
-    text-align: center;
-    font-size: 14px;
-}
+ .pagination-srq button:hover {
+     background-color: #2d78bf;
+     color: #ffffff;
+ }
 
-table th {
-    background-color: #f0f4f7;
-    font-weight: bold;
-}
+ .back-button-srq {
+     margin-top: 20px;
+     text-align: center;
+ }
 
-.pagination {
-    text-align: center;
-    margin-top: 10px;
-}
+ .back-button-srq a {
+     display: inline-block;
+     padding: 10px 20px;
+     background-color: #4a90e2;
+     color: white;
+     text-decoration: none;
+     border-radius: 5px;
+     transition: background-color 0.3s ease, transform 0.2s ease;
+ }
 
-.pagination button {
-    padding: 5px 10px;
-    margin: 0 5px;
-    border: 1px solid #cccccc;
-    background-color: #ffffff;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
+ .back-button-srq a:hover {
+     background-color: #357abd;
+ }
 
-.pagination button:hover {
-    background-color: #2d78bf;
-    color: #ffffff;
-}
-
-.back-button {
-    margin-top: 20px;
-    text-align: center;
-}
-
-.back-button a {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #4a90e2;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.back-button a:hover {
-    background-color: #357abd;
-}
-
-.back-button a:active {
-    transform: scale(0.98);
-}
+ .back-button-srq a:active {
+     transform: scale(0.98);
+ }
