@@ -137,10 +137,7 @@
     "chalk": "^2.4.2",
     "chardet": "^0.7.0",
     "chart.js": "^4.4.7",
-<<<<<<< HEAD
-    "dotenv": "^16.4.7",
     "jsonwebtoken": "^9.0.2",
-=======
     "chokidar": "^3.6.0",
     "chokidar2": "^2.0.0",
     "chownr": "^2.0.0",
@@ -826,7 +823,6 @@
     "randomfill": "^1.0.4",
     "range-parser": "^1.2.1",
     "raw-body": "^2.5.2",
->>>>>>> 071adba2db503f2ac5688638c3340b3265f62be2
     "react": "^18.3.1",
     "react-app-polyfill": "^1.0.6",
     "react-chartjs-2": "^5.2.0",
@@ -837,11 +833,7 @@
     "react-router": "^6.28.0",
     "react-router-dom": "^6.28.0",
     "react-scripts": "^3.4.4",
-<<<<<<< HEAD
     "react-toastify": "^9.0.0",
-    "web-vitals": "^4.2.4"
-=======
-    "react-toastify": "^11.0.0",
     "read-pkg": "^2.0.0",
     "read-pkg-up": "^2.0.0",
     "readable-stream": "^3.6.2",
@@ -1114,7 +1106,6 @@
     "yaml": "^1.10.2",
     "yargs": "^13.3.2",
     "yargs-parser": "^13.1.2"
->>>>>>> 071adba2db503f2ac5688638c3340b3265f62be2
   },
   "scripts": {
     "start": "react-scripts --openssl-legacy-provider start",
