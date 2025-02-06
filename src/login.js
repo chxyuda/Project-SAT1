@@ -24,20 +24,26 @@ const Login = () => {
         alert("🎉 เข้าสู่ระบบสำเร็จ!");
         localStorage.setItem("user", JSON.stringify(user));
 
-        // ✅ เช็ค role แล้ว navigate ไปหน้าเหมาะสม
-        if (user.role === "IT") navigate("/it-dashboard");
-        else if (user.role === "Approver") navigate("/approver-dashboard");
-        else if (user.role === "User") navigate("/user-dashboard");
-        else alert("⚠️ บทบาทของคุณไม่ถูกต้อง");
-      } else {
-        alert("❌ ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง");
-      }
+
+            if (success) {
+              alert("🎉 เข้าสู่ระบบสำเร็จ!");
+              console.log("🛠 User Data ที่บันทึก:", user);
+              localStorage.setItem("user", JSON.stringify(user));
+          }          
+            // ✅ เช็ค role แล้ว navigate ไปหน้าเหมาะสม
+            if (user.role === "IT") navigate("/it-dashboard");
+            else if (user.role === "Approver") navigate("/approver-dashboard");
+            else if (user.role === "User") navigate("/user-dashboard");
+            else alert("⚠️ บทบาทของคุณไม่ถูกต้อง");
+        } else {
+            alert("❌ ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง");
+        }
+
     } catch (error) {
       console.error("❌ Login Error:", error);
       alert(error.response?.data?.message || "เกิดข้อผิดพลาดในการเข้าสู่ระบบ");
     }
   };
-
 
   return (
     <div className="login-page">
