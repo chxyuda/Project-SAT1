@@ -1,0 +1,65 @@
+.content-idx {
+    text-align: center;
+    padding: 50px 20px;
+    position: relative;
+    z-index: 1;
+    /* ให้อยู่เหนือวิดีโอ */
+}
+
+/* กรอบสี่เหลี่ยมสำหรับฝ่ายสำนัก */
+.box-container-idx {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    height: 250px;
+    border: 2px solid rgb(16, 12, 255);
+    /* กรอบสีเหลือง */
+    border-radius: 10px;
+    background-color: white;
+    /* พื้นหลังสีขาว */
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(255, 255, 0, 0.5);
+    /* เงาสีเหลือง */
+    margin: 0 auto;
+    /* จัดให้อยู่ตรงกลาง */
+}
+
+.box-container-idx .icon-idx {
+    width: 120px;
+    /* เพิ่มขนาดไอคอน */
+    height: 120px;
+    /* เพิ่มขนาดไอคอน */
+    background: linear-gradient(135deg, #8e44ad, #3498db);
+    /* สีไล่ระดับ */
+    border-radius: 50%;
+    /* ทำให้เป็นวงกลม */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    /* สีตัวหนังสือในไอคอน */
+    font-size: 36px;
+    /* ขนาดตัวอักษรใหญ่ขึ้น */
+    font-weight: bold;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    /* เพิ่มเงา */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    /* ทำให้มีเอฟเฟกต์เคลื่อนไหว */
+}
+
+.box-container-idx .icon-idx:hover {
+    transform: scale(1.1);
+    /* ขยายไอคอนเล็กน้อยเมื่อชี้เมาส์ */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    /* เพิ่มเงาเมื่อชี้เมาส์ */
+}
+
+.box-container-idx .text-idx {
+    margin-top: 20px;
+    font-size: 18px;
+    color: black;
+    /* เปลี่ยนเป็นสีดำ */
+    text-align: center;
+}

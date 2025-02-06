@@ -1,0 +1,104 @@
+  body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f7fa;
+      overflow: hidden;
+      /* ปิด scrollbars */
+  }
+
+  /* วิดีโอพื้นหลัง */
+  #background-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+  }
+
+  .content-rqf {
+      padding: 20px;
+      height: calc(100vh - 140px);
+      /* ลดขนาด content */
+      overflow-y: auto;
+      z-index: 1;
+      /* ให้เลื่อนดูได้ */
+  }
+
+  .form-container-rqf {
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      max-width: 700px;
+      margin: 0 auto;
+  }
+
+  .form-container-rqf h2 {
+      margin-top: 0;
+      font-size: 18px;
+      color: #2c3e50;
+      text-align: center;
+  }
+
+  .form-container-rqf .form-group-rqf {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+  }
+
+  .form-container-rqf .form-group-rqf label {
+      width: 30%;
+      font-size: 14px;
+      color: #555555;
+      text-align: right;
+      margin-right: 10px;
+  }
+
+  .form-container-rqf .form-group-rqf input,
+  .form-container-rqf .form-group-rqf select {
+      width: 65%;
+      padding: 8px;
+      font-size: 14px;
+      border: 1px solid #cccccc;
+      border-radius: 5px;
+      outline: none;
+  }
+
+  .form-container-rqf .buttons-rqf {
+
+      text-align: center;
+      margin-top: 20px;
+  }
+
+  .form-container-rqf .buttons-rqf button {
+      padding: 10px 20px;
+      font-size: 14px;
+      color: white;
+      background-color: #4a90e2;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+  }
+
+  .form-container-rqf .buttons-rqf button:hover {
+      background-color: #357abd;
+  }
+
+  .form-container-rqf .buttons-rqf a.back-button-rqf {
+      padding: 10px 20px;
+      font-size: 14px;
+      color: white;
+      background-color: #4a90e2;
+      border: none;
+      border-radius: 5px;
+      text-decoration: none;
+      cursor: pointer;
+      margin-right: 20px;
+  }
+
+  .form-container-rqf .buttons-rqf a.back-button-rqf:hover {
+      background-color: #357abd;
+  }

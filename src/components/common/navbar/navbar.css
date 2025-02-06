@@ -1,0 +1,101 @@
+  body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f7fa;
+      overflow: hidden;
+  }
+
+  .background-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+  }
+
+  .header {
+      background-color: #2d78bf;
+      color: white;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      position: relative;
+      z-index: 1;
+  }
+
+  .header .title {
+      font-size: 18px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+  }
+
+  .header .title img {
+      width: 40px;
+      height: 40px;
+      margin-right: 10px;
+  }
+
+  .header .title div {
+      line-height: 1.2;
+  }
+
+  .header .title div .sub-title {
+      font-size: 12px;
+      font-weight: normal;
+  }
+
+  .header .datetime {
+      text-align: right;
+  }
+
+  .header .datetime div {
+      margin: 0;
+  }
+
+  .header .datetime .date {
+      font-size: 14px;
+  }
+
+  .header .datetime .time {
+      font-size: 16px;
+      font-weight: bold;
+  }
+
+  .nav {
+      background-color: #ffffff;
+      display: flex;
+      justify-content: space-around;
+      padding: 10px 0;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      position: relative;
+      z-index: 1;
+  }
+
+  .nav a {
+      text-decoration: none;
+      color: #333333;
+      font-size: 17px;
+      padding: 15px 10px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  .nav a.logout {
+      color: #e74c3c;
+      font-weight: bold;
+  }
+
+  .nav a.logout:hover {
+      color: #c0392b;
+  }
+
+  .nav a:hover {
+      background-color: #f0f4f7;
+      color: #007acc;
+      border-radius: 4px;
+  }

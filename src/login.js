@@ -16,13 +16,14 @@ const Login = () => {
     console.log("🔍 กำลังส่งข้อมูลเข้าสู่ระบบ...");
 
     try {
-        const response = await axios.post("http://localhost:5001/api/login", { username, password });
-        console.log("✅ Response:", response.data);
+      const response = await axios.post("http://localhost:5001/api/login", { username, password });
+      console.log("✅ Response:", response.data);
 
-        const { success, user } = response.data;
-        if (success) {
-            alert("🎉 เข้าสู่ระบบสำเร็จ!");
-            localStorage.setItem("user", JSON.stringify(user));
+      const { success, user } = response.data;
+      if (success) {
+        alert("🎉 เข้าสู่ระบบสำเร็จ!");
+        localStorage.setItem("user", JSON.stringify(user));
+
 
             if (success) {
               alert("🎉 เข้าสู่ระบบสำเร็จ!");
@@ -37,11 +38,12 @@ const Login = () => {
         } else {
             alert("❌ ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง");
         }
+
     } catch (error) {
-        console.error("❌ Login Error:", error);
-        alert(error.response?.data?.message || "เกิดข้อผิดพลาดในการเข้าสู่ระบบ");
+      console.error("❌ Login Error:", error);
+      alert(error.response?.data?.message || "เกิดข้อผิดพลาดในการเข้าสู่ระบบ");
     }
-};
+  };
 
   return (
     <div className="login-page">

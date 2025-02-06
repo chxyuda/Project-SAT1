@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Header from "../Header";
+import HeaderAdmin from "../components/HeaderAdmin";
 import "./ITDashboard.css";
 import userIcon from "../assets/icon1.png";
 import { useNavigate } from "react-router-dom";
@@ -26,15 +26,7 @@ const ITDashboard = () => {
 
   // ✅ ดึง username จาก LocalStorage
   useEffect(() => {
-    const storedUser = JSON.parse(localStorage.getItem("user"));
-    console.log("🛠 ค่าที่โหลดจาก LocalStorage:", storedUser);
-  
-    if (!storedUser || !storedUser.username) {
-      alert("⚠️ ไม่พบข้อมูลผู้ใช้ กรุณาเข้าสู่ระบบใหม่");
-      window.location.href = "/login"; // รีไดเรคไป login ถ้าไม่มี user
-      return;
-    }
-  
+
     axios
       .get(`http://localhost:5001/api/profile?username=${storedUser.username}`)
       .then((response) => {
@@ -48,7 +40,9 @@ const ITDashboard = () => {
         alert("❌ ไม่สามารถโหลดข้อมูลได้");
         setLoading(false);
       });
+
   }, []);
+
 
   // ✅ อัปเดตเวลาและวันที่
   useEffect(() => {
@@ -95,7 +89,7 @@ const ITDashboard = () => {
   
   return (
     <div className="it-dashboard">
-      <Header currentTime={currentTime} currentDate={currentDate} />
+      <HeaderAdmin currentTime={currentTime} currentDate={currentDate} />
       <div className="navbar-itinfo">
         <div className="navbar">
           <span onClick={() => navigate("/inventory")}>
@@ -116,6 +110,7 @@ const ITDashboard = () => {
           <span onClick={() => navigate("/dashboard")}>
             <FontAwesomeIcon icon={faTachometerAlt} /> Dashboard
           </span>
+
           <span onClick={handleLogout} className="logout">
   <FontAwesomeIcon icon={faSignOutAlt} /> ออกจากระบบ
 </span>
@@ -130,6 +125,7 @@ const ITDashboard = () => {
 
         </div>
       </div>
+
 
       {/* ✅ Profile Modal Popup */}
       {showProfile && <ProfileModal onClose={() => setShowProfile(false)} userData={profileData} loading={loading} />}

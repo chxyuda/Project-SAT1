@@ -1,0 +1,171 @@
+ body {
+     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+     margin: 0;
+     padding: 0;
+ }
+
+ #background-video {
+     position: fixed;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     object-fit: cover;
+     z-index: -1;
+ }
+
+ .header {
+     background-color: rgba(45, 120, 191, 0.9);
+     color: white;
+     padding: 10px 20px;
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+ }
+
+ .header .title {
+     font-size: 18px;
+     font-weight: bold;
+     display: flex;
+     align-items: center;
+ }
+
+ .header .title img {
+     width: 40px;
+     height: 40px;
+     margin-right: 10px;
+ }
+
+ .header .title div {
+     line-height: 1.2;
+ }
+
+ .header .title div .sub-title {
+     font-size: 12px;
+     font-weight: normal;
+ }
+
+ .header .datetime {
+     text-align: right;
+ }
+
+ .header .datetime div {
+     margin: 0;
+ }
+
+ .header .datetime .date {
+     font-size: 14px;
+     font-weight: bold;
+ }
+
+ .header .datetime .time {
+     font-size: 16px;
+     font-weight: bold;
+ }
+
+ .content-ep {
+     padding: 20px;
+ }
+
+ .form-container-ep {
+     max-width: 600px;
+     margin: 0 auto;
+     background-color: #ffffff;
+     border-radius: 10px;
+     padding: 20px;
+     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+ }
+
+ .form-container-ep h2 {
+     text-align: center;
+     color: #2d78bf;
+     margin-bottom: 20px;
+ }
+
+ .form-group-ep {
+     margin-bottom: 15px;
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+     gap: 10px;
+ }
+
+ .form-group-ep label {
+     width: 30%;
+     text-align: right;
+     font-size: 14px;
+     margin-right: 10px;
+ }
+
+ .form-group-ep input,
+ .form-group-ep select {
+     width: 65%;
+     padding: 10px;
+     font-size: 14px;
+     border: 1px solid #cccccc;
+     border-radius: 5px;
+     box-sizing: border-box;
+ }
+
+ .form-group-ep input:focus,
+ .form-group-ep select:focus {
+     border-color: #4a90e2;
+     box-shadow: 0 0 5px rgba(74, 144, 226, 0.5);
+ }
+
+ .image-upload-ep {
+     text-align: center;
+     margin-bottom: 15px;
+ }
+
+ .image-upload-ep label {
+     display: inline-block;
+     width: 150px;
+     height: 150px;
+     background-color: #f0f0f0;
+     border: 2px dashed #cccccc;
+     text-align: center;
+     line-height: 150px;
+     font-size: 24px;
+     color: #333333;
+     cursor: pointer;
+ }
+
+ .image-upload-ep label:hover {
+     background-color: #e0e0e0;
+ }
+
+ .image-upload-ep input[type="file"] {
+     display: none;
+ }
+
+ .buttons-ep {
+     text-align: center;
+     margin-top: 20px;
+ }
+
+ .buttons-ep a,
+ .buttons-ep button {
+     padding: 10px 20px;
+     font-size: 14px;
+     color: white;
+     background-color: #4a90e2;
+     border: none;
+     border-radius: 5px;
+     text-decoration: none;
+     display: inline-block;
+     margin: 0 10px;
+     cursor: pointer;
+     transition: background-color 0.3s ease, transform 0.2s ease;
+ }
+
+ .buttons-ep a:hover,
+ .buttons-ep button:hover {
+     background-color: #357abd;
+ }
+
+ .buttons-ep a:active,
+ .buttons-ep button:active {
+     transform: scale(0.98);
+ }

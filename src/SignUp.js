@@ -38,7 +38,7 @@ const SignUp = () => {
             })
             .catch(error => console.error('❌ Error fetching departments:', error));
     }, []);
-    
+
     useEffect(() => {
         if (formData.department_id) {
             axios.get(`http://localhost:5001/api/sections/${formData.department_id}`)
@@ -51,7 +51,7 @@ const SignUp = () => {
             setSections([]);
         }
     }, [formData.department_id]);
-    
+
     useEffect(() => {
         if (formData.section_id) {
             axios.get(`http://localhost:5001/api/tasks/${formData.section_id}`)
@@ -68,25 +68,25 @@ const SignUp = () => {
     useEffect(() => {
         setPasswordMatch(formData.password === formData.confirmPassword);
     }, [formData.password, formData.confirmPassword]);
-    
+
 
     // ✅ Handle input change
     const handleInputChange = (e) => {
         const { name, value } = e.target;
-    
+
         setFormData(prevState => ({
             ...prevState,
             [name]: value,
             ...(name === "department_id" && { section_id: "", task_id: "" }),
             ...(name === "section_id" && { task_id: "" })
         }));
-    
+
         // ✅ ตรวจสอบว่ารหัสผ่านและยืนยันรหัสผ่านตรงกันแบบเรียลไทม์
         if (name === "confirmPassword") {
             setPasswordMatch(value === formData.password);
         }
     };
-    
+
     // ✅ อัปโหลดไฟล์รูปภาพ
     const handleImageChange = (e) => {
         const file = e.target.files[0];
@@ -102,8 +102,8 @@ const SignUp = () => {
     };
 
     // ✅ Handle form submit
-     // ✅ ส่งข้อมูลไป Backend
-     const handleSubmit = async (e) => {
+    // ✅ ส่งข้อมูลไป Backend
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         if (!passwordMatch) {
@@ -121,7 +121,7 @@ const SignUp = () => {
             fullName: formData.fullName,
             email: formData.email,
             phone: formData.phone,
-            department_name: selectedDepartment ? selectedDepartment.name : "", 
+            department_name: selectedDepartment ? selectedDepartment.name : "",
             section_name: selectedSection ? selectedSection.name : "",
             task_name: selectedTask ? selectedTask.name : "",
             image: formData.image || null // ✅ ถ้าไม่มีรูป ให้ส่งเป็น `null`
@@ -143,7 +143,7 @@ const SignUp = () => {
             alert(error.response?.data?.message || '❌ เกิดข้อผิดพลาด');
         }
     };
-    
+
     const handleDragOver = (e) => {
         e.preventDefault();
         setDragging(true);
@@ -171,23 +171,23 @@ const SignUp = () => {
             <div className="signup-box">
                 <img src={userIcon} alt="User Icon" className="signup-icon" />
                 <h1>Sign Up</h1>
-                <div 
-    className={`image-upload-container ${dragging ? "dragging" : ""}`} 
-    onDragOver={handleDragOver}
-    onDragLeave={handleDragLeave}
-    onDrop={handleDrop}
->
-    <input type="file" accept="image/*" onChange={handleImageChange} hidden id="fileUpload" />
-    <label htmlFor="fileUpload" className="image-upload-box">
-        {previewImage ? (
-            <img src={previewImage} alt="Profile Preview" className="image-preview" />
-        ) : (
-            <div className="upload-placeholder">
-                <FontAwesomeIcon icon={faCamera} className="camera-icon" />
-            </div>
-        )}
-    </label>
-</div>
+                <div
+                    className={`image-upload-container ${dragging ? "dragging" : ""}`}
+                    onDragOver={handleDragOver}
+                    onDragLeave={handleDragLeave}
+                    onDrop={handleDrop}
+                >
+                    <input type="file" accept="image/*" onChange={handleImageChange} hidden id="fileUpload" />
+                    <label htmlFor="fileUpload" className="image-upload-box">
+                        {previewImage ? (
+                            <img src={previewImage} alt="Profile Preview" className="image-preview" />
+                        ) : (
+                            <div className="upload-placeholder">
+                                <FontAwesomeIcon icon={faCamera} className="camera-icon" />
+                            </div>
+                        )}
+                    </label>
+                </div>
 
                 <form onSubmit={handleSubmit}>
                     <div className="row">
@@ -252,6 +252,6 @@ const SignUp = () => {
             </div>
         </div>
     );
-    };
+};
 
 export default SignUp;

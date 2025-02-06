@@ -10,7 +10,8 @@ body {
 
 /* Sign Up Page Styles */
 .signup-container {
-  margin-top: 120px; /* ระยะห่างจาก Header */
+  margin-top: 120px;
+  /* ระยะห่างจาก Header */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -25,38 +26,49 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
   text-align: center;
   width: 100%;
-  max-width: 730px; /* ✅ ปรับให้กว้างขึ้น */
+  max-width: 730px;
+  /* ✅ ปรับให้กว้างขึ้น */
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .signup-icon {
-  width: 50px; /* กำหนดความกว้าง */
-  height: 50px; /* กำหนดความสูง */
-  margin-bottom: 5px; /* เพิ่มระยะห่างด้านล่าง */
+  width: 50px;
+  /* กำหนดความกว้าง */
+  height: 50px;
+  /* กำหนดความสูง */
+  margin-bottom: 5px;
+  /* เพิ่มระยะห่างด้านล่าง */
 }
 
 .signup-box:hover {
   transform: translateY(-5px);
-  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2); /* เพิ่มเอฟเฟกต์ hover */
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+  /* เพิ่มเอฟเฟกต์ hover */
 }
 
 .signup-box h1 {
-  font-size: 26px; /* ปรับขนาดฟอนต์ */
-  margin-bottom: 20px; /* เพิ่มระยะห่าง */
+  font-size: 26px;
+  /* ปรับขนาดฟอนต์ */
+  margin-bottom: 20px;
+  /* เพิ่มระยะห่าง */
 }
 
 .signup-box .form-group {
-  margin-bottom: 20px; /* เพิ่มระยะห่างระหว่างกลุ่มฟิลด์ */
+  margin-bottom: 20px;
+  /* เพิ่มระยะห่างระหว่างกลุ่มฟิลด์ */
 }
 
 .signup-box .form-group label {
   font-family: 'Prompt', sans-serif;
   display: block;
   font-size: 14px;
-  font-weight: bold; /* ข้อความ Label ดูเด่นชัด */
+  font-weight: bold;
+  /* ข้อความ Label ดูเด่นชัด */
   text-align: left;
-  margin-bottom: 10px; /* เพิ่มระยะห่างระหว่าง Label กับ Input */
-  font-weight: bold; /* ทำตัวหนา */
+  margin-bottom: 10px;
+  /* เพิ่มระยะห่างระหว่าง Label กับ Input */
+  font-weight: bold;
+  /* ทำตัวหนา */
 }
 
 
@@ -64,7 +76,8 @@ body {
 .signup-box select {
   font-family: 'Prompt', sans-serif;
   width: 100%;
-  padding: 12px 15px; /* เพิ่ม Padding */
+  padding: 12px 15px;
+  /* เพิ่ม Padding */
   border: 1px solid #ccc;
   border-radius: 8px;
   font-size: 16px;
@@ -73,9 +86,11 @@ body {
 
 .signup-box input:focus,
 .signup-box select:focus {
-  border-color: #007bff; /* เปลี่ยนสีขอบเมื่อ Focus */
+  border-color: #007bff;
+  /* เปลี่ยนสีขอบเมื่อ Focus */
   outline: none;
 }
+
 /* ✅ ปรับสไตล์ของการอัปโหลดรูป */
 .image-upload-container {
   display: flex;
@@ -131,26 +146,35 @@ body {
 .row {
   display: flex;
   justify-content: space-between;
-  gap: 50px; /* ลดระยะห่างระหว่างช่อง */
-  margin-bottom: 20px; /* เพิ่มระยะห่างระหว่างแถว */
-  font-weight: bold; /* ทำตัวหนา */
+  gap: 50px;
+  /* ลดระยะห่างระหว่างช่อง */
+  margin-bottom: 20px;
+  /* เพิ่มระยะห่างระหว่างแถว */
+  font-weight: bold;
+  /* ทำตัวหนา */
   margin-bottom: 10px;
 }
 
 .row div {
-  flex: 1; /* ให้ช่องขนาดเท่ากัน */
+  flex: 1;
+  /* ให้ช่องขนาดเท่ากัน */
   display: flex;
-  flex-direction: column; /* จัด Label และ Input เป็นแนวตั้ง */
-  align-items: flex-start; /* จัด Label ให้อยู่ซ้ายสุด */
-  font-weight: bold; /* ทำตัวหนา */
+  flex-direction: column;
+  /* จัด Label และ Input เป็นแนวตั้ง */
+  align-items: flex-start;
+  /* จัด Label ให้อยู่ซ้ายสุด */
+  font-weight: bold;
+  /* ทำตัวหนา */
 }
 
 /* ✅ ปรับตำแหน่งและขนาดปุ่ม Sign Up */
 .back-button,
 .signup-button {
-  width: 180px; /* ✅ ลดความกว้างให้พอดี */
+  width: 180px;
+  /* ✅ ลดความกว้างให้พอดี */
   max-width: 180px;
-  padding: 10px 0; /* ✅ ปรับ Padding */
+  padding: 10px 0;
+  /* ✅ ปรับ Padding */
   border-radius: 8px;
   font-size: 16px;
   font-weight: bold;
@@ -163,41 +187,45 @@ body {
 
 /* ✅ ปรับปุ่มเมื่อ Hover */
 .signup-box button:hover {
-background-color: #0056b3;
-transform: translateY(-3px) scale(1.05);
+  background-color: #0056b3;
+  transform: translateY(-3px) scale(1.05);
 }
 
 /* ✅ ปรับปุ่มเมื่อคลิก */
 .signup-box button:active {
-transform: translateY(0) scale(1);
+  transform: translateY(0) scale(1);
 }
 
 /* ✅ จัดปุ่ม Back และ Sign Up ให้อยู่ข้างกัน */
 .button-container {
-display: flex;
-justify-content: center;
-gap: 15px; /* ✅ ระยะห่างระหว่างปุ่ม */
-margin-top: 20px; /* ✅ ระยะห่างจากฟอร์ม */
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  /* ✅ ระยะห่างระหว่างปุ่ม */
+  margin-top: 20px;
+  /* ✅ ระยะห่างจากฟอร์ม */
 }
 
 /* ✅ ปรับสไตล์ปุ่ม Back */
 .back-button {
-background-color: #6c757d; /* ✅ สีเทา */
-color: white;
-padding: 12px 20px;
-border: none;
-border-radius: 8px;
-font-size: 16px;
-cursor: pointer;
-transition: all 0.3s ease;
-display: flex;
-align-items: center;
-justify-content: center;
-gap: 8px; /* ✅ ระยะห่างระหว่างไอคอนกับข้อความ */
+  background-color: #6c757d;
+  /* ✅ สีเทา */
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  /* ✅ ระยะห่างระหว่างไอคอนกับข้อความ */
 }
 
 .back-button:hover {
-background-color: #545b62;
+  background-color: #545b62;
 }
 
 
@@ -208,8 +236,10 @@ background-color: #545b62;
   }
 
   .row {
-    flex-direction: column; /* ซ้อนกันในแนวตั้ง */
-    gap: 10px; /* ลดระยะห่าง */
+    flex-direction: column;
+    /* ซ้อนกันในแนวตั้ง */
+    gap: 10px;
+    /* ลดระยะห่าง */
   }
 }
 
@@ -221,9 +251,12 @@ button {
   border-radius: 5px;
   font-size: 16px;
   cursor: pointer;
-  margin-top: 10px; /* เพิ่มระยะห่างด้านบน */
-  width: 150px; /* ระบุความกว้างให้พอดี */
-  margin: 0 auto; /* จัดให้อยู่ตรงกลาง */
+  margin-top: 10px;
+  /* เพิ่มระยะห่างด้านบน */
+  width: 150px;
+  /* ระบุความกว้างให้พอดี */
+  margin: 0 auto;
+  /* จัดให้อยู่ตรงกลาง */
 }
 
 

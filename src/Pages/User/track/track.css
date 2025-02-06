@@ -1,0 +1,139 @@
+ body {
+     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+     margin: 0;
+     padding: 0;
+ }
+
+ #background-video {
+     position: fixed;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     object-fit: cover;
+     z-index: -1;
+     /* ทำให้วิดีโออยู่เบื้องหลัง */
+ }
+
+ .header {
+     background-color: #2d78bf;
+     color: white;
+     padding: 10px 20px;
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+ }
+
+ .header .title {
+     font-size: 18px;
+     font-weight: bold;
+     display: flex;
+     align-items: center;
+ }
+
+ .header .title img {
+     width: 40px;
+     height: 40px;
+     margin-right: 10px;
+ }
+
+ .header .title div {
+     line-height: 1.2;
+ }
+
+ .header .title div .sub-title {
+     font-size: 12px;
+     font-weight: normal;
+ }
+
+ .header .datetime {
+     text-align: right;
+ }
+
+ .header .datetime div {
+     margin: 0;
+ }
+
+ .header .datetime .date {
+     font-size: 14px;
+ }
+
+ .header .datetime .time {
+     font-size: 16px;
+     font-weight: bold;
+ }
+
+ .content-track {
+     display: flex;
+     justify-content: center;
+     align-items: flex-start;
+     /* จัดให้อยู่ด้านบน */
+     height: calc(100vh - 60px);
+     /* พื้นที่หน้าจอลบความสูง header/nav */
+     padding: 40px 20px;
+     /* เพิ่ม padding ด้านบนให้เนื้อหาขยับขึ้น */
+ }
+
+ .box-container-track {
+     background-color: white;
+     /* กล่องสีขาว */
+     padding: 30px;
+     /* เพิ่มระยะห่างด้านใน */
+     border-radius: 15px;
+     /* ขอบโค้งมน */
+     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+     /* เพิ่มเงา */
+     text-align: center;
+     width: 80%;
+     max-width: 600px;
+     /* จำกัดความกว้าง */
+ }
+
+ .box-container-track h2 {
+     color: #2d78bf;
+     font-size: 28px;
+     font-weight: bold;
+     margin-bottom: 20px;
+ }
+
+ .card-container-track {
+     display: flex;
+     justify-content: center;
+     gap: 20px;
+ }
+
+ .card-track {
+     background-color: white;
+     /* เปลี่ยนพื้นหลังเป็นสีขาว */
+     border: 2px solid black;
+     /* เพิ่มเส้นขอบ */
+     border-radius: 10px;
+     padding: 20px;
+     width: 200px;
+     text-align: center;
+     font-size: 16px;
+     font-weight: bold;
+     cursor: pointer;
+     transition: transform 0.2s ease, box-shadow 0.2s ease;
+     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+     /* เพิ่มเงา */
+ }
+
+ .card-track:hover {
+     transform: scale(1.05);
+     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+     /* เพิ่มเงาตอน hover */
+ }
+
+ .card-issue-track {
+     border-color: #e74c3c;
+     /* ขอบสีแดง */
+     color: #e74c3c;
+ }
+
+ .card-borrow-track {
+     border-color: #27ae60;
+     /* ขอบสีเขียว */
+     color: #27ae60;
+ }

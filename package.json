@@ -70,7 +70,7 @@
     "babel-eslint": "^10.1.0",
     "babel-extract-comments": "^1.0.0",
     "babel-jest": "^24.9.0",
-    "babel-loader": "^8.1.0",
+    "babel-loader": "8.1.0",
     "babel-plugin-istanbul": "^5.2.0",
     "babel-plugin-jest-hoist": "^24.9.0",
     "babel-plugin-macros": "^2.8.0",
@@ -138,7 +138,6 @@
     "chardet": "^0.7.0",
     "chart.js": "^4.4.7",
     "chokidar": "^3.6.0",
-    "chokidar2": "^2.0.0",
     "chownr": "^2.0.0",
     "chrome-trace-event": "^1.0.4",
     "ci-info": "^2.0.0",
@@ -558,6 +557,7 @@
     "json5": "^2.2.3",
     "jsonfile": "^4.0.0",
     "jsonify": "^0.0.1",
+    "jsonwebtoken": "^9.0.2",
     "jsprim": "^1.4.2",
     "jsx-ast-utils": "^2.4.1",
     "killable": "^1.0.1",
@@ -587,6 +587,7 @@
     "loose-envify": "^1.4.0",
     "lower-case": "^2.0.2",
     "lru-cache": "^5.1.1",
+    "lucide-react": "^0.474.0",
     "make-dir": "^3.1.0",
     "makeerror": "^1.0.12",
     "mamacro": "^0.0.3",
@@ -832,7 +833,7 @@
     "react-router": "^6.28.0",
     "react-router-dom": "^6.28.0",
     "react-scripts": "^3.4.4",
-    "react-toastify": "^11.0.0",
+    "react-toastify": "^9.0.0",
     "read-pkg": "^2.0.0",
     "read-pkg-up": "^2.0.0",
     "readable-stream": "^3.6.2",
@@ -1053,9 +1054,9 @@
     "wbuf": "^1.7.3",
     "web-vitals": "^4.2.4",
     "webidl-conversions": "^4.0.2",
-    "webpack": "^4.42.0",
+    "webpack": "4.42.0",
     "webpack-dev-middleware": "^3.7.3",
-    "webpack-dev-server": "^3.11.0",
+    "webpack-dev-server": "3.11.0",
     "webpack-log": "^2.0.0",
     "webpack-manifest-plugin": "^2.2.0",
     "webpack-sources": "^1.4.3",
@@ -1126,5 +1127,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "resolutions": {
+    "webpack": "4.42.0"
   }
 }

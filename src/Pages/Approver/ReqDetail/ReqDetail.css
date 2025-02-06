@@ -1,0 +1,130 @@
+/* Base styles */
+.reqdetail-container {
+    font-family: Arial, sans-serif;
+    background-color: #e3f2fd;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+
+/* Header styles */
+.header {
+    background-color: rgba(45, 120, 191, 0.9);
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.header .title {
+    font-size: 18px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+
+.header .title .logo {
+    margin-right: 10px;
+}
+
+.header .title div {
+    line-height: 1.2;
+}
+
+.header .title .sub-title {
+    font-size: 12px;
+    font-weight: normal;
+}
+
+.header .datetime {
+    font-size: 14px;
+    text-align: right;
+}
+
+.header .datetime .date,
+.header .datetime .time {
+    display: block;
+}
+
+/* Main content styles */
+.main-content {
+    max-width: 1400px;
+    margin: 30px auto;
+    padding: 20px;
+    display: flex;
+    gap: 40px;
+}
+
+.details-section,
+.control-section {
+    flex: 2;
+    padding: 40px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
+    min-height: 600px;
+}
+
+h3 {
+    color: #000;
+    margin-bottom: 20px;
+}
+
+.details-container p {
+    margin: 12px 0;
+    line-height: 1.6;
+}
+
+/* Form controls */
+input,
+textarea,
+select,
+button {
+    width: 100%;
+    margin: 10px 0;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 12px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* Footer styles */
+.footer {
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 20px;
+}
+
+.back-button {
+    display: inline-block;
+    background-color: #1e88e5;
+    color: white;
+    padding: 10px 30px;
+    font-size: 16px;
+    border-radius: 25px;
+    text-decoration: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.back-button:hover {
+    background-color: #90caf9;
+    transform: scale(1.1);
+}
