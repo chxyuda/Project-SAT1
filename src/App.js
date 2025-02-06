@@ -53,6 +53,30 @@ const ReturningHistory = React.lazy(() => import('./Pages/User/returningHistory/
 const Track = React.lazy(() => import('./Pages/User/track/track'));
 const WithdrawalHistory = React.lazy(() => import('./Pages/User/withdrawalHistory/withdrawalHistory.js'));
 
+
+// Approver components
+const Approverpage = React.lazy(() => import('./Pages/Approver/approve/approve.js'));
+const Borrowing = React.lazy(() => import('./Pages/Approver/Borrowing/Borrowing.js'));
+const BorrowreturnApprove = React.lazy(() => import('./Pages/Approver/BorrowReturn/BorrowReturn.js'));
+const BRDetail = React.lazy(() => import('./Pages/Approver/BRDetail/BRDetail.js'));
+// const DashboardApprover = React.lazy(() => import('./Pages/Approver/DashboardApprover/DashboardApprover.js'));
+const Itemspage = React.lazy(() => import('./Pages/Approver/Items/Items.js'));
+const Pendingpage = React.lazy(() => import('./Pages/Approver/Pending/Pending.js'));
+const Receivedpage = React.lazy(() => import('./Pages/Approver/Received/Received.js'));
+const ReqBorrowHistory = React.lazy(() => import('./Pages/Approver/History/ReqBorrowHistory.js'));
+const ReqBorrow = React.lazy(() => import('./Pages/Approver/History/ReqBorrow.js'));
+const ReqHis = React.lazy(() => import('./Pages/Approver/History/ReqHistory.js'));
+const ReqDetail = React.lazy(() => import('./Pages/Approver/ReqDetail/ReqDetail.js'));
+const UpdateReq = React.lazy(() => import('./Pages/Approver/updated/UpdatedRequest.js'));
+const UpdateBorrow = React.lazy(() => import('./Pages/Approver/updated/UpdatedBorrow.js'));
+
+
+
+
+
+
+
+
 // Loading component
 const Loading = () => (
   <div className="min-h-screen flex items-center justify-center">
@@ -72,6 +96,24 @@ function App() {
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/verify-code" element={<VerifyCode />} />
           <Route path="/set-new-password" element={<SetNewPassword />} />
+
+          {/* Approver routes*/}
+          <Route path="/approver-page" element={<Approverpage />} />
+          <Route path="/borrow-page" element={<Borrowing />} />
+          <Route path="/approve-borrow-return" element={<BorrowreturnApprove />} />
+          <Route path="/br-detail" element={<BRDetail />} />
+          {/* <Route path="/dashboard-approve" element={<DashboardApprover />} /> */}
+          <Route path="/items-page" element={<Itemspage />} />
+          <Route path="/pending-page" element={<Pendingpage />} />
+          <Route path="/received-page" element={<Receivedpage />} />
+          <Route path="/reqborrow-history-page" element={<ReqBorrowHistory />} />
+          <Route path="/reqborrow-page" element={<ReqBorrow />} />
+          <Route path="/reqhis-page" element={<ReqHis />} />
+          <Route path="/reqdetail" element={<ReqDetail />} />
+          <Route path="/updateReq" element={<UpdateReq />} />
+          <Route path="/updateborrow" element={<UpdateBorrow />} />
+
+
 
           {/* เจ้าหน้าที่IT routes */}
           <Route path="/it-dashboard" element={<ITDashboard />} />

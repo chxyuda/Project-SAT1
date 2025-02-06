@@ -1130,5 +1130,8 @@
   },
   "resolutions": {
     "webpack": "4.42.0"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.26.7"
   }
 }

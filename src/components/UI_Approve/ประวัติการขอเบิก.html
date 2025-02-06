@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ระบบบริหารการจัดการวัสดุคอมพิวเตอร์</title>
+    <script>
+        const data = [
+            [], // หน้า 1 ไม่มีข้อมูล
+            [], // หน้า 2 ไม่มีข้อมูล
+            [], // หน้า 3 ไม่มีข้อมูล
+            [], // หน้า 4 ไม่มีข้อมูล
+        ];
+
+        let currentPage = 1;
+
+        function updateDateTime() {
+            const now = new Date();
+            const thaiYear = now.getFullYear() + 543;
+            const thaiMonths = [
+                "มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน",
+                "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"
+            ];
+            const day = now.getDate();
+            const month = thaiMonths[now.getMonth()];
+            const year = thaiYear;
+            const time = now.toLocaleTimeString('th-TH');
+            const formattedDate = `${now.toLocaleDateString('th-TH', { weekday: 'long' })}ที่ ${day} ${month} พ.ศ. ${year}`;
+            document.getElementById('date').textContent = formattedDate;
+            document.getElementById('time').textContent = time;
+        }
+
+        function createPagination(totalPages) {
+            const pagination = document.querySelector(".pagination");
+            pagination.innerHTML = ""; // ลบปุ่มเดิมก่อนสร้างใหม่
+
+            for (let i = 1; i <= totalPages; i++) {
+                const button = document.createElement("button");
+                button.textContent = i;
+                button.onclick = () => goToPage(i);
+
+                if (i === currentPage) {
+                    button.classList.add("active");
+                }
+
+                pagination.appendChild(button);
+            }
+        }
+
+        function loadPageData(page) {
+            const tableBody = document.querySelector(".table tbody");
+            const pageInfo = document.getElementById("page-info");
+
+            tableBody.innerHTML = ""; // ลบข้อมูลเก่าในตาราง
+
+            // อัปเดตข้อความด้านบน (ลบข้อความ "ทั้งหมด 10 รายการ แสดง 1 ถึง 10, ")
+            pageInfo.textContent = `หน้าที่ ${page} จากทั้งหมด ${data.length} หน้า`;
+
+            if (data[page - 1] && data[page - 1].length > 0) {
+                data[page - 1].forEach((row) => {
+                    const tr = document.createElement("tr");
+                    tr.innerHTML = `
+                        <td>${row.id}</td>
+                        <td>${row.name}</td>
+                        <td>${row.department}</td>
+                        <td>${row.equipment}</td>
+                        <td>${row.requestDate}</td>
+                        <td>${row.approveDate}</td>
+                        <td>${row.status}</td>
+                    `;
+                    tableBody.appendChild(tr);
+                });
+            } else {
+                const tr = document.createElement("tr");
+                tr.innerHTML = `<td colspan="7" style="text-align: center;">ไม่มีข้อมูล</td>`;
+                tableBody.appendChild(tr);
+            }
+        }
+
+        function goToPage(page) {
+            currentPage = page;
+            loadPageData(page);
+
+            // อัปเดตปุ่ม Pagination
+            document.querySelectorAll(".pagination button").forEach((btn, index) => {
+                if (index === page - 1) {
+                    btn.classList.add("active");
+                } else {
+                    btn.classList.remove("active");
+                }
+            });
+        }
+
+        function goBack() {
+            window.history.back();
+        }
+
+        window.onload = function () {
+            updateDateTime();
+            setInterval(updateDateTime, 1000); // อัปเดตเวลาทุก 1 วินาที
+            createPagination(data.length); // สร้าง Pagination ตามจำนวนหน้า
+            loadPageData(currentPage); // โหลดหน้าข้อมูลเริ่มต้น
+        };
+    </script>
+</head>
+
+<body>
+    <div class="header">
+        <div class="title">
+            <img src="logo.png" alt="Logo">
+            <div>
+                <span>SPORTS AUTHORITY OF THAILAND</span>
+                <div class="sub-title">Computer Equipment Management System</div>
+            </div>
+        </div>
+        <div class="datetime">
+            <span id="date" class="date"></span>
+            <span id="time" class="time"></span>
+        </div>
+    </div>
+
+    <div class="content">
+        <h2 class="section-title">ประวัติการเบิก</h2>
+        <p id="page-info">หน้าที่ 1 จากทั้งหมด 4 หน้า</p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ลำดับ</th>
+                    <th>ชื่อผู้ขอเบิก</th>
+                    <th>ชื่อฝ่ายสำนัก</th>
+                    <th>อุปกรณ์</th>
+                    <th>วันที่ขอเบิก</th>
+                    <th>วันที่อนุมัติ</th>
+                    <th>สถานะ</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- ข้อมูลจะถูกเติมโดย JavaScript -->
+            </tbody>
+        </table>
+        <div class="pagination"></div>
+        <button class="back-button" onclick="goBack()">ย้อนกลับ</button>
+    </div>
+</body>
+
+</html>

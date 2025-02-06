@@ -1,12 +1,10 @@
-/* Base styles */
-.borrowing-container {
+body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     background-color: #f9f9f9;
 }
 
-/* Header styles */
 .header {
     background-color: rgba(45, 120, 191, 0.9);
     color: white;
@@ -26,7 +24,9 @@
     align-items: center;
 }
 
-.header .title .logo {
+.header .title img {
+    width: 40px;
+    height: 40px;
     margin-right: 10px;
 }
 
@@ -34,7 +34,7 @@
     line-height: 1.2;
 }
 
-.header .title .sub-title {
+.header .title div .sub-title {
     font-size: 12px;
     font-weight: normal;
 }
@@ -44,12 +44,14 @@
     text-align: right;
 }
 
-.header .datetime .date,
+.header .datetime .date {
+    display: block;
+}
+
 .header .datetime .time {
     display: block;
 }
 
-/* Content styles */
 .content {
     padding: 30px 20px;
     text-align: center;
@@ -62,13 +64,6 @@
     color: #333;
 }
 
-.total-items {
-    margin-bottom: 20px;
-    font-size: 18px;
-    color: #555;
-}
-
-/* Search bar styles */
 .search-bar {
     margin-bottom: 20px;
 }
@@ -77,8 +72,6 @@
     padding: 10px;
     width: 60%;
     margin-right: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
 }
 
 .search-bar button {
@@ -87,15 +80,12 @@
     color: white;
     border: none;
     cursor: pointer;
-    border-radius: 4px;
-    transition: background-color 0.3s ease;
 }
 
 .search-bar button:hover {
     background-color: #0056b3;
 }
 
-/* Table styles */
 .table {
     width: 100%;
     border-collapse: collapse;
@@ -108,36 +98,25 @@
 .table td {
     text-align: center;
     vertical-align: middle;
-    padding: 12px 8px;
+    padding: 8px;
     border: 1px solid #ddd;
 }
 
-.table th {
-    background-color: #f8f9fa;
-    color: #333;
-    font-weight: bold;
-}
-
-.table tr:hover {
-    background-color: #f5f5f5;
-}
-
-/* Pagination styles */
 .pagination {
     display: flex;
     justify-content: center;
     margin: 20px 0;
-    gap: 5px;
 }
 
 .pagination button {
+    margin: 0 5px;
     padding: 10px 15px;
-    border: 1px solid #1e88e5;
+    border: none;
     background-color: #ffffff;
-    color: #333;
+    color: black;
     cursor: pointer;
     border-radius: 5px;
-    transition: all 0.3s ease;
+    border: 1px solid #1e88e5;
 }
 
 .pagination button:hover {
@@ -145,30 +124,6 @@
     color: white;
 }
 
-/* Button container styles */
-.button-container {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    margin-bottom: 20px;
-}
-
-.button-container button {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-}
-
-.button-container button:hover {
-    background-color: #0056b3;
-}
-
-/* Back button styles */
 .back-button-container {
     text-align: center;
     margin-top: 20px;
@@ -184,9 +139,29 @@
     cursor: pointer;
     font-size: 16px;
     text-decoration: none;
-    transition: background-color 0.3s ease;
 }
 
 .back-button:hover {
     background-color: #1565c0;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.button-container button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.button-container button:hover {
+    background-color: #0056b3;
 }

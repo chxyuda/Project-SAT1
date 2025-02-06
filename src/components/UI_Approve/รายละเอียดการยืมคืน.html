@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>รายละเอียดการยืม-คืน</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e3f2fd;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 1400px; /* ขยายความกว้างรวม */
+            margin: 30px auto;
+            padding: 20px;
+            display: flex;
+            gap: 40px; /* เพิ่มช่องว่างระหว่างกล่อง */
+        }
+        .details, .control {
+            flex: 2; /* เพิ่มความกว้าง */
+            padding: 40px; /* เพิ่มช่องว่างภายในกล่อง */
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border: 1px solid #ddd;
+            min-height: 600px; /* เพิ่มความสูงขั้นต่ำ */
+        }
+        h3 {
+            color: #000;
+            margin-bottom: 20px;
+        }
+        p {
+            margin: 12px 0;
+            line-height: 1.6;
+        }
+        input, textarea, select, button {
+            width: 100%;
+            margin: 10px 0;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            padding: 12px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .footer {
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 20px;
+        }
+        .back-button {
+            display: inline-block;
+            background-color: #1e88e5;
+            color: white;
+            padding: 10px 30px;
+            font-size: 16px;
+            border-radius: 25px;
+            text-decoration: none;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+        .back-button:hover {
+            background-color: #90caf9;
+            transform: scale(1.1);
+        }
+    </style>
+    <script>
+        function populateDetails() {
+            const sampleData = {
+                name: "สมชาย",
+                department: "ฝ่ายไอที",
+                phone: "1234",
+                email: "somchai@example.com",
+                type: "คอมพิวเตอร์",
+                material: "โน๊ตบุ๊ค",
+                brand: "Dell",
+                assetNumber: "123456",
+                note: "ใช้สำหรับการประชุม",
+                quantity: 2,
+                borrowDate: "01/01/2025",
+                returnDate: "02/01/2025"
+            };
+
+            const fields = [
+                { id: "name", label: "ชื่อผู้ยืม-คืน" },
+                { id: "department", label: "ฝ่ายสำนัก" },
+                { id: "phone", label: "เบอร์ภายใน" },
+                { id: "email", label: "E-mail" },
+                { id: "type", label: "ประเภท" },
+                { id: "material", label: "ชื่อวัสดุ" },
+                { id: "brand", label: "ยี่ห้อ" },
+                { id: "assetNumber", label: "หมายเลขครุภัณฑ์" },
+                { id: "note", label: "หมายเหตุการยืม-คืน" },
+                { id: "quantity", label: "จำนวน" },
+                { id: "borrowDate", label: "วันที่ยืม" },
+                { id: "returnDate", label: "วันที่คืน" }
+            ];
+
+            const container = document.getElementById("detailsContainer");
+            fields.forEach(field => {
+                const value = sampleData[field.id] || "-";
+                const p = document.createElement("p");
+                p.innerHTML = `<strong>${field.label}: </strong>${value}`;
+                container.appendChild(p);
+            });
+        }
+
+        function updateDateTime() {
+            const now = new Date();
+            const thaiYear = now.getFullYear() + 543;
+            const thaiMonths = [
+                "มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน",
+                "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"
+            ];
+            const day = now.getDate();
+            const month = thaiMonths[now.getMonth()];
+            const year = thaiYear;
+            const time = now.toLocaleTimeString("th-TH");
+
+            const formattedDate = `${now.toLocaleDateString("th-TH", { weekday: "long" })}ที่ ${day} ${month} พ.ศ. ${year}`;
+            document.getElementById("date").textContent = formattedDate;
+            document.getElementById("time").textContent = time;
+        }
+
+        window.onload = function () {
+            populateDetails();
+            updateDateTime();
+            setInterval(updateDateTime, 1000); // อัปเดตวันที่และเวลา
+        };
+    </script>
+</head>
+<body>
+    <div class="header" style="background-color: #1565c0; color: white; padding: 10px; display: flex; justify-content: space-between; align-items: center;">
+        <div style="display: flex; align-items: center;">
+            <img src="logo.png" alt="Sports Authority of Thailand" style="height: 50px; margin-right: 15px;">
+            <div>
+                <h1 style="margin: 0; font-size: 18px; font-weight: bold;">SPORTS AUTHORITY OF THAILAND</h1>
+                <h2 style="margin: 0; font-size: 14px; font-weight: normal;">Computer Equipment Management System</h2>
+            </div>
+        </div>
+        <div>
+            <span id="date" style="display: block; text-align: right;"></span>
+            <span id="time" style="display: block; text-align: right;"></span>
+        </div>
+    </div>
+    <div class="container">
+        <div class="details">
+            <h3>รายละเอียดการยืม-คืน</h3>
+            <div id="detailsContainer"></div>
+        </div>
+        <div class="control">
+            <h3>จำนวนคงเหลือ</h3>
+            <input type="number" id="remaining" placeholder="ระบุจำนวนคงเหลือ" readonly value="0">
+            <h3>รายละเอียด</h3>
+            <input type="text" id="details" placeholder="รายละเอียด" readonly value="-">
+            <h3>การอนุมัติ</h3>
+            <select id="status">
+                <option>อนุมัติ</option>
+                <option>ไม่อนุมัติ</option>
+            </select>
+            <label for="reason">เหตุผล:</label>
+            <textarea id="reason" rows="5"></textarea>
+            <button>ตกลง</button>
+        </div>
+    </div>
+    <div class="footer">
+        <a href="updated_ขอยืมคืน.html" class="back-button">ย้อนกลับ</a>
+    </div>
+</body>
+</html>

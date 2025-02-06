@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Clock, UserCircle } from 'lucide-react';
-import Navbar from '../common/navbar/navbar';
+import NavbarApprover from '../../../components/common/navbarapprover';
 import './approve.css';
+import BGclip from "../../../assets/background.mp4"
+import HeaderApprover from "../../../components/common/HeaderApprover";
+
 
 const Approve = () => {
     const [date, setDate] = useState('');
@@ -34,36 +37,21 @@ const Approve = () => {
 
     return (
         <div className="approve-container">
-            <div className="header">
-                <div className="title">
-                    <Clock className="logo" size={40} />
-                    <div>
-                        SPORTS AUTHORITY OF THAILAND
-                        <div className="sub-title">Computer Equipment Management System</div>
-                    </div>
-                </div>
-                <div className="datetime">
-                    <span className="date">{date}</span>
-                    <span className="time">{time}</span>
-                </div>
-            </div>
 
-            <Navbar />
+            <HeaderApprover />
 
-            <div className="content">
-                <div className="box-container">
-                    <div className="icon">
-                        <UserCircle size={60} />
+            <NavbarApprover />
+
+            <div class="content">
+                <div class="box-container">
+                    <div class="icon">
+                        &#128100;
                     </div>
-                    <div className="text">
+                    <div class="text">
                         ผู้อนุมัติ
                     </div>
                 </div>
             </div>
-
-            <footer className="footer">
-                <p>&copy; 2024 ระบบบริหารการจัดการวัสดุคอมพิวเตอร์</p>
-            </footer>
         </div>
     );
 };
