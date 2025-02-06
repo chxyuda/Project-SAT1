@@ -1,5 +1,23 @@
-import React, { Suspense } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
+import React, { useState, useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Login from "./login";
+import SignUp from "./SignUp";
+import Header from "./Header";
+import SuccessModal from "./SuccessModal";
+import ForgotPassword from "./Pages/ForgotPassword";
+import VerifyCode from "./Pages/VerifyCode"; // สร้างไฟล์นี้ใหม่
+import SetNewPassword from "./Pages/SetNewPassword";
+import ITDashboard from "./Pages/ITDashboard";
+import Inventory from "./Pages/Inventory";
+import Settings from "./Pages/Settings";
+import Personnel from "./Pages/Personnel";
+import BorrowReturn from "./Pages/BorrowReturn";
+import Request from "./Pages/Request";
+import Dashboard from "./Pages/Dashboard";
+import StaffProfile from "./Pages/StaffProfile";
+import ProfileModal from "./Pages/ProfileModal";
+
 
 // Lazy load components
 const Login = React.lazy(() => import('./login'));
@@ -65,20 +83,8 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/staff-profile" element={<StaffProfile />} />
 
-          {/* User routes */}
-          <Route path="/user-dashboard" element={<UserDashboard />} />
-          <Route path="/edit-profile" element={<EditProfile />} />
-          <Route path="/change-password" element={<ChangePassword />} />
-          <Route path="/borrow" element={<Borrow />} />
-          <Route path="/borrow-status" element={<BorrowStatus />} />
-          <Route path="/password-reset" element={<PasswordReset />} />
-          <Route path="/password-successful" element={<PasswordSuccessful />} />
-          <Route path="/request-form" element={<RequestForm />} />
-          <Route path="/request-history" element={<RequestHistory />} />
-          <Route path="/request-status" element={<RequestStatus />} />
-          <Route path="/returning-history" element={<ReturningHistory />} />
-          <Route path="/track" element={<Track />} />
-          <Route path="/withdrawal-history" element={<WithdrawalHistory />} />
+          <Route path="/profileModal/:id" element={<ProfileModal />} />
+
         </Routes>
       </Suspense>
     </Router>
