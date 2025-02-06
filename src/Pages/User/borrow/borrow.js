@@ -48,10 +48,7 @@ const BorrowEquipment = () => {
 
     return (
         <div className="borrow-container">
-            <video className="background-video" autoPlay muted loop>
-                <source src={Bgclip} type="video/mp4" />
-                Your browser does not support the video tag.
-            </video>
+
             <Header />
 
             <Navbar />

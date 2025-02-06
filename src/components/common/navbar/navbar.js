@@ -12,8 +12,8 @@ export default function Navbar() {
       <a href="/withdrawal-history">ประวัติการเบิก-การยืม-คืน</a>
       <a href="/change-password">แก้ไขรหัสผ่าน</a>
       <a href="/edit-profile">แก้ไขโปรไฟล์</a>
-      <a href="/login" class="logout">&#10140; Log out</a>
-      <a href="dashboard.html">ฝ่ายสำนัก</a>
+      <a href="/" class="logout">&#10140; Log out</a>
+      <a href="">ฝ่ายสำนัก</a>
     </div>
 
 

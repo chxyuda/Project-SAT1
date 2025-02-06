@@ -68,6 +68,7 @@
   }
 
   .form-container-rqf .buttons-rqf {
+
       text-align: center;
       margin-top: 20px;
   }
@@ -83,5 +84,21 @@
   }
 
   .form-container-rqf .buttons-rqf button:hover {
+      background-color: #357abd;
+  }
+
+  .form-container-rqf .buttons-rqf a.back-button-rqf {
+      padding: 10px 20px;
+      font-size: 14px;
+      color: white;
+      background-color: #4a90e2;
+      border: none;
+      border-radius: 5px;
+      text-decoration: none;
+      cursor: pointer;
+      margin-right: 20px;
+  }
+
+  .form-container-rqf .buttons-rqf a.back-button-rqf:hover {
       background-color: #357abd;
   }

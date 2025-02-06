@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import "./login.css";
 import userIcon from "./assets/icon.png";
 import backgroundVideo from "./assets/background.mp4";
-import Mylogo from "./assets/Logo.png"
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -41,26 +40,22 @@ const Login = () => {
 
 
   return (
-    <>
-
-      <video autoPlay muted loop id="background-video">
+    <div className="login-page">
+      <video autoPlay muted loop className="background-video">
         <source src={backgroundVideo} type="video/mp4" />
         Your browser does not support the video tag.
       </video>
 
-      <div class="container">
-        <div class="left-section">
-          <h1>ระบบบริหารการจัดการวัสดุ<br />คอมพิวเตอร์ของ กกท.</h1>
-          <div class="logo">
-            <img src={Mylogo} alt="โลโก้ กกท" />
+      <div className="login-container">
+        <div className="login-box">
+          <div className="user-icon">
+            <img src={userIcon} alt="User Icon" />
           </div>
-        </div>
-        <div class="right-section">
-          <form onSubmit={handleLogin} className="login-form">
-            <div class="icon">👤</div>
+          <h3>Login</h3>
+          <form onSubmit={handleLogin}>
             <input
               type="text"
-              placeholder="login"
+              placeholder="Username"
               className="login-input"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
@@ -74,13 +69,21 @@ const Login = () => {
               onChange={(e) => setPassword(e.target.value)}
               required
             />
-            <a href="/forgot-password">forgot password?</a>
-            <a href="/signup" class="signup">Sign up</a>
-            <button class="Login" type="submit">Login</button>
+            <p className="forgot-password">
+              <a href="/forgot-password">forgot password?</a>
+            </p>
+            <div className="button-group">
+              <a href="/signup" className="btn signup-btn">
+                Sign up
+              </a>
+              <button type="submit" className="btn login-btn">
+                Login
+              </button>
+            </div>
           </form>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

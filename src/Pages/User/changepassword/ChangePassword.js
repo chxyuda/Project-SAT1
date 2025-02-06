@@ -46,13 +46,12 @@ const ChangePassword = () => {
     }, []);
 
     const handleChange = (e) => {
-        const { id, value } = e.target;
-        setFormData(prev => ({
-            ...prev,
-            [id.replace('-', '')]: value
-        }));
-        setError(""); // Clear error when user types
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value
+        });
     };
+
 
     const validatePassword = (password) => {
         const minLength = 8;
@@ -119,22 +118,19 @@ const ChangePassword = () => {
 
     return (
         <>
-            <video autoPlay muted loop id="background-video">
-                <source src={Bgclip} type="video/mp4" />
-                Your browser does not support the video tag.
-            </video>
 
             <Header />
 
-            <div class="content-cp">
-                <div class="form-container-cp">
+            <div className="content-cp">
+                <div className="form-container-cp">
                     <h2>แก้ไขรหัสผ่าน</h2>
 
                     {error && <div className="error-message">{error}</div>}
                     {success && <div className="success-message">เปลี่ยนรหัสผ่านสำเร็จ!</div>}
-                    <form>
-                        <div class="form-group-cp">
-                            <label for="current-username">Username:</label>
+
+                    <form onSubmit={handleSubmit}>
+                        <div className="form-group-cp">
+                            <label htmlFor="current-username">Username:</label>
                             <input
                                 type="text"
                                 id="current-username"
@@ -143,22 +139,23 @@ const ChangePassword = () => {
                                 readOnly
                             />
                         </div>
-                        <div class="form-group-cp">
-                            <label for="new-password">รหัสผ่านใหม่:</label>
+                        <div className="form-group-cp">
+                            <label htmlFor="new-password">รหัสผ่านใหม่:</label>
                             <input
                                 type="password"
-                                id="new-password"
+                                name="newPassword"
                                 value={formData.newPassword}
                                 onChange={handleChange}
                                 placeholder="รหัสผ่านใหม่"
                                 required
                             />
+
                         </div>
-                        <div class="form-group-cp">
-                            <label for="confirm-password">ยืนยันรหัสผ่านใหม่:</label>
+                        <div className="form-group-cp">
+                            <label htmlFor="confirm-password">ยืนยันรหัสผ่านใหม่:</label>
                             <input
                                 type="password"
-                                id="confirm-password"
+                                name="confirmPassword"
                                 value={formData.confirmPassword}
                                 onChange={handleChange}
                                 placeholder="ยืนยันรหัสผ่านใหม่"
