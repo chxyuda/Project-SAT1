@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Clock } from 'lucide-react';
 import Chart from 'chart.js/auto';
-import NavbarApprover from './common/navbar/navbarapprover';
-import { chartData } from '../data/chartData';
+import NavbarApprover from '../../../components/common/navbarapprover';
+import { chartData } from 'chartData';
 import './DashboardApprover.css';
 
 const DashboardApprover = () => {
@@ -31,15 +31,15 @@ const DashboardApprover = () => {
       const now = new Date();
       const thaiYear = now.getFullYear() + 543;
       const thaiMonths = [
-        "มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", 
-        "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", 
+        "มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน",
+        "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม",
         "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"
       ];
-      
+
       const day = now.getDate();
       const month = thaiMonths[now.getMonth()];
       const weekday = now.toLocaleDateString('th-TH', { weekday: 'long' });
-      
+
       const formattedDate = `${weekday}ที่ ${day} ${month} พ.ศ. ${thaiYear}`;
       const formattedTime = now.toLocaleTimeString('th-TH');
 

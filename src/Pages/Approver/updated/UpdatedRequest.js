@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Clock } from 'lucide-react';
-import NavbarApprover from './common/navbar/navbarapprover';
+import { useNavigate } from "react-router-dom";
+import NavbarApprover from '../../../components/common/navbarapprover';
 import './UpdatedRequest.css';
+import HeaderApprover from '../../../components/common/HeaderApprover';
 
 const UpdatedRequest = () => {
+    const navigate = useNavigate();
     const [date, setDate] = useState('');
     const [time, setTime] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
@@ -57,6 +60,8 @@ const UpdatedRequest = () => {
             );
         }
 
+
+
         return pageData.map((row) => (
             <tr key={row.id}>
                 <td>{row.id}</td>
@@ -73,22 +78,14 @@ const UpdatedRequest = () => {
         ));
     };
 
+    const goBack = () => {
+        navigate("/approver-page");
+    };
+
+
     return (
         <div className="dashboard">
-            <div className="header">
-                <div className="title">
-                    <Clock className="logo" size={40} />
-                    <div>
-                        SPORTS AUTHORITY OF THAILAND
-                        <div className="sub-title">Computer Equipment Management System</div>
-                    </div>
-                </div>
-                <div className="datetime">
-                    <span className="date">{date}</span>
-                    <span className="time">{time}</span>
-                </div>
-            </div>
-
+            <HeaderApprover />
             <NavbarApprover />
 
             <div className="content">
@@ -122,10 +119,7 @@ const UpdatedRequest = () => {
                     ))}
                 </div>
 
-                <button
-                    className="back-button"
-                    onClick={() => window.location.href = '#approver'}
-                >
+                <button className="back-button" onClick={goBack}>
                     ย้อนกลับ
                 </button>
             </div>

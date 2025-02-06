@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ระบบบริหารการจัดการวัสดุคอมพิวเตอร์</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+
+        .header {
+            background-color: rgba(45, 120, 191, 0.9);
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .header .title {
+            font-size: 18px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+
+        .header .title img {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .header .title div {
+            line-height: 1.2;
+        }
+
+        .header .title div .sub-title {
+            font-size: 12px;
+            font-weight: normal;
+        }
+
+        .header .datetime {
+            font-size: 14px;
+            text-align: right;
+        }
+
+        .header .datetime .date,
+        .header .datetime .time {
+            display: block;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-around;
+            background-color: #ffffff;
+            padding: 10px 0;
+            border-bottom: 2px solid #1e88e5;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: #1e88e5;
+            font-size: 14px;
+            margin: 0 10px;
+            padding: 5px 10px;
+            transition: all 0.3s ease;
+        }
+
+        .navbar a:hover {
+            background-color: #f0f4f7;
+            color: #007acc;
+            border-radius: 4px;
+        }
+
+        .navbar a.logout {
+            color: red;
+            font-weight: bold;
+        }
+
+        .navbar a.logout:hover {
+            color: white;
+            background-color: #e74c3c;
+        }
+
+        .navbar a.approver {
+            color: #1e88e5;
+            font-weight: bold;
+        }
+
+        .navbar a.approver:hover {
+            color: white;
+            background-color: #1e88e5;
+        }
+
+        .content {
+            padding: 30px 20px;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .table th,
+        .table td {
+            text-align: center;
+            vertical-align: middle;
+            padding: 8px;
+            border: 1px solid #ddd;
+        }
+
+        .btn-detail {
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            display: inline-block;
+            margin: 0 auto;
+        }
+
+        .btn-detail:hover {
+            background-color: #388e3c;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .pagination button {
+            margin: 0 5px;
+            padding: 10px 15px;
+            border: none;
+            background-color: #ffffff;
+            color: black;
+            cursor: pointer;
+            border-radius: 5px;
+            border: 1px solid #1e88e5;
+        }
+
+        .pagination button:hover {
+            background-color: #1e88e5;
+            color: white;
+        }
+
+        .pagination .active {
+            background-color: #1e88e5;
+            color: white;
+        }
+
+        .back-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #1e88e5;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .back-button:hover {
+            background-color: #1565c0;
+        }
+    </style>
+    <script>
+        const data = [
+            [
+                {
+                    id: 1,
+                    department: "ฝ่ายไอที",
+                    recipient: "สมชาย",
+                    requestDate: "01/01/2025",
+                    returnDate: "02/01/2025",
+                    note: "ด่วน",
+                    details: "รายละเอียดการยืมคืน.html",
+                },
+            ],
+            [], // หน้า 2 ไม่มีข้อมูล
+            [], // หน้า 3 ไม่มีข้อมูล
+        ];
+
+        let currentPage = 1;
+
+        function updateDateTime() {
+            const now = new Date();
+            const thaiYear = now.getFullYear() + 543;
+            const thaiMonths = [
+                "มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน",
+                "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม",
+            ];
+            const day = now.getDate();
+            const month = thaiMonths[now.getMonth()];
+            const year = thaiYear;
+            const time = now.toLocaleTimeString("th-TH");
+
+            const formattedDate = `${now.toLocaleDateString("th-TH", {
+                weekday: "long",
+            })}ที่ ${day} ${month} พ.ศ. ${year}`;
+            document.getElementById("date").textContent = formattedDate;
+            document.getElementById("time").textContent = time;
+        }
+
+        function loadTableData(page) {
+            const tableBody = document.querySelector(".table tbody");
+            tableBody.innerHTML = ""; // ลบข้อมูลเก่าในตาราง
+
+            if (data[page - 1] && data[page - 1].length > 0) {
+                data[page - 1].forEach((row) => {
+                    const tr = document.createElement("tr");
+                    tr.innerHTML = `
+                        <td>${row.id}</td>
+                        <td>${row.department}</td>
+                        <td>${row.recipient}</td>
+                        <td>${row.requestDate}</td>
+                        <td>${row.returnDate}</td>
+                        <td>${row.note}</td>
+                        <td><button class="btn-detail" onclick="window.location.href='${row.details}'">รายละเอียด</button></td>
+                    `;
+                    tableBody.appendChild(tr);
+                });
+            } else {
+                const tr = document.createElement("tr");
+                tr.innerHTML = `<td colspan="7" style="text-align: center;">ไม่มีข้อมูล</td>`;
+                tableBody.appendChild(tr);
+            }
+        }
+
+        function goToPage(page) {
+            currentPage = page;
+            loadTableData(page);
+
+            // อัปเดตปุ่ม Pagination
+            document.querySelectorAll(".pagination button").forEach((btn, index) => {
+                if (index === page - 1) {
+                    btn.classList.add("active");
+                } else {
+                    btn.classList.remove("active");
+                }
+            });
+        }
+
+        window.onload = function () {
+            updateDateTime();
+            setInterval(updateDateTime, 1000); // อัปเดตเวลาทุก 1 วินาที
+            loadTableData(currentPage); // โหลดข้อมูลในหน้าปัจจุบัน
+        };
+    </script>
+</head>
+
+<body>
+    <div class="header">
+        <div class="title">
+            <img src="logo.png" alt="Logo">
+            <div>
+                SPORTS AUTHORITY OF THAILAND
+                <div class="sub-title">Computer Equipment Management System</div>
+            </div>
+        </div>
+        <div class="datetime">
+            <span id="date" class="date"></span>
+            <span id="time" class="time"></span>
+        </div>
+    </div>
+
+    <div class="navbar">
+        <a href="updated_ขอเบิก.html">สถานะการขอเบิก</a>
+        <a href="updated_ขอยืมคืน.html">สถานะการยืม-คืน</a>
+        <a href="ประวัติการเบิกยืม.html">ประวัติการเบิก-การยืม-คืน</a>
+        <a href="dashboard.html">dashboard</a>
+        <a href="LoginPage.html" class="logout">→ Log out</a>
+        <a href="ผู้อนุมัติ.html">ผู้อนุมัติ</a>
+    </div>
+
+    <div class="content">
+        <div class="section-title">สถานะการยืม-คืน</div>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ลำดับ</th>
+                    <th>ฝ่ายสำนัก</th>
+                    <th>ชื่อผู้ยืม</th>
+                    <th>วันทียืม</th>
+                    <th>วันที่คืน</th>
+                    <th>หมายเหตุการยืม-คืน</th>
+                    <th>รายละเอียด</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- ข้อมูลจะถูกเติมโดย JavaScript -->
+            </tbody>
+        </table>
+
+        <div class="pagination">
+            <button onclick="goToPage(1)" class="active">1</button>
+            <button onclick="goToPage(2)">2</button>
+            <button onclick="goToPage(3)">3</button>
+        </div>
+
+        <button class="back-button" onclick="window.location.href='ผู้อนุมัติ.html'">ย้อนกลับ</button>
+    </div>
+</body>
+
+</html>

@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Clock } from 'lucide-react';
-import Navbar from './common/navbar/navbar';
+import NavbarApprover from '../../../components/common/navbarapprover';
 import './UpdatedBorrow.css';
+import HeaderApprover from '../../../components/common/HeaderApprover';
+
 
 const UpdatedBorrow = () => {
     const [date, setDate] = useState('');
@@ -84,21 +86,8 @@ const UpdatedBorrow = () => {
 
     return (
         <div className="dashboard">
-            <div className="header">
-                <div className="title">
-                    <Clock className="logo" size={40} />
-                    <div>
-                        SPORTS AUTHORITY OF THAILAND
-                        <div className="sub-title">Computer Equipment Management System</div>
-                    </div>
-                </div>
-                <div className="datetime">
-                    <span className="date">{date}</span>
-                    <span className="time">{time}</span>
-                </div>
-            </div>
-
-            <Navbar />
+            <HeaderApprover />
+            <NavbarApprover />
 
             <div className="content">
                 <div className="section-title">สถานะการยืม-คืน</div>

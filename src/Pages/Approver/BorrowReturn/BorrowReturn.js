@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Clock } from 'lucide-react';
-import Navbar from '../common/navbar/navbar';
+import NavbarApprover from '../../../components/common/navbarapprover';
+import HeaderApprover from '../../../components/common/HeaderApprover';
 import './BorrowReturn.css';
 
 const BorrowReturn = () => {
@@ -48,21 +49,7 @@ const BorrowReturn = () => {
 
     return (
         <div className="borrow-return-container">
-            <div className="header">
-                <div className="title">
-                    <Clock className="logo" size={40} />
-                    <div>
-                        SPORTS AUTHORITY OF THAILAND
-                        <div className="sub-title">Computer Equipment Management System</div>
-                    </div>
-                </div>
-                <div className="datetime">
-                    <span className="date">{date}</span>
-                    <span className="time">{time}</span>
-                </div>
-            </div>
-
-            <Navbar />
+            <HeaderApprover />
 
             <div className="content">
                 <div className="section-title">ข้อมูลการยืม-คืน</div>
@@ -115,7 +102,7 @@ const BorrowReturn = () => {
                 </div>
 
                 <div className="back-button-container">
-                    <a href="#dashboard" className="back-button">ย้อนกลับ</a>
+                    <a href="/approver-page" className="back-button">ย้อนกลับ</a>
                 </div>
             </div>
         </div>

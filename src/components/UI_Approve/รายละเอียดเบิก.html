@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ระบบบริหารการจัดการวัสดุคอมพิวเตอร์ของ กกท</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e3f2fd;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background: linear-gradient(135deg, #1565c0, #1e88e5);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            color: white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .date-time {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end; /* จัดเวลาให้ชิดขวาสุด */
+            margin-right: 20px;
+        }
+        .date-time .date {
+            font-size: 18px;
+        }
+        .date-time .time {
+            font-size: 16px;
+            margin-top: 5px;
+        }
+        .container {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            padding: 20px;
+            gap: 30px;
+        }
+        .details, .control {
+            background-color: #ffffff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            width: 40%;
+            box-sizing: border-box;
+        }
+        .details p, .control h3, .control label {
+            margin: 10px 0;
+        }
+        .control select, .control textarea, .control button, .control input {
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .control button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .control button:hover {
+            background-color: #45a049;
+        }
+        .footer {
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 20px;
+        }
+        .back-button {
+            display: inline-block;
+            background-color: #1e88e5;
+            color: white;
+            padding: 10px 30px;
+            font-size: 16px;
+            border-radius: 25px;
+            text-decoration: none;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+        .back-button:hover {
+            background-color: #90caf9;
+            transform: scale(1.1);
+        }
+    </style>
+    <script>
+        function updateDateTime() {
+            const now = new Date();
+
+            const dateOptions = {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                timeZone: 'Asia/Bangkok'
+            };
+            const timeOptions = {
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                timeZone: 'Asia/Bangkok'
+            };
+
+            const formattedDate = now.toLocaleDateString('th-TH', dateOptions);
+            const formattedTime = now.toLocaleTimeString('th-TH', timeOptions);
+
+            document.getElementById('date').innerText = formattedDate;
+            document.getElementById('time').innerText = formattedTime;
+        }
+
+        const requestDetails = {
+            name: "สมชาย ใจดี",
+            department: "ฝ่ายไอที",
+            phone: "1234",
+            email: "somchai@example.com",
+            type: "คอมพิวเตอร์",
+            itemName: "โน้ตบุ๊ก",
+            brand: "Dell",
+            assetNumber: "123456",
+            note: "ใช้สำหรับการประชุม",
+            amount: "2",
+            requestDate: "01/01/2025"
+        };
+
+        function loadRequestDetails(details) {
+            document.querySelector(".details").innerHTML = `
+                <h3>รายละเอียดการเบิก</h3>
+                <p><strong>ชื่อผู้เบิก:</strong> ${details.name}</p>
+                <p><strong>ฝ่ายสำนัก:</strong> ${details.department}</p>
+                <p><strong>เบอร์ภายใน:</strong> ${details.phone}</p>
+                <p><strong>E-mail:</strong> ${details.email}</p>
+                <p><strong>ประเภท:</strong> ${details.type}</p>
+                <p><strong>ชื่อวัสดุ:</strong> ${details.itemName}</p>
+                <p><strong>ยี่ห้อ:</strong> ${details.brand}</p>
+                <p><strong>หมายเลขครุภัณฑ์:</strong> ${details.assetNumber}</p>
+                <p><strong>หมายเหตุการขอเบิก:</strong> ${details.note}</p>
+                <p><strong>จำนวน:</strong> ${details.amount}</p>
+                <p><strong>วันที่เบิก:</strong> ${details.requestDate}</p>
+            `;
+        }
+
+        window.onload = function () {
+            updateDateTime();
+            setInterval(updateDateTime, 1000); // อัปเดตเวลาใหม่ทุก 1 วินาที
+            loadRequestDetails(requestDetails);
+        };
+    </script>
+</head>
+<body>
+<header>
+    <div style="display: flex; align-items: center;">
+        <img src="logo.png" alt="Sports Authority of Thailand" style="height: 50px; margin-right: 15px;">
+        <div>
+            <h1 style="margin: 0; font-size: 18px; font-weight: bold;">SPORTS AUTHORITY OF THAILAND</h1>
+            <h2 style="margin: 0; font-size: 14px; font-weight: normal;">Computer Equipment Management System</h2>
+        </div>
+    </div>
+    <div class="date-time">
+        <div id="date" class="date"></div>
+        <div id="time" class="time"></div>
+    </div>
+</header>
+
+<div class="container">
+    <div class="details">
+        <!-- ข้อมูลรายละเอียดการเบิกจะถูกเติมโดย JavaScript -->
+    </div>
+
+    <div class="control">
+        <h3>จำนวนคงเหลือ</h3>
+        <input type="number" id="remaining" placeholder="ระบุจำนวนคงเหลือ" readonly value="0">
+        <h3>รายละเอียด</h3>
+        <input type="text" id="details" placeholder="รายละเอียด" readonly value="-">
+        <h3>การอนุมัติ</h3>
+        <select id="status">
+            <option>อนุมัติ</option>
+            <option>ไม่อนุมัติ</option>
+        </select>
+        <label for="reason">เหตุผล:</label>
+        <textarea id="reason" rows="5"></textarea>
+        <button>ตกลง</button>
+    </div>
+</div>
+
+<div class="footer">
+    <a href="updated_ขอเบิก.html" class="back-button">ย้อนกลับ</a>
+</div>
+</body>
+</html>
